@@ -5,9 +5,9 @@
 ### Table of Contents
   * [R Time Series Issues is back](#hello-you)
     * [Issue 1. when is a matrix not a matrix](#issue-1---r-you-kidding)
-    * [Issue 2. package fights](#issue-2-how-will-r-end)
-    * [Issue 3. artificially stupid intelligence](#issue-3-dont-use-autoarima)
-    * [Issue 4. when is the intercept the mean](#issue-4-when-is-the-intercept-the-mean)
+    * [Issue 2. package fights](#issue-2---how-will-r-end)
+    * [Issue 3. artificially stupid intelligence](#issue-3---dont-use-autoarima)
+    * [Issue 4. when is the intercept the mean](#issue-4---when-is-the-intercept-the-mean)
     * 
 
  ### Hello You 
@@ -17,13 +17,10 @@ We're back at trying to help You get past the gnarly stuff that comes with tryin
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
 
-
-
-
-
-
-
 <br/>
+
+
+
 
 ---
 
@@ -74,13 +71,15 @@ What's the remedy? Use Matlab, or make sure your matrices are the matrices you i
 # [2,]    2    2
 ```
 
-&#9997; Now back to our regularly scheduled list of screw ups.
+ &#128545; If you're thinking "Well don't use `array` if one of the dimensions is 1.", let me remind you that the dimensions are arbitrary... meaning if you write a general script, you have to have cases.
+
+Now back to our regularly scheduled list of screw ups.
 
 <br/>
 
 ---
 
-### Issue 2:  how will R end?  
+### Issue 2 -  how will R end?  
 ---
 
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
@@ -128,7 +127,7 @@ lag = stats::lag
 
 ---
 
-### Issue 3:  don't use auto.arima   
+### Issue 3 -  don't use auto.arima   
 
 ---
 
@@ -157,7 +156,7 @@ forecast::auto.arima(x)  # BLACK BOX
 
      sigma^2 estimated as 0.9657:  log likelihood=-1400
      AIC=2808.01   AICc=2808.05   BIC=2827.64
-````
+```
 
  HA! ... an ARMA(2,1) ??  
  
@@ -168,7 +167,7 @@ forecast::auto.arima(x)  # BLACK BOX
 
 ---
 
-### Issue 4:  when is the intercept the mean?   
+### Issue 4 -  when is the intercept the mean?   
 
 ---
 
@@ -199,15 +198,15 @@ arima(x, order = c(1, 0, 0))
 
 The result is telling you the estimated model is something like
 
-$$ x_t = 49 + .75 x_{t-1} + w_t $$
+&emsp; &emsp;  x(t) = 49 + .75 x(t-1) + w(t)
 
 whereas, it should be telling you the estimated model is
 
-$$ x_t - 49 = .75 ( x_{t-1} - 49)+ w_t $$
+ &emsp; &emsp; x(t) - 49 = .75 [ x(t-1) - 49 ] + w(t) 
 
 or
 
-$$ x_t = 12.25 + .75 x_{t-1} + w_t $$
+ &emsp; &emsp;  x(t) = 12.25 + .75 x(t-1) + w(t)
   
 &#129300; And if 12.25 is not the intercept, then what is it??
 
@@ -215,7 +214,7 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 
 ```r
   Coefficients:
-           ar1       mean  
+           ar1       mean  # <-- easy  
         0.7476    49.1451
   s.e.  0.0651     0.3986
  ``` 
