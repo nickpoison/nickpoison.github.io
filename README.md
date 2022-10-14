@@ -3,14 +3,16 @@
 
 
 ### Table of Contents
-  * [R Time Series Issues is back](#hello-you---were-back-at-trying-to-help-you-get-past-the-gnarly-stuff-that-comes-with-trying-to-use-r-for-time-series-this-is-an-update-of-the-r-issues-page-wherein-it-is-written-on-whatever-they-write-it-on-up-there)
+  * [R Time Series Issues is back](#hello-you)
     * [Issue 1. when is a matrix not a matrix](#issue-1---r-you-kidding)
     * [Issue 2. package fights](#issue-2-how-will-r-end)
     * [Issue 3. artificially stupid intelligence](#issue-3-dont-use-autoarima)
     * [Issue 4. when is the intercept the mean](#issue-4-when-is-the-intercept-the-mean)
     * 
 
-###  Hello You - we're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the [R Issues Page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm) wherein it is written, on whatever they write it on up there: 
+ ### Hello You 
+ 
+We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the [R Issues Page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm) wherein it is written, on whatever they write it on up there: 
 
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
@@ -29,7 +31,7 @@
 
 ---
 
-&#128544; You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions _p x q_ for _t = 1, &#8230; , n_.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with _p_ and _q_.  Let's have a closer look: 
+![](figs/slaphead.gif) You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions _p x q_ for _t = 1, &#8230; , n_.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with _p_ and _q_.  Let's have a closer look: 
 
 ```r
 # 5 2 by 2 matrices
@@ -78,11 +80,10 @@ What's the remedy? Use Matlab, or make sure your matrices are the matrices you i
 
 ---
 
-### Issue 2:  how will R end?   
+### Issue 2:  how will R end?  
 ---
 
-&#9989; 
-The issue below has become a real pain as  the commercial enterprise that makes RStudio (aka Postit &#128210; ) influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
+![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
   
  
 An   issue with a conflict between the package  `dplyr`  and  `stats`  package  came to my attention recently; in particular `filter()` and `lag()`. There may be more but the conflict can ruin you analyses.
@@ -131,12 +132,12 @@ lag = stats::lag
 
 ---
 
-&#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
+![](figs/slaphead.gif) Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
 
 
 
 
-![](figs/slaphead.gif) Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.  The bottom line is, if you don't know what you're doing, then why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
+ Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.  The bottom line is, if you don't know what you're doing, then why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
 
 &#128055; DON'T BELIEVE IT?? OK... HERE YOU GO:
 
@@ -172,15 +173,14 @@ forecast::auto.arima(x)  # BLACK BOX
 ---
 
 
-&#128558; When fitting ARIMA models, R calls the estimate of the mean, the estimate of the intercept. This is ok if there's no AR term, but not if there is an AR term.
+![](figs/slaphead.gif) When fitting ARIMA models, R calls the estimate of the mean, the estimate of the intercept. This is ok if there's no AR term, but not if there is an AR term.
 
-For example, if $x_t = \alpha + \phi x_{t-1} + w_t$ is stationary, then taking expectations, 
-$\mu = E(x_t)$, we have $\mu =  \alpha + \phi \mu$ or 
+For example, if x(t) = &alpha; + &phi; x(t-1) + w(t) is stationary, then taking expectations we have &mu; = &alpha; + &phi; &mu; or 
 
-$$\alpha=\mu (1-\phi)$$
+&emsp; &emsp; &alpha; = &mu; (1-&phi;).
 
 
-&#128542; So, the intercept, $\alpha$, is not the mean, $\mu$, unless $\phi= 0$. In general, the mean and the intercept are the same only when there is no AR term. Here's a numerical example:
+ So, the intercept, &alpha;  is not the mean, &mu;, unless &phi; = 0. In general, the mean and the intercept are the same only when there is no AR term. Here's a numerical example:
 
 ```r
 # generate an AR(1) with mean 50
