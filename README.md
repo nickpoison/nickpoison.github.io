@@ -24,28 +24,31 @@
 <br/>
 
 ---
-###  ISSUE 1 - R you kidding? ![](figs/slaphead.gif) ![](figs/slaphead.gif) ![](figs/slaphead.gif)
+
+###  ISSUE 1 - R you kidding? 
 
 ---
 
-&#128309; You have a time series of matrices, say $A_t$ that are $p\times q$ for $t=1,\dots, n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
+&#128544; You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions _p x q_ for _t = 1, &#8230; , n_.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with _p_ and _q_.  Let's have a closer look: 
 
 ```r
 # 5 2 by 2 matrices
 A = array(diag(1,2), dim=c(2, 2, 5))
 is.matrix(A[,,2])
-#  [1] TRUE  ok - it's a matrix
- 
+  [1] TRUE  ok - a matrix
+
+# 5 1 by 2 matrices 
 B = array(matrix(1,2), dim=c(2, 1, 5))
 is.matrix(B[,,2])
-#  [1] FALSE  WTF? it's not a matrix
+  [1] FALSE  WTF? not a matrix
 
+# 5 2 by 1 matrices 
 C = array(matrix(2,1), dim=c(1, 2, 5))
 is.matrix(C[,,2])
-## [1] FALSE  WTF? it's not a matrix
+  [1] FALSE  WTF? not a matrix
 ```
 
-What's happening is if $p$ or $q$ are 1, then you don't get an array of matrices.
+What's happening is if _p_ or _q_ are 1, then you don't get an array of matrices.
 What can go wrong?
 
 ```r 
@@ -69,14 +72,13 @@ What's the remedy? Use Matlab, or make sure your matrices are the matrices you i
 # [2,]    2    2
 ```
 
-&#9997; **Now back to our regularly scheduled list of screw ups.**
+&#9997; Now back to our regularly scheduled list of screw ups.
 
 <br/>
 
 ---
 
-### Issue 2:  how will R end?   ![](figs/slaphead.gif) ![](figs/slaphead.gif) ![](figs/slaphead.gif)
-
+### Issue 2:  how will R end?   
 ---
 
 &#9989; 
@@ -125,7 +127,7 @@ lag = stats::lag
 
 ---
 
-### Issue 3:  don't use auto.arima   ![](figs/slaphead.gif) ![](figs/slaphead.gif) ![](figs/slaphead.gif)
+### Issue 3:  don't use auto.arima   
 
 ---
 
@@ -134,7 +136,7 @@ lag = stats::lag
 
 
 
-Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.  The bottom line is, if you don't know what you're doing, then why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
+![](figs/slaphead.gif) Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.  The bottom line is, if you don't know what you're doing, then why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
 
 &#128055; DON'T BELIEVE IT?? OK... HERE YOU GO:
 
@@ -158,14 +160,14 @@ forecast::auto.arima(x)  # BLACK BOX
 
  HA! ... an ARMA(2,1) ??  
  
- &#129344; There are lots of examples.  The bottom line here is, automated ARIMA model fitting is for the birds. &#128038;
+&#128038; There are lots of examples.  The bottom line here is, automated ARIMA model fitting is for the birds. 
 
  
 <br/>
 
 ---
 
-### Issue 4:  when is the intercept the mean?   ![](figs/slaphead.gif) ![](figs/slaphead.gif) ![](figs/slaphead.gif)
+### Issue 4:  when is the intercept the mean?   
 
 ---
 
