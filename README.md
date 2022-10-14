@@ -79,7 +79,7 @@ Now back to our regularly scheduled list of screw ups.
 
 ---
 
-### Issue 2 -  how will R end?  
+### Issue 2 - how will R end?  
 ---
 
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
@@ -127,7 +127,7 @@ lag = stats::lag
 
 ---
 
-### Issue 3 -  don't use auto.arima   
+### Issue 3 - don't use auto.arima   
 
 ---
 
@@ -167,7 +167,7 @@ forecast::auto.arima(x)  # BLACK BOX
 
 ---
 
-### Issue 4 -  when is the intercept the mean?   
+### Issue 4 - when is the intercept the mean?   
 
 ---
 
