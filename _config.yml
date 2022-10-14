@@ -1,3 +1,7 @@
 remote_theme: pages-themes/hacker@v0.2.0
 title: R you kidding
 description: tsa4 - R and Time Series
+
+  # Build settings
+  markdown: kramdown
+  mathjax: true

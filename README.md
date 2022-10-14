@@ -1,3 +1,7 @@
+<head><script type="text/javascript" async 
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?
+config=TeX-AMS-MML_HTMLorMML"></script></head>
+
 # &#128018;&#128018; R you kidding &#128018;&#128018;
 
 
