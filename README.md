@@ -15,6 +15,9 @@
 
 ### Hello You 
 
+test inline $x+y=64 \sin(99)$ and test display 
+
+$$x^2- \sum 5=\sqrt{z} \int \pi$$
 
 We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the [R Issues Page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm) wherein it is written, on whatever they write it on up there: 
 
@@ -35,7 +38,7 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ---
 
-![](figs/slaphead.gif) You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions \(p \times q\)  for $t = 1, \dots , n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
+![](figs/slaphead.gif) You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions _p x q_  for _t = 1, &hellip; , n_.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with _p_ and _q_.  Let's have a closer look: 
 
 ```r
 # 3  2x2 matrices
@@ -109,7 +112,7 @@ is.matrix(C[,,2])
   [1] FALSE  WTF? not a matrix
 ```
 
-What's happening is if $p$ or $q$ are 1, then you don't get an array of matrices.
+What's happening is if _p_ or _q_ are 1, then you don't get an array of matrices.
 What can go wrong?
 
 ```r 
