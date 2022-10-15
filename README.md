@@ -305,7 +305,15 @@ where    &alpha; =  &beta; (1-&phi;).
 
 ---
 
-![](figs/slaphead.gif) The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees
+![](figs/slaphead.gif) If you use `tsdiag` for diagnostics after an ARIMA fit, you will
+get a graphic that looks like this: 
+
+![](figs/ex1.jpg)
+
+
+
+
+ The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees
 of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`.
 That is, the procedure being used does NOT take into account the fact that the residuals are
 from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github.com/nickpoison/astsa).
