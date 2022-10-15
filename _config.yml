@@ -3,3 +3,4 @@ title: R you kidding
 description: R and Time Series
 
 markdown: kramdown
+use_math: true
