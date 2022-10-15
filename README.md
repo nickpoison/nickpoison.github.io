@@ -13,11 +13,8 @@
     * [Issue 7. lead from behind](#issue-7---lead-from-behind)
 
 
-### Hello You 
+### Hello Ewe &#x1F411;
 
-test inline $x+y=64 \cos(99)$ and test display 
-
-$$x^2- \sum 5=\sqrt{z}  \, \pi$$
 
 We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the [R Issues Page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm) wherein it is written, on whatever they write it on up there: 
 
@@ -43,100 +40,99 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 ```r
 # 3  2x2 matrices
 ( A = array(diag(1,2), dim=c(2, 2, 3)) )
-##   , , 1
-##   
-##        [,1] [,2]
-##   [1,]    1    0
-##   [2,]    0    1
-##   
-##   , , 2
-##   
-##        [,1] [,2]
-##   [1,]    1    0
-##   [2,]    0    1
-##   
-##   , , 3
-##   
-##        [,1] [,2]
-##   [1,]    1    0
-##   [2,]    0    1
+   , , 1
+   
+        [,1] [,2]
+   [1,]    1    0
+   [2,]    0    1
+   
+   , , 2
+   
+        [,1] [,2]
+   [1,]    1    0
+   [2,]    0    1
+   
+   , , 3
+   
+        [,1] [,2]
+   [1,]    1    0
+   [2,]    0    1
 
 is.matrix(A[,,2])
-  [1] TRUE  ok - a matrix
+   [1] TRUE  ok - a matrix
 ```
 but
 ```r
 # 3  2x1 matrices 
 ( B = array(matrix(1,2), dim=c(2, 1, 3)) )
-##   , , 1
-##   
-##        [,1]
-##   [1,]    1
-##   [2,]    1
-##   
-##   , , 2
-##   
-##        [,1]
-##   [1,]    1
-##   [2,]    1
-##   
-##   , , 3
-##   
-##        [,1]
-##   [1,]    1
-##   [2,]    1
-
+   , , 1
+   
+        [,1]
+   [1,]    1
+   [2,]    1
+   
+   , , 2
+   
+        [,1]
+   [1,]    1
+   [2,]    1
+   
+   , , 3
+   
+        [,1]
+   [1,]    1
+   [2,]  
 is.matrix(B[,,2])
-  [1] FALSE  WTF? not a matrix
+   [1] FALSE  WTF? not a matrix
 ```  
 and
 ```r
 # 3  1x2 matrices 
 ( C = array(matrix(2,1), dim=c(1, 2, 3)) )
-##  , , 1
-##  
-##       [,1] [,2]
-##  [1,]    2    2
-##  
-##  , , 2
-##  
-##       [,1] [,2]
-##  [1,]    2    2
-##  
-##  , , 3
-##  
-##       [,1] [,2]
-##  [1,]    2    2
+  , , 1
+  
+       [,1] [,2]
+  [1,]    2    2
+  
+  , , 2
+  
+       [,1] [,2]
+  [1,]    2    2
+  
+  , , 3
+  
+       [,1] [,2]
+  [1,]    2    2
 
 is.matrix(C[,,2])
-  [1] FALSE  WTF? not a matrix
+   [1] FALSE  WTF? not a matrix
 ```
 
-What's happening is if _p_ or _q_ are 1, then you don't get an array of matrices.
+What's happening is if $p$ or $q$ are $1$, then you don't get an array of matrices.
 What can go wrong?
 
 ```r 
 # should be a 2x1 times a 1x2 or 2x2 - BUT IT'S NOT!
 B[,,1]%*%C[,,1]
-#       [,1]
-# [1,]    4
+         [,1]
+   [1,]    4
 
 # this doesn't work either
 as.matrix(B[,,1])%*%as.matrix(C[,,1])
-# Error in as.matrix(B[, , 1]) %*% as.matrix(C[, , 1]) : 
-#  non-conformable arguments
+   Error in as.matrix(B[, , 1]) %*% as.matrix(C[, , 1]) : 
+    non-conformable arguments
 ```
 What's the remedy? Use Matlab, or make sure your matrices are the matrices you intended them to be:
 
 ```r
 # like this
  matrix(B[,,1], 2, 1)%*%matrix(C[,,1], 1, 2)
-#      [,1] [,2]
-# [1,]    2    2
-# [2,]    2    2
+         [,1] [,2]
+   [1,]    2    2
+   [2,]    2    2
 ```
 
- &#128545; If you're thinking "Well don't use `array` if one of the dimensions is 1.", let me remind you that the dimensions are arbitrary... meaning if you write a general script, you have to have cases.
+ &#128545; If you're thinking "Well don't use `array` if one of the dimensions is 1" let me say that the dimensions are arbitrary... meaning if you write a general script, you have to have cases.
 
 Now back to our regularly scheduled list of screw ups.
 
@@ -153,7 +149,7 @@ Now back to our regularly scheduled list of screw ups.
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
   
  
-An   issue with a conflict between the package  `dplyr`  and  `stats`  package  came to my attention recently; in particular `filter()` and `lag()`. There may be more but the conflict can ruin you analyses.
+An   issue with a conflict between the package  `dplyr`  and  `stats`  package  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin you analyses.
 
  The bottom line is, if you are working with time
     series and you load  `dplyr`, then you should know what it breaks... just be careful.
@@ -177,8 +173,7 @@ library(dplyr)
 
 ## it's a package fight!   
 ```
-To be safe, load packages consciously and watch for masked objects warnings.  I would say avoid loading `dplyr` if
-you're analyzing time series interactively (the advantage of using R vs batch mode programs). 
+To be safe, load packages consciously and watch for masked objects warnings.  I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs). 
 
  
 One fix if you're analyzing time series (or teaching a class) is to (tell students to) do the following after loading all the packages needed: 
@@ -228,7 +223,9 @@ forecast::auto.arima(x)  # BLACK BOX
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ```
 
- HA! ... an ARMA(2,1) ??  
+ HA! ... an ARMA(2,1) ??  What a Klusterfuk! y'all 
+
+&#x1F439; But if you know what you're doing, you would realize the model that `auto.arima` fit is   overparameterized white noise, y'all.
  
 &#128038; There are lots of examples.  The bottom line here is, automated ARIMA model fitting is for the birds. 
 
@@ -247,9 +244,9 @@ forecast::auto.arima(x)  # BLACK BOX
 
 ![](figs/slaphead.gif) When fitting ARIMA models, R calls the estimate of the mean, the estimate of the intercept. This is ok if there's no AR term, but not if there is an AR term.
 
-For example, if x(t) = &alpha; + &phi; x(t-1) + w(t) is stationary, then taking expectations we have &mu; = &alpha; + &phi; &mu; or 
+For example, if $x_t = \alpha + \phi x_{t-1} + w_t$ is stationary, then taking expectations, with $\mu = E(x_t)$, we have $\mu = \alpha + \phi \mu$ or 
 
-&emsp; &emsp; &alpha; = &mu; (1-&phi;).
+$$\alpha = \mu (1-\phi).$$
 
 
  So, the intercept, &alpha;  is not the mean, &mu;, unless &phi; = 0. In general, the mean and the intercept are the same only when there is no AR term. Here's a numerical example:
