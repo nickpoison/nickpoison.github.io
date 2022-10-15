@@ -35,7 +35,7 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ---
 
-![](figs/slaphead.gif) You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions $p \times q$  for $t = 1, \dots , n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
+![](figs/slaphead.gif) You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions \(p \times q\)  for $t = 1, \dots , n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
 
 ```r
 # 3  2x2 matrices
