@@ -12,6 +12,7 @@
     * [Issue 6. wrong p-values](#issue-6---the-wrong-p-values)
     * [Issue 7. lead from behind](#issue-7---lead-from-behind)
     * [Issue 8. regress this](#issue-8---regression-nightmares)
+    * [Issue 9. you're ugly](#issue-9---ewe-gee-el-why)
 
 
 ### Hello Ewe &#x1F411;
@@ -536,6 +537,56 @@ lm(y ~ x, data=dog)
 ```
 By the way, (Intercept) is used correctly here.
 
+&#128061; The bottom line for this one is, if `x` is a time series, `x` and `lag(x,-1)` [and any other version for that matter] are perfectly correlated unless you align them first.  This can be a pain if you want to do lagged regressions, say 
 
+$$x_t = \beta_0 + \beta_1 z_{t} + \beta_2 z_{t-1} + w_t $$
+
+because all those series have to aligned first: `dog = ts.intersect(x, z, lag(z,-1))`. And then if you want to try another lag of `z`, you have to redo `dog`.  Luckily, there is a package called [dynlm](https://CRAN.R-project.org/package=dynlm) that can handle these problems without having to align and re-align. The nice thing is it works like `lm`.
 
  
+ [<sub>top</sub>](#table-of-contents)
+
+ 
+ <br/>
+
+---
+
+### Issue 9 - ewe gee el why  
+
+---
+
+![](figs/slaphead.gif) U - G - L - Y ... you ain't got no alibi.  This was one of the first things we took care of in [astsa](https://github.com/nickpoison/astsa).  When you're trying to fit an ARMA model to data, you first look at the sample ACF and PACF of the data. 
+
+Let's try this for a simulated MA(1) process. Here's how
+```r
+MA1 = arima.sim(list(order=c(0,0,1), ma=.5), n=100)
+par(mfcol=c(2,1))
+acf(MA1,20)
+pacf(MA1,20)
+```
+and here's the output:
+
+![](figs/ma1.jpg)
+
+What's wrong with this picture? First, the two graphs are on different scales. The ACF axis goes from -.2 to 1, whereas the PACF axis goes from -.2 to .4. Also, the lag axis on the ACF plot starts at 0 (the 0 lag ACF is always 1 so you have to ignore it or put your thumb over it), whereas the lag axis on the PACF plot starts at 1. So, instead of getting a nice picture by default, you get an UGLY messy picture. 
+
+You can fix it up:
+```r
+par(mfrow=c(2,1))
+acf(MA1, 20, xlim=c(1,20))   # set the x-axis limits to start at 1 then
+                             #  look at the graph and note the y-axis limits
+pacf(MA1, 20, ylim=c(-.2,1)) #   then use those limits here
+```
+
+But an easier thing to do is to use `acf2` from the [astsa](https://github.com/nickpoison/astsa) package.
+
+ [<sub>top</sub>](#table-of-contents)
+
+ 
+ <br/>
+
+
+
+
+
+
