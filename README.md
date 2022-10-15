@@ -11,6 +11,7 @@
     * [Issue 5. R you drifting?](#issue-5---your-arima-is-drifting)
     * [Issue 6. wrong p-values](#issue-6---the-wrong-p-values)
     * [Issue 7. lead from behind](#issue-7---lead-from-behind)
+    * [Issue 8. regress this](#issue-8---regression-nightmares)
 
 
 ### Hello Ewe &#x1F411;
@@ -484,12 +485,56 @@ $$  y_t = {\rm lag}\{x_t\} = x_{t+1} $$
 
  
  [<sub>top</sub>](#table-of-contents)
- 
+
  
  <br/>
 
+---
 
+### Issue 8 - regression nightmares 
 
+---
+
+![](figs/slaphead.gif) This is something you outta know.  Although Vanilla R does warn you about this, it's easy to miss.  This is from the help file `?lm` near the end
+
+> **Using time series** <br/>
+Considerable care is needed when using `lm` with time series.
+
+If you are using `lm()` with time series, be sure to read the entire warning.  We'll just focus on one big problem via a little Vanilla R example.
+
+```r
+set.seed(666)
+y = 5 + arima.sim(list(order=c(1,0,0), ar=.9), n=20)  # 20 obs from an AR(1) with mean 5
+
+# let's try to fit the regression using lm()
+
+# first the regressor
+x = lag(y,-1)
+##  you wouldn't regress x on lag(x) because that would be progress  ;-) 
+
+# run the regression
+lm(y ~ x)
+
+   Coefficients:
+    (Intercept)            x  
+              0            1  
+```
+Perfect fit: $\hat y = x$ or $\hat x_t = x_{t-1}$.  
+
+But wait, we know $\hat x_t -5 =  .9 (x_{t-1}-5)$ or $\hat x_t = .5 + .9 x_{t-1}$... must be a mistake.
+
+The problem is that $x_t$ and $x_{t-1}$ aren't aligned, so they look the same to Vanilla R. The remedy to is align them this way:
+
+```r
+dog = ts.intersect(y, x)  # aligns y and x on time
+# the regession will work now
+lm(y ~ x, data=dog)
+ 
+  Coefficients:
+   (Intercept)            x  
+        1.1011       0.7659 
+```
+By the way, (Intercept) is used correctly here.
 
 
 
