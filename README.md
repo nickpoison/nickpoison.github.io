@@ -9,6 +9,8 @@
     * [Issue 3. artificially stupid intelligence](#issue-3---dont-use-autoarima)
     * [Issue 4. when is the intercept the mean](#issue-4---when-is-the-intercept-the-mean)
     * [Issue 5. R you drifting?](#issue-5---your-arima-is-drifting)
+    * [Issue 6. wrong p-values](#issue-6---the-wrong-p-values)
+    * [Issue 7. lead from behind](#issue-7---lead-from-behind)
 
 
 ### Hello You 
@@ -19,6 +21,8 @@ We're back at trying to help You get past the gnarly stuff that comes with tryin
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
 
+Many of these issues have been taken care of in  the package [`astsa`](https://github.com/nickpoison/astsa).  An introduction to the package may be found at
+[`FUN WITH ASTSA`](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) where the fun never stops. 
 <br/>
 
 
@@ -79,6 +83,8 @@ Now back to our regularly scheduled list of screw ups.
 
 <br/>
 
+[<sub>top</sub>](#table-of-contents)
+
 ---
 
 ### Issue 2 - how will R end?  
@@ -128,6 +134,8 @@ lag = stats::lag
 
 <br/>
 
+[<sub>top</sub>](#table-of-contents)
+
 ---
 
 ### Issue 3 - don't use auto.arima   
@@ -167,6 +175,8 @@ forecast::auto.arima(x)  # BLACK BOX
 
  
 <br/>
+
+[<sub>top</sub>](#table-of-contents)
 
 ---
 
@@ -227,6 +237,8 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 
  <br/>
 
+ [<sub>top</sub>](#table-of-contents)
+
 ---
 
 ### Issue 5 - your arima is drifting 
@@ -269,7 +281,7 @@ Why does this work?  In symbols,   xreg = t  and consequently,
  R will replace  x(t)   with  y(t) = x(t) - &beta; t  ;
 that is, it will fit the model
 
-&nbsp;   &nabla; y(t)=   &phi; &nabla;y(t-1) + w(t),
+&nbsp;   &nabla;y(t)=   &phi; &nabla;y(t-1) + w(t),
 
 or
 
@@ -282,3 +294,72 @@ Simplifying,
 where    &alpha; =  &beta; (1-&phi;).
 
 &#128054; The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts.  Instead, reach for a package like [`astsa`](https://github.com/nickpoison/astsa)  that will set you free.
+
+<br/>
+
+[<sub>top</sub>](#table-of-contents)
+
+---
+
+### Issue 6 - the wrong p-values 
+
+---
+
+![](figs/slaphead.gif) The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees
+of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`.
+That is, the procedure being used does NOT take into account the fact that the residuals are
+from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github.com/nickpoison/astsa).
+
+<br/>
+
+[<sub>top</sub>](#table-of-contents)
+
+---
+
+### Issue 7 - lead from behind 
+
+---
+
+
+![](figs/slaphead.gif) You have to be  careful when working with lagged components of a time
+series. 
+Note that `lag(x)` is a FORWARD shift and `lag(x,-1)`  is a BACKWARD shift
+(unless you happen to load `dplyr`).
+
+
+Try a small example:
+
+```r
+x = ts(1:5)
+cbind(x, lag(x), lag(x,-1))
+ 
+  Time Series:
+  Start = 0 
+  End = 6 
+  Frequency = 1 
+  
+      x lag(x) lag(x, -1)
+  0  NA     1         NA
+  1   1     2         NA
+  2   2     3          1
+  3   3     4          2 ## in this row, x is 3, lag(x) is 4, lag(x,-1) is 2
+  4   4     5          3               
+  5   5    NA          4
+  6  NA    NA          5
+```
+
+In other words,  if you have a series x(t) then 
+
+&emsp;  y(t) = lag{x(t)} = x(t+1) 
+
+ and NOT  x(t-1).  In fact, this is reasonable in that y(t) actually does "lag" x(t) by one time period. But, it seems awkward, and it's not typical of other programs. As long as you know the convention, you'll be ok (unless you happen to load `dplyr`).
+
+ <br/>
+
+ [<sub>top</sub>](#table-of-contents)
+
+
+
+
+
+ 
