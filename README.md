@@ -510,7 +510,7 @@ y = 5 + arima.sim(list(order=c(1,0,0), ar=.9), n=20)  # 20 obs from an AR(1) wit
 
 # first the regressor
 x = lag(y,-1)
-##  you wouldn't regress x on lag(x) because that would be progress  ;-) 
+##  you wouldn't regress y on lag(y) because that would be progress  ;-) 
 
 # run the regression
 lm(y ~ x)
