@@ -2,6 +2,7 @@ remote_theme: pages-themes/hacker@v0.2.0
 title: R you kidding
 description: R and Time Series
 
+usemathjax: true
 
 google_analytics: G-MZ8FZJ4EPG
 
