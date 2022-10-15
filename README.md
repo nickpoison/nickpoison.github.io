@@ -63,7 +63,7 @@ is.matrix(A[,,2])
   [1] TRUE  ok - a matrix
 
 
-# 3  1x2 matrices 
+# 3  2x1 matrices 
 ( B = array(matrix(1,2), dim=c(2, 1, 3)) )
 ##   , , 1
 ##   
@@ -87,7 +87,7 @@ is.matrix(B[,,2])
   [1] FALSE  WTF? not a matrix
   
 
-# 3  2x1 matrices 
+# 3  1x2 matrices 
 ( C = array(matrix(2,1), dim=c(1, 2, 3)) )
 ##  , , 1
 ##  
