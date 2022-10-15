@@ -4,14 +4,16 @@
 
 ### Table of Contents
   * [R Time Series Issues is back](#hello-you)
-    * [Issue 1. when is a matrix not a matrix](#issue-1---r-you-kidding)
+    * [Issue 1. when is a matrix not a matrix](#issue-1---when-is-a-matrix-not-a-matrix)
     * [Issue 2. package fights](#issue-2---how-will-r-end)
     * [Issue 3. artificially stupid intelligence](#issue-3---dont-use-autoarima)
     * [Issue 4. when is the intercept the mean](#issue-4---when-is-the-intercept-the-mean)
-    * 
+    * [Issue 5. R you drifting?](#issue-5---your-arima-is-drifting)
 
- ### Hello You 
- 
+
+### Hello You 
+
+
 We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the [R Issues Page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm) wherein it is written, on whatever they write it on up there: 
 
 
@@ -24,7 +26,7 @@ We're back at trying to help You get past the gnarly stuff that comes with tryin
 
 ---
 
-###  ISSUE 1 - R you kidding? 
+###  ISSUE 1 - when is a matRix not a matRix? 
 
 ---
 
@@ -80,6 +82,7 @@ Now back to our regularly scheduled list of screw ups.
 ---
 
 ### Issue 2 - how will R end?  
+
 ---
 
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
@@ -220,3 +223,62 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
  ``` 
 
  This is the main reason `sarima` in the package [`astsa`](https://github.com/nickpoison/astsa) was developed, and frankly, to make up for the fact that time series was an after thought, started the entire [`astsa`](https://github.com/nickpoison/astsa) package in the first place.
+
+
+ <br/>
+
+---
+
+### Issue 5 - your arima is drifting 
+
+---
+
+
+![](figs/slaphead.gif) When fitting ARIMA models with R, a constant term is NOT included
+in the model if there is any differencing. The best R will do by default
+is fit a mean if there is no differencing [type `?arima` for details].
+
+What's wrong with this?  Well (with a time series in `x`), for example:
+```r
+arima(x, order = c(1, 1, 0))          # (1)
+```
+will not produce the same result as
+```r
+arima(diff(x), order = c(1, 0, 0))    # (2)
+``` 
+because in (1), R will fit the model [with &nabla;x(s) = x(s)-x(s-1)]
+
+&emsp; &emsp;  &nabla; x(t)= &phi; &nabla; x(t-1) + w(t) &nbsp;&nbsp;(no constant) 
+
+whereas in (2), R will fit the model 
+
+&emsp; &emsp; &nabla;x(t) = &alpha; + &phi; &nabla;x(t-1) + w(t). &nbsp;&nbsp;(constant)<br/>
+
+If there's drift (i.e., &alpha; is NOT zero), the two fits can be extremely different
+and using (1) will lead to an incorrect fit and consequently bad forecasts. 
+
+
+
+If  &alpha;  is NOT zero, then what you have to do to correct (1) is use xreg as follows:
+
+```r
+arima(x, order = c(1, 1, 0), xreg=1:length(x))    # (1+)
+```
+
+Why does this work?  In symbols,   xreg = t  and consequently, 
+ R will replace  x(t)   with  y(t) = x(t) - &beta; t  ;
+that is, it will fit the model
+
+&nbsp;   &nabla; y(t)=   &phi; &nabla;y(t-1) + w(t),
+
+or
+
+&nbsp;   &nabla;[x(t) - &beta; t] =   &phi; &nabla;[x(t-1) - &beta; (t-1)] + w(t). 
+
+Simplifying, 
+
+&nbsp;  &nabla;x(t) = &alpha; +  &phi; &nabla;x(t-1) + w(t)  
+
+where    &alpha; =  &beta; (1-&phi;).
+
+&#128054; The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts.  Instead, reach for a package like [`astsa`](https://github.com/nickpoison/astsa)  that will set you free.
