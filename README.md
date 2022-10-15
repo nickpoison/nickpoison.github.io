@@ -23,7 +23,8 @@ We're back at trying to help You get past the gnarly stuff that comes with tryin
 
 Many of these issues have been taken care of in  the package [astsa](https://github.com/nickpoison/astsa).  An introduction to the package may be found at
 [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) where the fun never stops.  &#x1F388; &#x1F388; &#x1F388;
-<br/>
+
+<br/><br/>
 
 
 
@@ -81,9 +82,9 @@ What's the remedy? Use Matlab, or make sure your matrices are the matrices you i
 
 Now back to our regularly scheduled list of screw ups.
 
-<br/>
-
 [<sub>top</sub>](#table-of-contents)
+
+<br/>
 
 ---
 
@@ -130,11 +131,11 @@ lag = stats::lag
 
 >&#128260; Oh yeah, so you're probably wondering how? ... every package will nullify every other package until one day, you load R and it masks itself in an infinite do loop ...
 
-
+[<sub>top</sub>](#table-of-contents)
 
 <br/>
 
-[<sub>top</sub>](#table-of-contents)
+
 
 ---
 
@@ -173,10 +174,11 @@ forecast::auto.arima(x)  # BLACK BOX
  
 &#128038; There are lots of examples.  The bottom line here is, automated ARIMA model fitting is for the birds. 
 
- 
+[<sub>top</sub>](#table-of-contents)
+
 <br/>
 
-[<sub>top</sub>](#table-of-contents)
+
 
 ---
 
@@ -234,10 +236,11 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 
  This is the main reason `sarima` in the package [`astsa`](https://github.com/nickpoison/astsa) was developed, and frankly, to make up for the fact that time series was an after thought, started the entire [`astsa`](https://github.com/nickpoison/astsa) package in the first place.
 
+[<sub>top</sub>](#table-of-contents)
 
  <br/>
 
- [<sub>top</sub>](#table-of-contents)
+ 
 
 ---
 
@@ -295,9 +298,11 @@ where    &alpha; =  &beta; (1-&phi;).
 
 &#128054; The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts.  Instead, reach for a package like [`astsa`](https://github.com/nickpoison/astsa)  that will set you free.
 
-<br/>
 
 [<sub>top</sub>](#table-of-contents)
+
+<br/>
+
 
 ---
 
@@ -318,9 +323,11 @@ of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`.
 That is, the procedure being used does NOT take into account the fact that the residuals are
 from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github.com/nickpoison/astsa).
 
+[<sub>top</sub>](#table-of-contents)
+
 <br/>
 
-[<sub>top</sub>](#table-of-contents)
+
 
 ---
 
@@ -362,9 +369,12 @@ In other words,  if you have a series x(t) then
 
  and NOT  x(t-1).  In fact, this is reasonable in that y(t) actually does "lag" x(t) by one time period. But, it seems awkward, and it's not typical of other programs. As long as you know the convention, you'll be ok (unless you happen to load `dplyr`).
 
+ 
+ [<sub>top</sub>](#table-of-contents)
+ 
+ 
  <br/>
 
- [<sub>top</sub>](#table-of-contents)
 
 
 
