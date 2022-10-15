@@ -24,6 +24,9 @@ We're back at trying to help You get past the gnarly stuff that comes with tryin
 Many of these issues have been taken care of in  the package [astsa](https://github.com/nickpoison/astsa).  An introduction to the package may be found at
 [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) where the fun never stops.  &#x1F388; &#x1F388; &#x1F388;
 
+* Before we start:
+>_Definition:_ &ensp; Vanilla R &ensp; _Packages that are automatically loaded when R is started._
+
 <br/><br/>
 
 
@@ -81,7 +84,8 @@ but
    
         [,1]
    [1,]    1
-   [2,]  
+   [2,]    1
+
 is.matrix(B[,,2])
    [1] FALSE  WTF? not a matrix
 ```  
@@ -242,14 +246,14 @@ forecast::auto.arima(x)  # BLACK BOX
 ---
 
 
-![](figs/slaphead.gif) When fitting ARIMA models, R calls the estimate of the mean, the estimate of the intercept. This is ok if there's no AR term, but not if there is an AR term.
+![](figs/slaphead.gif) When fitting ARMA models, Vanilla R calls the estimate of the mean, the estimate of the intercept. This is ok if there's no AR term, but not if there is an AR term.
 
 For example, if $x_t = \alpha + \phi x_{t-1} + w_t$ is stationary, then taking expectations, with $\mu = E(x_t)$, we have $\mu = \alpha + \phi \mu$ or 
 
 $$\alpha = \mu (1-\phi).$$
 
 
- So, the intercept, &alpha;  is not the mean, &mu;, unless &phi; = 0. In general, the mean and the intercept are the same only when there is no AR term. Here's a numerical example:
+ So, the intercept, $\alpha$  is not the mean, $\mu$, unless $\phi = 0$. In general, the mean and the intercept are the same only when there is no AR term. Here's a numerical example:
 
 ```r
 # generate an AR(1) with mean 50
@@ -268,17 +272,18 @@ arima(x, order = c(1, 0, 0))
 
 The result is telling you the estimated model is something like
 
-&emsp; &emsp;  x(t) = 49 + .75 x(t-1) + w(t)
+$$ x_t = 49 + .75 x_{t-1} + w_t$$
 
 whereas, it should be telling you the estimated model is
 
- &emsp; &emsp; x(t) - 49 = .75 [ x(t-1) - 49 ] + w(t) 
+ $$ x_t - 49 = .75 ( x_{t-1} - 49 ) + w_t $$
 
 or
 
- &emsp; &emsp;  x(t) = 12.25 + .75 x(t-1) + w(t)
+$$ x_t  = 12.25 + .75  x_{t-1}  + w_t $$
+
   
-&#129300; And if 12.25 is not the intercept, then what is it??
+&#129300; And if $12.25$ is not the intercept, then what is it??
 
 The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 
@@ -289,7 +294,7 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
   s.e.  0.0651     0.3986
  ``` 
 
- This is the main reason `sarima` in the package [`astsa`](https://github.com/nickpoison/astsa) was developed, and frankly, to make up for the fact that time series was an after thought, started the entire [`astsa`](https://github.com/nickpoison/astsa) package in the first place.
+ This is the main reason `sarima` in the package [`astsa`](https://github.com/nickpoison/astsa) was developed, and frankly, to make up for the fact that time series was an afterthought, started the entire [`astsa`](https://github.com/nickpoison/astsa) package in the first place.
 
 [<sub>top</sub>](#table-of-contents)
 
@@ -304,8 +309,9 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 ---
 
 
-![](figs/slaphead.gif) When fitting ARIMA models with R, a constant term is NOT included
-in the model if there is any differencing. The best R will do by default
+
+![](figs/slaphead.gif) When fitting ARIMA models with vanilla R, a constant term is NOT included
+in the model if there is any differencing. The best vanilla R will do by default
 is fit a mean if there is no differencing [type `?arima` for details].
 
 What's wrong with this?  Well (with a time series in `x`), for example:
@@ -316,18 +322,20 @@ will not produce the same result as
 ```r
 arima(diff(x), order = c(1, 0, 0))    # (2)
 ``` 
-because in (1), R will fit the model [with &nabla;x(s) = x(s)-x(s-1)]
+because in (1), Vanilla R will fit the model [with $\nabla x_s = x_s - x_{s-1}$]
 
-&emsp; &emsp;  &nabla; x(t)= &phi; &nabla; x(t-1) + w(t) &nbsp;&nbsp;(no constant) 
+$$ \nabla x_t= \phi \nabla x_{t-1} + w_t \quad {\rm (no\ constant)} $$
 
-whereas in (2), R will fit the model 
+whereas in (2), Vanilla R will fit the model 
 
-&emsp; &emsp; &nabla;x(t) = &alpha; + &phi; &nabla;x(t-1) + w(t). &nbsp;&nbsp;(constant)<br/>
+$$ \nabla x_t=  \alpha + \phi \nabla x_{t-1} + w_t \quad {\rm (constant)} $$
 
-If there's drift (i.e., &alpha; is NOT zero), the two fits can be extremely different
+
+
+If there's drift (i.e., $\alpha$ is NOT zero), the two fits can be extremely different
 and using (1) will lead to an incorrect fit and consequently bad forecasts. 
 
-If  &alpha;  is NOT zero, then what you have to do to correct (1) is use xreg as follows:
+If  $\alpha$  is NOT zero, then what you have to do to correct (1) is use `xreg` as follows:
 
 ```r
 arima(x, order = c(1, 1, 0), xreg=1:length(x))    # (1+)
