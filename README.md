@@ -272,15 +272,46 @@ whereas in (2), R will fit the model
 If there's drift (i.e., &alpha; is NOT zero), the two fits can be extremely different
 and using (1) will lead to an incorrect fit and consequently bad forecasts. 
 
-
-
 If  &alpha;  is NOT zero, then what you have to do to correct (1) is use xreg as follows:
 
 ```r
 arima(x, order = c(1, 1, 0), xreg=1:length(x))    # (1+)
 ```
 
-Why does this work?  In symbols,   xreg = t  and consequently, 
+
+If you want to see the differences, generate a random walk with drift and
+try to fit an ARIMA(1,1,0) model to it.  Here's how:
+
+```r
+set.seed(1)           # so you can reproduce the results
+v = rnorm(100,1,1)    # v contains 100 iid N(1,1) variates
+x = cumsum(v)         # x is a random walk with drift = 1 
+
+## (1)
+arima(x, order = c(1, 1, 0))   # yes! it's a mess!  
+#  Coefficients:
+#           ar1
+#        0.6031
+#  s.e.  0.0793
+
+## (2)
+arima(diff(x), order = c(1, 0, 0))   
+#  Coefficients:
+#            ar1  intercept
+#        -0.0031     1.1163
+#  s.e.   0.1002     0.0897
+
+## (1+)
+arima(x, order = c(1, 1, 0), xreg=1:length(x))     
+#  Coefficients:
+#            ar1  1:length(x)
+#        -0.0031       1.1163
+#  s.e.   0.1002       0.0897
+```
+
+The S-PLUS people didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.  
+
+Why does (1+) work?  In symbols,   xreg = t  and consequently, 
  R will replace  x(t)   with  y(t) = x(t) - &beta; t  ;
 that is, it will fit the model
 
@@ -296,7 +327,7 @@ Simplifying,
 
 where    &alpha; =  &beta; (1-&phi;).
 
-&#128054; The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts.  Instead, reach for a package like [`astsa`](https://github.com/nickpoison/astsa)  that will set you free.
+&#128054; The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts to do time series analysis.  Instead, reach for a package like [astsa](https://github.com/nickpoison/astsa)  that will set you free.
 
 
 [<sub>top</sub>](#table-of-contents)
