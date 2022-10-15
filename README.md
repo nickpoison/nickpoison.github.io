@@ -15,7 +15,6 @@
 
 ### Hello You 
 
-test $x_t=y^2$
 
 We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the [R Issues Page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm) wherein it is written, on whatever they write it on up there: 
 
