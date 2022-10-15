@@ -309,7 +309,26 @@ arima(x, order = c(1, 1, 0), xreg=1:length(x))
 #  s.e.   0.1002       0.0897
 ```
 
-The S-PLUS people didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.  
+ Let me explain what's going on here. The model generating the data is  
+
+&emsp;&emsp; x(t) = 1 + x(t-1) + w(t) 
+
+where w(t) is N(0,1) noise.  Another way to write this is 
+
+
+&emsp;&emsp;   [x(t)-x(t-1)] = 1 + 0 [x(t-1)-x(t-2)] + w(t) 
+ 
+or
+
+&emsp;&emsp;  &nabla;x(t) = 1 + 0 &nabla;x(t-1) + w(t) 
+  
+
+so, if you fit an AR(1) to x(t), the estimates should be, approximately, `ar1 = 0` 
+and `intercept = 1`.  
+     
+So (1) gives the WRONG answer because it's forcing the regression through the origin. The
+others are correct.
+
 
 Why does (1+) work?  In symbols,   xreg = t  and consequently, 
  R will replace  x(t)   with  y(t) = x(t) - &beta; t  ;
@@ -327,7 +346,9 @@ Simplifying,
 
 where    &alpha; =  &beta; (1-&phi;).
 
-&#128054; The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts to do time series analysis.  Instead, reach for a package like [astsa](https://github.com/nickpoison/astsa)  that will set you free.
+&#128054;  S-PLUS didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.  
+
+The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts to do time series analysis.  Instead, reach for a package like [astsa](https://github.com/nickpoison/astsa)  that will set you free.
 
 
 [<sub>top</sub>](#table-of-contents)
