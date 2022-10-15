@@ -39,18 +39,71 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 ![](figs/slaphead.gif) You have a time series of matrices, say _A<sub>t</sub>_ that are of arbitrary dimensions _p x q_ for _t = 1, &#8230; , n_.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with _p_ and _q_.  Let's have a closer look: 
 
 ```r
-# 5 2 by 2 matrices
-A = array(diag(1,2), dim=c(2, 2, 5))
+# 3  2x2 matrices
+( A = array(diag(1,2), dim=c(2, 2, 3)) )
+##   , , 1
+##   
+##        [,1] [,2]
+##   [1,]    1    0
+##   [2,]    0    1
+##   
+##   , , 2
+##   
+##        [,1] [,2]
+##   [1,]    1    0
+##   [2,]    0    1
+##   
+##   , , 3
+##   
+##        [,1] [,2]
+##   [1,]    1    0
+##   [2,]    0    1
+
 is.matrix(A[,,2])
   [1] TRUE  ok - a matrix
 
-# 5 1 by 2 matrices 
-B = array(matrix(1,2), dim=c(2, 1, 5))
+
+# 3  1x2 matrices 
+( B = array(matrix(1,2), dim=c(2, 1, 3)) )
+##   , , 1
+##   
+##        [,1]
+##   [1,]    1
+##   [2,]    1
+##   
+##   , , 2
+##   
+##        [,1]
+##   [1,]    1
+##   [2,]    1
+##   
+##   , , 3
+##   
+##        [,1]
+##   [1,]    1
+##   [2,]    1
+
 is.matrix(B[,,2])
   [1] FALSE  WTF? not a matrix
+  
 
-# 5 2 by 1 matrices 
-C = array(matrix(2,1), dim=c(1, 2, 5))
+# 3  2x1 matrices 
+( C = array(matrix(2,1), dim=c(1, 2, 3)) )
+##  , , 1
+##  
+##       [,1] [,2]
+##  [1,]    2    2
+##  
+##  , , 2
+##  
+##       [,1] [,2]
+##  [1,]    2    2
+##  
+##  , , 3
+##  
+##       [,1] [,2]
+##  [1,]    2    2
+
 is.matrix(C[,,2])
   [1] FALSE  WTF? not a matrix
 ```
