@@ -1,6 +1,0 @@
----
----
-
-@import "{{ site.theme }}";
-pre { border-left: 5px solid #336699;
-}   

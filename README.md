@@ -25,7 +25,8 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) where the fun never stops.  &#x1F388; &#x1F388; &#x1F388;
 
 * Before we start:
->_Definition:_ &ensp; Vanilla R &ensp; _Packages that are automatically loaded when R is started._
+
+> _Definition:_ &ensp; Vanilla R &ensp; _Packages chosen by the developers that are automatically loaded when R is started._
 
 <br/><br/>
 
@@ -136,7 +137,7 @@ What's the remedy? Use Matlab, or make sure your matrices are the matrices you i
    [2,]    2    2
 ```
 
- &#128545; If you're thinking "Well don't use `array` if one of the dimensions is 1" let me say that the dimensions are arbitrary... meaning if you write a general script, you have to have cases.
+ &#128545; If you're thinking _Well don't use `array` if one of the dimensions is 1_, let me say that the dimensions are arbitrary... meaning if you write a general script, you have to have cases.
 
 Now back to our regularly scheduled list of screw ups.
 
@@ -310,8 +311,8 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 
 
 
-![](figs/slaphead.gif) When fitting ARIMA models with vanilla R, a constant term is NOT included
-in the model if there is any differencing. The best vanilla R will do by default
+![](figs/slaphead.gif) When fitting ARIMA models with Vanilla R, a constant term is NOT included
+in the model if there is any differencing. The best Vanilla R will do by default
 is fit a mean if there is no differencing [type `?arima` for details].
 
 What's wrong with this?  Well (with a time series in `x`), for example:
@@ -374,44 +375,44 @@ arima(x, order = c(1, 1, 0), xreg=1:length(x))
 
  Let me explain what's going on here. The model generating the data is  
 
-&emsp;&emsp; x(t) = 1 + x(t-1) + w(t) 
+$$ x_t = 1 + x_{t-1} + w_t $$
 
-where w(t) is N(0,1) noise.  Another way to write this is 
+where $w_t$ is standard normal  noise.  Another way to write this is 
 
 
-&emsp;&emsp;   [x(t)-x(t-1)] = 1 + 0 [x(t-1)-x(t-2)] + w(t) 
+$$    x_t - x_{t-1}  = 1 + 0 (x_{t-1} - x_{t-2}) + w_t $$
  
 or
 
-&emsp;&emsp;  &nabla;x(t) = 1 + 0 &nabla;x(t-1) + w(t) 
+$$ \nabla x_t = 1 + 0 \nabla x_{t-1} + w_t . $$
   
 
-so, if you fit an AR(1) to x(t), the estimates should be, approximately, `ar1 = 0` 
+If you fit an AR(1) to $x_t$, the estimates should be, approximately, `ar1 = 0` 
 and `intercept = 1`.  
      
-So (1) gives the WRONG answer because it's forcing the regression through the origin. The
+Thus (1) gives the WRONG answer because it's forcing the regression through the origin. The
 others are correct.
 
 
-Why does (1+) work?  In symbols,   xreg = t  and consequently, 
- R will replace  x(t)   with  y(t) = x(t) - &beta; t  ;
+Why does (1+) work?  In symbols,   `xreg = t`  and consequently, 
+ Vanilla R will replace  $x_t$   with  $y_t = x_t - \beta t$  ;
 that is, it will fit the model
 
-&nbsp;   &nabla;y(t)=   &phi; &nabla;y(t-1) + w(t),
+$$ y_t =   \phi  \nabla y_{t-1} + w_t,$$
 
 or
 
-&nbsp;   &nabla;[x(t) - &beta; t] =   &phi; &nabla;[x(t-1) - &beta; (t-1)] + w(t). 
+$$ x(t) - \beta t =   \phi  \nabla [x_{t-1} - \beta (t-1)] + w_t. $$ 
 
 Simplifying, 
 
-&nbsp;  &nabla;x(t) = &alpha; +  &phi; &nabla;x(t-1) + w(t)  
+$$ \nabla x_t = \alpha +  \phi \nabla x_{t-1} + w_t  $$
 
-where    &alpha; =  &beta; (1-&phi;).
+where   $ \alpha =  \beta (1-\phi)$.
 
 &#128054;  S-PLUS didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.  
 
-The bottom line here is, if you wanna be happy for the rest of your life, don't use vanilla R scripts to do time series analysis.  Instead, reach for a package like [astsa](https://github.com/nickpoison/astsa)  that will set you free.
+&#127881; The bottom line here is, if you wanna be happy for the rest of your life, don't use Vanilla R for time series analysis.  Instead, reach for a package like [astsa](https://github.com/nickpoison/astsa)  that will set you free.  &#127882;
 
 
 [<sub>top</sub>](#table-of-contents)
@@ -425,16 +426,14 @@ The bottom line here is, if you wanna be happy for the rest of your life, don't 
 
 ---
 
-![](figs/slaphead.gif) If you use `tsdiag` for diagnostics after an ARIMA fit, you will
-get a graphic that looks like this: 
+![](figs/slaphead.gif) If you use Vanilla R's `tsdiag` for diagnostics after an ARIMA fit, you will get a graphic that looks like this: 
 
 ![](figs/ex1.jpg)
 
 
 
 
- The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees
-of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`.
+&#129337;&#127995; The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`.
 That is, the procedure being used does NOT take into account the fact that the residuals are
 from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github.com/nickpoison/astsa).
 
@@ -452,8 +451,7 @@ from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github
 
 
 ![](figs/slaphead.gif) You have to be  careful when working with lagged components of a time
-series. 
-Note that `lag(x)` is a FORWARD shift and `lag(x,-1)`  is a BACKWARD shift
+series. Note that `lag(x)` is a FORWARD shift and `lag(x,-1)`  is a BACKWARD shift
 (unless you happen to load `dplyr`).
 
 
@@ -478,11 +476,11 @@ cbind(x, lag(x), lag(x,-1))
   6  NA    NA          5
 ```
 
-In other words,  if you have a series x(t) then 
+In other words,  if you have a series $x_t$  then 
 
-&emsp;  y(t) = lag{x(t)} = x(t+1) 
+$$  y_t = {\rm lag}\{x_t\} = x_{t+1} $$
 
- and NOT  x(t-1).  In fact, this is reasonable in that y(t) actually does "lag" x(t) by one time period. But, it seems awkward, and it's not typical of other programs. As long as you know the convention, you'll be ok (unless you happen to load `dplyr`).
+ and NOT  $x_{t-1}$.  In fact, this is reasonable in that $y_t$ actually does "lag" $x_t$ by one time period. But, it seems awkward, and it's not typical of other programs. As long as you know the convention, you'll be ok (unless you happen to load `dplyr`).
 
  
  [<sub>top</sub>](#table-of-contents)
