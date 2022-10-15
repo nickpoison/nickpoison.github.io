@@ -21,8 +21,8 @@ We're back at trying to help You get past the gnarly stuff that comes with tryin
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
 
-Many of these issues have been taken care of in  the package [`astsa`](https://github.com/nickpoison/astsa).  An introduction to the package may be found at
-[`FUN WITH ASTSA`](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) where the fun never stops. 
+Many of these issues have been taken care of in  the package [astsa](https://github.com/nickpoison/astsa).  An introduction to the package may be found at
+[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) where the fun never stops.  &#x1F388; &#x1F388; &#x1F388;
 <br/>
 
 
