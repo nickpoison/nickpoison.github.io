@@ -13,6 +13,9 @@
     * [Issue 7. lead from behind](#issue-7---lead-from-behind)
     * [Issue 8. regress this](#issue-8---regression-nightmares)
     * [Issue 9. you're ugly](#issue-9---ewe-gee-el-why)
+     ---
+ * [Time Series and Graphics in R](#time-series-and-graphics-in-r)
+    * [Example 1](#example-1---simple-but-effective)
 
 
 ### Hello Ewe &#x1F411;
@@ -585,8 +588,20 @@ But an easier thing to do is to use `acf2` from the [astsa](https://github.com/n
  
  <br/>
 
+---
+---
 
+## Time Series and Graphics in R
 
+We'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa), and [ggplot2](https://CRAN.R-project.org/package=ggplot2). We used to include demonstrations from the `ggfortify` package, but it was changed so often that eventually most of the examples didn't work. 
 
+You'll need two packages to reproduce the examples:
+```r
+install.packages(c("astsa", "ggplot2"))
+```
 
+---
+### Example 1 - simple but effective
+---
 
+First, here's a plot of globtemp using the base graphics. If you add a grid after you plot, it goes on top. You have some work to do if you want the grid underneath... but at least you can work around that - read on.
