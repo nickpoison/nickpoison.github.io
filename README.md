@@ -3,7 +3,7 @@
 
 
 ### Table of Contents
-  * [R Time Series Issues is back](#hello-you)
+  * [**R Time Series Issues**](#hello-you)
     * [Issue 1. when is a matrix not a matrix](#issue-1---when-is-a-matrix-not-a-matrix)
     * [Issue 2. package fights](#issue-2---how-will-r-end)
     * [Issue 3. artificially stupid intelligence](#issue-3---dont-use-autoarima)
@@ -13,8 +13,7 @@
     * [Issue 7. lead from behind](#issue-7---lead-from-behind)
     * [Issue 8. regress this](#issue-8---regression-nightmares)
     * [Issue 9. you're ugly](#issue-9---ewe-gee-el-why)
-     ---
- * [Time Series and Graphics in R](#time-series-and-graphics-in-r)
+ * [**Time Series and Graphics in R**](#time-series-and-graphics-in-r)
     * [Example 1](#example-1---simple-but-effective)
 
 
