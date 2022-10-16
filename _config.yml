@@ -5,7 +5,12 @@ description: R and Time Series
 
 google_analytics: G-MZ8FZJ4EPG
 
+markdown: kramdown
+highlighter: rouge
 
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
