@@ -5,7 +5,10 @@ description: R and Time Series
 
 google_analytics: G-MZ8FZJ4EPG
 
-
+output:
+  md_document:
+    variant: markdown_github
+    preserve_yaml: true
 
 kramdown:
   input: GFM
