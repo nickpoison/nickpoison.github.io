@@ -1,26 +1,24 @@
 # &#128018;&#128018; R you kidding &#128018;&#128018;
 
-
+## R Time Series Issues
 
 ### Table of Contents
-  * [**R Time Series Issues**](#hello-you)
-    * [Issue 1. when is a matrix not a matrix](#issue-1---when-is-a-matrix-not-a-matrix)
-    * [Issue 2. package fights](#issue-2---how-will-r-end)
-    * [Issue 3. artificially stupid intelligence](#issue-3---dont-use-autoarima)
-    * [Issue 4. when is the intercept the mean](#issue-4---when-is-the-intercept-the-mean)
-    * [Issue 5. R you drifting?](#issue-5---your-arima-is-drifting)
-    * [Issue 6. wrong p-values](#issue-6---the-wrong-p-values)
-    * [Issue 7. lead from behind](#issue-7---lead-from-behind)
-    * [Issue 8. regress this](#issue-8---regression-nightmares)
-    * [Issue 9. you're ugly](#issue-9---ewe-gee-el-why)
- * [**Time Series and Graphics in R**](#time-series-and-graphics-in-r)
-    * [Example 1](#example-1---simple-but-effective)
+* [Issue 1. when is a matrix not a matrix](#issue-1---when-is-a-matrix-not-a-matrix)
+* [Issue 2. package fights](#issue-2---how-will-r-end)
+* [Issue 3. artificially stupid intelligence](#issue-3---dont-use-autoarima)
+* [Issue 4. when is the intercept the mean](#issue-4---when-is-the-intercept-the-mean)
+* [Issue 5. R you drifting?](#issue-5---your-arima-is-drifting)
+* [Issue 6. wrong p-values](#issue-6---the-wrong-p-values)
+* [Issue 7. lead from behind](#issue-7---lead-from-behind)
+* [Issue 8. regress this](#issue-8---regression-nightmares)
+* [Issue 9. you're ugly](#issue-9---ewe-gee-el-why)
+
 
 
 ### Hello Ewe &#x1F411;
 
 
-We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the [R Issues Page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm) wherein it is written, on whatever they write it on up there: 
+We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the **R Issues Page** wherein it is written, on whatever they write it on up there: 
 
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
@@ -31,6 +29,10 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 * Before we start:
 
 > _Definition:_ &ensp; Vanilla R &ensp; _Packages chosen by the developers that are automatically loaded when R is started._
+
+<br/>
+
+&#9989; And the [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is alive again.
 
 <br/><br/>
 
@@ -588,38 +590,7 @@ But an easier thing to do is to use `acf2` from the [astsa](https://github.com/n
  <br/>
 
 ---
----
-
-## Time Series and Graphics in R
-
-We'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa), and [ggplot2](https://CRAN.R-project.org/package=ggplot2). We used to include demonstrations from the `ggfortify` package, but it was changed so often that eventually most of the examples didn't work. 
-
-You'll need two packages to reproduce the examples:
-```r
-install.packages(c("astsa", "ggplot2"))
-```
+<p style="text-align: center;">&#128018; &Eopf; &#8469; &#120123; &#128018;</p>
 
 ---
-### Example 1 - simple but effective
----
 
-First, here's a plot of `globtemp` using the base graphics. If you add a grid after you plot, it goes on top. You have some work to do if you want the grid underneath... but at least you can work around that - read on.
-
-```r
-# for a basic plot, all you need is
-plot(globtemp)                    # it can't get simpler than that (not shown)
-plot(globtemp, type='o', col=4)   # a slightly nicer version (not shown)
-                                              
-# but here's a pretty version that includes a grid 
-par(mar=c(2,2,0,.5)+.5, mgp=c(1.6,.6,0))                   # trim the margins       
-plot(globtemp, ylab='Temperature Deviations', type='n')    # set up the plot
-grid(lty=1, col=gray(.9))                                  # add a grid
-lines(globtemp, type='o', col=4)                           # and now plot the line
-```
-
-![]
-
-```r 
-# in astsa, it's a one liner
-tsplot(soi, main='Southern Oscillation Index', col=4)
-```
