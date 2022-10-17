@@ -358,7 +358,7 @@ cw = function(w=9, h=6){Cairo::CairoWin(width = w, height = h)}
 
 This consideration DOES NOT apply if you use RStudio.  If you do use RStudio, you are &#128169;&#128169;&#128169; out of luck.
 
-&#129300; Here's the sunspot series from `astsa` using 2 different window sizes.   In the first plot, you see that the series rises quickly &uarr; and falls slowly &searr; .  The second (square) plot obscures this fact.
+&#129300; Here's the sunspot series from `astsa` using 2 different window sizes.   In the first plot, you see that the series rises quickly &uarr; and falls slowly &#8600; .  The second (square) plot obscures this fact.
 
 ```r
 tsplot(sunspotz, type='o', pch=20, col=4)
