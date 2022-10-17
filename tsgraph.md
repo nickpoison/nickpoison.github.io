@@ -34,7 +34,7 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 ### Part 1 - simple but effective
 ---
 
-&#128526; First, here's a plot of `gtemp_land` using the base graphics. If you add a grid after you plot, it goes on top. You have some work to do if you want the grid underneath... but at least you can work around that - read on.
+&#128526; First, here's how to plot `gtemp_land` using the base graphics. If you add a grid after you plot, it goes on top. You have some work to do if you want the grid underneath... but at least you can work around that - read on.
 
 ```r
 # for a basic plot, all you need is
