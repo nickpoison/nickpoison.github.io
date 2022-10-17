@@ -9,9 +9,10 @@ For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa)
 
 
 ### Table of Contents
-* [Displays 1 - simple but effective](#displays-1---simple-but-effective)
-* [Displays 2 - two series](#displays-2---two-series)
-* [Displays 3 - many series](#displays-3---many-series)
+* [Part 1 - simple but effective](#part-1---simple-but-effective)
+* [Part 2 - two series](#part-2---two-series)
+* [Part 3 - many series](#part-3---many-series)
+* [Part 4 - missing data](#part-4---missing-data)
 
 
 You'll need two packages to reproduce the examples. All the data used in the examples are from [astsa](https://github.com/nickpoison/astsa).
@@ -26,7 +27,7 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 <br/><br/>
 
 ---
-### Displays 1 - simple but effective
+### Part 1 - simple but effective
 ---
 
 &#128526; First, here's a plot of `gtemp_land` using the base graphics. If you add a grid after you plot, it goes on top. You have some work to do if you want the grid underneath... but at least you can work around that - read on.
@@ -83,7 +84,7 @@ tsplot(gtemp_land, gg=TRUE, type='o', pch=20, col=4, ylab='Temperature Deviation
 <br/>
 
 ---
-### Displays 2 - two series
+### Part 2 - two series
 ---
 
 &#128125; Time to get a little more complex by plotting two series that touch each other (but in a nice way) on the same plot.  We'll get to the general stuff soon.
@@ -119,7 +120,7 @@ legend("topleft", legend=c("Land Only","Ocean Only"), col=c(2,5), lty=1, bty="n"
 <br/>
 
 ---
-### Displays 3 - many series
+### Part 3 - many series
 ---
 
 &#x1F535; Let's start with `ggplot2`. We're going to plot the 8 explosion series.
@@ -149,7 +150,7 @@ tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE)
 
 <br/>
 
-&#128530; Let's do another `ggplot` with more than 2 series on the same plot. The script does not work with time series so you have to spend some time removing the time series attributes.  You could try `ggfortify` ... it might work now, but I'm not going to touch it because I've been burned before.
+&#128530; Let's do another `ggplot` with more than 2 series on the same plot. The script does not work with time series so you have to spend some time removing the time series attributes.  You could try `ggfortify` ... it might work now, but we're not going to touch it because we've been burned before.
 
 &#128549;  We're going to use 3 series from the LA Pollution study from `astsa`.  The data are weekly time series, so we're removing the attributes first.
 
@@ -166,8 +167,9 @@ ggplot(data=df, aes(x=Time, y=value, col=variable)) +
 
 ![](figs/gglap.png)
 
+<br/>
 
-&#128527;  This is how I would do it using `tsplot`.  The first line takes the `astsa` colors magenta, green, and blue, and makes them a little transparent (alpha=.7). Also, `spaghetti` is shortened to `spag`.
+&#128527;  This is how we would do it using `tsplot`.  The first line takes the `astsa` colors magenta, green, and blue, and makes them a little transparent (alpha=.7). Also, `spaghetti` is shortened to `spag`.
 
 ```r
 culer = astsa.col(c(6,3,4), .7)
@@ -178,3 +180,66 @@ legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'),
 ```
 
 ![](figs/tslap.png)
+
+[<sub>top</sub>](#table-of-contents)
+
+<br/>
+
+
+---
+### Part 4 - missing data
+---
+
+&#128518; In base graphics, it is sooooooo simple and the result is decent (not shown). The data set `blood` has lots of `NA`s.  You need a to have points (`type='o'` here) to get the stuff that can't be connected with lines.
+
+```r
+plot(blood, type='o', pch=19, main='')   
+```
+
+&#128525; Here it is using `astsa`:
+
+```r
+tsplot(blood, type='o', col=c(4,6,3), pch=19, cex=1, gg=TRUE)  
+```
+
+![](figs/tsblood.png)
+
+&#127881; &#127880; Nothing to it! &#127880; &#127881;
+
+<br/>
+
+![](figs/slaphead.gif) So, here it is with `ggplot2`. It works ok, but you get warnings and other frustrations you'll see along the way...
+
+```r
+# make a data frame removing the time series attributes
+df = data.frame(day=c(time(blood)), blood=c(blood), Type=factor(rep(c('WBC','PLT','HTC'), each=91)) )
+
+# notice that the factor levels of Type are in alphabetical order...
+levels(df$Type)           
+   [1] "HTC" "PLT" "WBC"
+
+# ... if I don't use the next line, the plot will be in alphabetical order ... 
+# ... if I wanted the series in alphabetical order ...
+# ... I would have ordered it that way - so I need ...
+# ... the next line to reorder them back to the way I entered the data   ...
+df$Type = factor(df$Type, levels(df$Type)[3:1])  
+ 
+# any resemblance to the blood work of actual persons, living or dead, is purely coincidental
+ggplot(data=df, aes(x=day, y=blood, col=Type))       +
+       ylab("Mary  Jane's  Blood  Work")             +   
+       geom_line()                                   +
+       geom_point()                                  +
+       theme(legend.position="none")                 +
+       facet_wrap(~Type, ncol=1, scales='free_y')
+   
+# Danger, Will Robinson! Warning! Warning! NAs appearing! 	   
+# Warning messages:
+# 1: Removed 9 rows containing missing values (geom_path).      
+# 2: Removed 111 rows containing missing values (geom_point).  
+# We're doomed! Crepes suzette! 
+```
+
+![](figs/ggblood.png)
+
+We're not done.  At least we got the plot after some work and warnings. But notice that the vertical axes have to have a common name.  If you want individual labels (e.g., WBC is measured in 10<sup>3</sup>/&mu;L) then you're in a load of &#128169;&#128169;&#128169;  ... we guess that's not in the grammar of graphics, too.). Anyway, we found this a long time ago if you want to force the matter: [how to plot differently scaled multiple time series with ggplot2](https://gist.github.com/tomhopper/faa24797bb44addeba79).
+
