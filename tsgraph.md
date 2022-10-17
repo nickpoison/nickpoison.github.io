@@ -276,17 +276,20 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 
 <br/>
 
-&#x1F535; We should probably mention [ggfortify](https://CRAN.R-project.org/package=ggfotify) with NO guarantee that what you see here we will work in the future.
+&#x1F535; We should probably give [ggfortify](https://CRAN.R-project.org/package=ggfotify) 
+a little space, BUT there are NO guarantees that what you see here we will work in the future.
 
 ```r
 install.packages('ggfortify')  # if you don't have it already
 library(ggfortify)             # load it
 
 # all on same plot
-autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part), xlab='Time', facets=FALSE, main='LA Pollution')  
+autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part), 
+           xlab='Time', facets=FALSE, main='LA Pollution')  
 
 # different plots 
-autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part), xlab='Time', ylab='LA Pollution', ts.colour = 4)  
+autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part), 
+            xlab='Time', ylab='LA Pollution', ts.colour = 4)  
 ```
 
 ![](figs/ggflap2.png)
@@ -305,8 +308,8 @@ cred  = astsa.col(6, .5)  # is always refreshing
 #
 df    = data.frame(Time=c(time(soi)), SOI=c(soi), d=ifelse(c(soi)<0,0,1))
 #
-ggplot( data=df, aes(x=Time, y=SOI) )                             + 
- geom_ribbon(aes(ymax=d*SOI, ymin=0,  fill = "cool"))             +
+ggplot( data=df, aes(x=Time, y=SOI) )                              + 
+ geom_ribbon(aes(ymax=d*SOI, ymin=0,  fill = "cool"))              +
  geom_ribbon(aes(ymax=0,  ymin=(1-d)*SOI, fill = "warm"))          +
  scale_fill_manual(name='SST', values=c("cool"=cblue,"warm"=cred)) +
  theme(legend.position=c(.05,.12)) 
