@@ -233,9 +233,9 @@ ggplot(data=df, aes(x=day, y=blood, col=Type))       +
        facet_wrap(~Type, ncol=1, scales='free_y')
    
 # Danger, Will Robinson! Warning! Warning! NAs appearing! 	   
-# Warning messages:
-# 1: Removed 9 rows containing missing values (geom_path).      
-# 2: Removed 111 rows containing missing values (geom_point).  
+ Warning messages:
+ 1: Removed 9 rows containing missing values (geom_path).      
+ 2: Removed 111 rows containing missing values (geom_point).  
 # We're doomed! Crepes suzette! 
 ```
 
