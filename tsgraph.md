@@ -24,6 +24,10 @@ install.packages(c("astsa", "ggplot2"))
 &#x1F4A1; You may also want to check out the [Cairo](https://CRAN.R-project.org/package=Cairo)
 package to create high-quality graphics.  It's not necessary, but it sure looks nice. The package is built into R, but needs to be loaded (don't we all?) `library(Cairo)`.
 
+<br/>
+
+### &#10024; The [R Time Series Issues](https://nickpoison.github.io/) page is also alive.
+
 <br/><br/>
 
 ---

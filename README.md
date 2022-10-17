@@ -2,6 +2,8 @@
 
 ## R Time Series Issues
 
+
+
 ### Table of Contents
 * [Issue 1. when is a matrix not a matrix](#issue-1---when-is-a-matrix-not-a-matrix)
 * [Issue 2. package fights](#issue-2---how-will-r-end)
@@ -15,10 +17,12 @@
 
 
 
+
+
 ### Hello Ewe &#x1F411;
 
 
-We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. The [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is alive again. This is an update of the **R Issues Page** wherein it is written, on whatever they write it on up there: 
+We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the **R Issues Page** wherein it is written, on whatever they write it on up there: 
 
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
@@ -31,6 +35,9 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 > _Definition:_ &ensp; Vanilla R &ensp; _Packages chosen by the developers that are automatically loaded when R is started._
 
 
+<br/>
+
+### &#10024; The [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is also alive.
 
 <br/><br/>
 
