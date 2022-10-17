@@ -259,3 +259,157 @@ We're not done.  At least we got the plot after some work and warnings. But noti
 ---
 ### Part 5 - everything else
 ---
+
+
+&#128047; First, some important packages for time series in R are  [xts]( https://CRAN.R-project.org/package=xts) and [zoo](https://CRAN.R-project.org/package=zoo).  Installing `xts` is enough to get both.
+
+```r
+install.packages('xts')  # if you don't have it already
+library(xts)             # load it
+#
+plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa' 
+
+```
+
+
+![](figs/xts.png)
+
+<br/>
+
+&#x1F535; We should probably mention [ggfortify](https://CRAN.R-project.org/package=ggfotify) with NO guarantee that what you see here we will work in the future.
+
+```r
+install.packages('ggfortify')  # if you don't have it already
+library(ggfortify)             # load it
+
+# all on same plot
+autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part), xlab='Time', facets=FALSE, main='LA Pollution')  
+
+# different plots 
+autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part), xlab='Time', ylab='LA Pollution', ts.colour = 4)  
+```
+
+![](figs/ggflap2.png)
+
+![](figs/slaphead.gif) **AGAIN, note that the order of the series is alphabetical and NOT in the input order.**
+
+![](figs/ggflap3.png)
+
+<br/>
+
+&#129414; But here's something in the grammar of graphics, too (`gglot2`) ... a pretty _ribbon_ plot of the Southern Oscillation Index:
+
+```r
+cblue = astsa.col(5, .5)  # a little pastel
+cred  = astsa.col(6, .5)  # is always refreshing
+#
+df    = data.frame(Time=c(time(soi)), SOI=c(soi), d=ifelse(c(soi)<0,0,1))
+#
+ggplot( data=df, aes(x=Time, y=SOI) )                             + 
+ geom_ribbon(aes(ymax=d*SOI, ymin=0,  fill = "cool"))             +
+ geom_ribbon(aes(ymax=0,  ymin=(1-d)*SOI, fill = "warm"))          +
+ scale_fill_manual(name='SST', values=c("cool"=cblue,"warm"=cred)) +
+ theme(legend.position=c(.05,.12)) 
+```
+
+![](figs/ggribsoi.png)
+
+Well that might be pretty, but it obscures the trend, don't you think?
+
+<br/>
+
+&#128056; If you really want to capture trend, try `trend` from `astsa`
+
+```r
+trend(soi, lowess=TRUE, ylab="Southern Oscillation Index")
+```
+
+![](figs/tssoi.png)
+
+<br/>
+
+
+&#129408; Here's a discrete-valued series plotted as a step function. `EQcount` in `astsa` is a count of certain types of earthquakes.
+
+```r
+tsplot(EQcount, col=4, type='s')
+points(EQcount, pch=21, col=4, bg=6)   # just for kicks, not needed and better without it
+```
+
+![](figs/tscount.png)
+
+A `type='h'` instead of `type='s'` looks good too.
+
+<br/>
+
+&#127797; If you did not know this already , with time series, the dimensions of the plot matters.
+
+
+&#128696; By default, R graphic devices are square (7 by 7 inches), which is generally bad for plotting time series as you will see. I use an `.Rprofile` file in the working directory that
+takes care of this:
+
+```r
+# graphic windows are 9 by 6 inches by default
+grDevices::windows.options(width = 9, height = 6) 
+
+# allows a quick use of Cairo - just cw() before a plot
+cw = function(w=9, h=6){Cairo::CairoWin(width = w, height = h)}  
+```
+
+This consideration DOES NOT apply if you use RStudio.  If you do use RStudio, you are &#128169;&#128169;&#128169; out of luck.
+
+&#129300; Here's the sunspot series from `astsa` using 2 different window sizes.   In the first plot, you see that the series rises quickly &uarr; and falls slowly &searr; .  The second (square) plot obscures this fact.
+
+```r
+tsplot(sunspotz, type='o', pch=20, col=4)
+```
+
+![](figs/tssunsp1.png)
+
+![](figs/tssunsp2.png)
+
+<br/>
+
+
+
+&#127812; And finally, a base graphics plot of the sunspot numbers: &#127812;
+
+```r
+x      = sunspotz
+culer1 = rgb(242, 153, 216, max=255)
+culer2 = rgb(208,  73, 242, max=255)
+culer3 = rgb( 77, 161, 249, max=255)
+culer4 = rgb(  0, 200, 225, max=255)
+culer5 = rgb(124, 231, 251, max=255)
+
+par(mar=c(2,2,1,1)+2, mgp=c(3,.2,0), las=1, cex.main=2, tcl=0, col.axis=culer1, bg=rgb(.25,.1,.25))
+plot(x, type='n', main='', ylab='', xlab='')
+rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col='black')
+grid(lty=1, col=rgb(1,0,1, alpha=.5))
+lines(x,                     lwd=3, col=culer1)
+lines(window(x, start=1800), lwd=3, col=culer2)
+lines(window(x, start=1850), lwd=3, col=culer3)
+lines(window(x, start=1900), lwd=3, col=culer4)
+lines(window(x, start=1950), lwd=3, col=culer5)
+title(expression('Psychedelic' * phantom(' Sunspots')), col.main=culer1) 
+title(expression(phantom('Psychedelic') * ' Sunspots'), col.main=culer5) 
+mtext('Time', side=1, line=2, col=culer3, font=2, cex=1.25)
+mtext('Sunspot Numbers', side=2, line=2, col=culer2, font=2, las=0, cex=1.25)
+text(1800, 180, "don't stare at the sunspots", col=culer5, srt=20, font=4)
+text(1900, 170, "s.t.a.y  c.o.o.l", col=culer1, srt=330, font=4)
+text(1850, 160, "dave? dave? \n dave's not here!", col=culer3, font=4)
+```
+
+![](figs/basesun.png)
+
+[<sub>top</sub>](#table-of-contents)
+
+<br/>
+<br/>
+
+---
+<p style="text-align: center;">&#128018; &Eopf; &#8469; &#120123; &#128018;</p>
+
+---
+
+<br/>
