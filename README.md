@@ -37,7 +37,10 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 <br/>
 
-### &#10024; The [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is also alive.
+#### &#10024; The [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is also alive.
+
+
+#### &#10024; And more info about [astsa](https://github.com/nickpoison/astsa) can be found at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)... it's more fun than high school.
 
 <br/><br/>
 

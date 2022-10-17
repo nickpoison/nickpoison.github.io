@@ -13,6 +13,7 @@ For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa)
 * [Part 2 - two series](#part-2---two-series)
 * [Part 3 - many series](#part-3---many-series)
 * [Part 4 - missing data](#part-4---missing-data)
+* [Part 5 - everything else](#part-5---everything-else)
 
 
 You'll need two packages to reproduce the examples. All the data used in the examples are from [astsa](https://github.com/nickpoison/astsa).
@@ -26,7 +27,9 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 
 <br/>
 
-### &#10024; The [R Time Series Issues](https://nickpoison.github.io/) page is also alive.
+#### &#10024; The [R Time Series Issues](https://nickpoison.github.io/) page is also alive.
+
+#### &#10024; And more info about [astsa](https://github.com/nickpoison/astsa) can be found at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)... it's more fun than high school.
 
 <br/><br/>
 
@@ -247,3 +250,12 @@ ggplot(data=df, aes(x=day, y=blood, col=Type))       +
 
 We're not done.  At least we got the plot after some work and warnings. But notice that the vertical axes have to have a common name.  If you want individual labels (e.g., WBC is measured in 10<sup>3</sup>/&mu;L) then you're in a load of &#128169;&#128169;&#128169;  ... we guess that's not in the grammar of graphics, too.). Anyway, we found this a long time ago if you want to force the matter: [how to plot differently scaled multiple time series with ggplot2](https://gist.github.com/tomhopper/faa24797bb44addeba79).
 
+
+
+[<sub>top</sub>](#table-of-contents)
+
+<br/>
+
+---
+### Part 5 - everything else
+---
