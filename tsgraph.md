@@ -122,6 +122,59 @@ legend("topleft", legend=c("Land Only","Ocean Only"), col=c(2,5), lty=1, bty="n"
 ### Displays 3 - many series
 ---
 
-&#128125; Let's start with `ggplot2`. We're going to plot the
+&#x1F535; Let's start with `ggplot2`. We're going to plot the 8 explosion series.
+
+```r
+library(reshape)            # install 'reshape' if you don't have it
+df   = melt(eqexp[,9:16])   # reshape the data frame
+Time = rep(1:2048, 8)
+ggplot(data=df, aes(x=Time, y=value, col=variable))   +
+     geom_line( )                                     +
+     theme(legend.position="none")                    +
+     facet_wrap(~variable, ncol=2, scales='free_y')   +
+     ylab('')	
+```
+
+![](figs/ggexp.png)
+
+<br/>
+
+&#129299; Now let's try the same thing with `tsplot`. It's not necessary to make it a gris-gris plot so remove the `gg=TRUE` part if you dare.  You don't have to melt anything.
+
+```r
+tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE)
+```
+
+![](figs/tsexp.png)
+
+<br/>
+
+&#128530; Let's do another `ggplot` with more than 2 series on the same plot. The script does not work with time series so you have to spend some time removing the time series attributes.  You could try `ggfortify` ... it might work now, but I'm not going to touch it because I've been burned before.
+
+&#128549;  We're going to use 3 series from the LA Pollution study from `astsa`.  The data are weekly time series, so we're removing the attributes first.
+
+```r
+mortality    = c(cmort)  # cardiovascular mortality
+temperature  = c(tempr)  # termperature
+pollution    = c(part)   # particulate pollution
+df   = melt(data.frame(mortality, temperature, pollution))
+Time = c(time(cmort), time(tempr), time(part))
+ggplot(data=df, aes(x=Time, y=value, col=variable)) +
+    geom_line( )                                    +
+    ylab("LA Pollution Study")
+```
+
+![](figs/gglap.png)
 
 
+&#128527;  This is how I would do it using `tsplot`.  The first line takes the `astsa` colors magenta, green, and blue, and makes them a little transparent (alpha=.7). Also, `spaghetti` is shortened to `spag`.
+
+```r
+culer = astsa.col(c(6,3,4), .7)
+tsplot(cbind(cmort,tempr,part), ylab='LA Pollution Study', col=culer, spag=TRUE)
+legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'), 
+             lty=1, lwd=2, col=culer, bg='white')
+
+```
+
+![](figs/tslap.png)
