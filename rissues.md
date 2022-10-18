@@ -242,6 +242,38 @@ forecast::auto.arima(x)  # BLACK BOX
  
 &#128038; There are lots of examples.  The bottom line here is, automated ARIMA model fitting is for the birds. 
 
+&#128520; So just to be  little devils, we decided to see what happens if we just fit ARs using AIC (pretty sure `auto.arima` uses AIC) and as expected ... 
+
+```r
+# we're going to use 'spec.ic' is from 'astsa' 
+#  it's an improved version of 'spec.ar'   
+library(astsa)
+
+set.seed(666)       # same as above
+x = rnorm(1000)       
+u = spec.ic(x)      # plot below
+
+# to see the AICs and BICs
+u[[1]]
+
+     ORDER   AIC    BIC
+         0  0.00   0.00
+         1  1.23   6.14
+         2  3.16  12.97
+         3  4.72  19.45
+         4  6.18  25.81
+         5  5.38  29.92
+         .   .      .
+        28 23.69 161.10
+        29 24.60 166.93
+        30 21.27 168.51
+```
+... it's WHITE NOISE, dingus.
+
+![](figs/whitenoise.png)
+
+
+
 [<sub>top</sub>](#table-of-contents)
 
 <br/>
