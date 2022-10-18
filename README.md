@@ -2,14 +2,14 @@
 
 ## Time Series and R
 
- &#127866; &#127878; Welcome to the wonderous world of two things that  go together like beer and fireworks. &#127878; &#127866; 
+  Welcome to the wonderous world of two things that  go together like beer &#127866;   and fireworks &#127878;   
 
 
 
 
 <br/>
 
-#### Links to various pages
+### ROAD MAP 
 
  &#10024; The [Time Series R Issues](https://nickpoison.github.io/rissues) page is back with more issues than ever.
 
