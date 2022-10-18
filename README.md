@@ -15,7 +15,7 @@
 
  &#10024; The [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is also alive again.
 
- &#10024; The R package [astsa](https://github.com/nickpoison/astsa/blob/master/README.md) along with the latest news and information.
+ &#10024; The R package [astsa](https://github.com/nickpoison/astsa/blob/master/README.md) along with the latest news and information is here too.
 
 
  &#10024;  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) has many examples of `astsa` capabilities.
