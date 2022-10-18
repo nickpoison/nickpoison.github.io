@@ -1,7 +1,7 @@
 # &#128018;&#128018; Time Series and R Graphics &#128018;&#128018;
 
 
-This is a resurrection of the _Time Series and Graphics_ page that had been discontinued.  The [R Time Series Issues](https://nickpoison.github.io/) is back with more issues than ever before.
+This is a resurrection of the _Time Series and Graphics_ page that had been discontinued.  
 
 For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa), and [ggplot2](https://CRAN.R-project.org/package=ggplot2). We used to include demonstrations from the `ggfortify` package, but it was changed so often that eventually most of the examples didn't work. 
 
