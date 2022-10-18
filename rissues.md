@@ -1,7 +1,4 @@
-# &#128018;&#128018; R you kidding &#128018;&#128018;
-
-## R Time Series Issues
-
+# &#128018;&#128018; R Time Series Issues &#128018;&#128018;
 
 
 ### Table of Contents
