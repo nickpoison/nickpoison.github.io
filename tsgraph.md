@@ -26,9 +26,9 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 
 <br/>
 
-#### &#10024; The [R Time Series Issues](https://nickpoison.github.io/rissues) page is also alive.
+#### &#10024; [The Front DooR](https://nickpoison.github.io/) if you need to find your way home.
 
-#### &#10024; And more info about [astsa](https://github.com/nickpoison/astsa) can be found at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)... it's more fun than high school.
+
 
 <br/><br/>
 
