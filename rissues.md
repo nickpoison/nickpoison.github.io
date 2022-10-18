@@ -395,7 +395,7 @@ or
 $$ \nabla x_t = 1 + 0 \nabla x_{t-1} + w_t . $$
   
 
-If you fit an AR(1) to $x_t$, the estimates should be, approximately, `ar1 = 0` 
+If you fit an AR(1) to $\nabla x_t$ [aka `diff(x)`], the estimates should be, approximately, `ar1 = 0` 
 and `intercept = 1`.  
      
 Thus (1) gives the WRONG answer because it's forcing the regression through the origin. The
