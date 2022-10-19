@@ -47,7 +47,7 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ---
 
-![](figs/slaphead.gif) You have a time series of matrices, say $A_t$ that are of arbitrary dimensions $p \times q$  for $t = 1, \dots, n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with _p_ and _q_.  Let's have a closer look: 
+![](figs/slaphead.gif) You have a time series of matrices, say $A_t$ that are of arbitrary dimensions $p \times q$  for $t = 1, \dots, n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
 
 ```r
 # 3  2x2 matrices
@@ -522,6 +522,23 @@ $$  y_t = {\rm lag}\{x_t\} = x_{t+1} $$
 
  and NOT  $x_{t-1}$.  In fact, this is reasonable in that $y_t$ actually does "lag" $x_t$ by one time period. But, it seems awkward, and it's not typical of other programs. As long as you know the convention, you'll be ok (unless you happen to load `dplyr`).
 
+ &#128031; This plays out in many things with Vanilla R. For example, here's a _lag plot_ of the Southern Oscillation Index ($S_t$) series.  It looks like scatterplots of  $S_{t-k}$ (horizontal axis) vs $S_t$ (vertical axis),  but in fact, are plots of  $S_{t+k}$ vs $S_t$, for $k=1,\dots,4$.
+
+```r
+lag.plot(soi, 4,  col=4)
+```
+
+![](figs/lagp1.png)
+
+<br/>
+
+&#128032;  There are two _lag plot_ scripts in `astsa`, here's the (similar) one for one series. You get what you think you were getting in the plot above.  And by default, you get a lowess fit (red line) and the sample ACF (top right).
+
+```r
+lag1.plot(soi, 4, col=4) 
+```
+
+![](figs/lagp2.png)
  
  [<sub>top</sub>](#table-of-contents)
 
