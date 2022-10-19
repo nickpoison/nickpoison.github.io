@@ -3,7 +3,7 @@
 
 This is a resurrection of the _Time Series and Graphics_ page that had been discontinued.  
 
-For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa), and [ggplot2](https://CRAN.R-project.org/package=ggplot2). We used to include demonstrations from the `ggfortify` package, but it was changed so often that eventually most of the examples didn't work. 
+For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa), and [ggplot2](https://CRAN.R-project.org/package=ggplot2). We used to include demonstrations from the `ggfortify` package, but it was changed so often that eventually most of the examples didn't work. There are some examples at the end.
 
 
 
@@ -54,7 +54,7 @@ The reason we're not showing the above is that you can get all that and more wit
 
 ```r 
 # in astsa, it's a one liner
-tsplot(gtemp_land, type='o', ppch=20, col=4, ylab='Temperature Deviations')
+tsplot(gtemp_land, type='o', pch=20, col=4, ylab='Temperature Deviations')
 ```
 
 ![](figs/gtemp.png)
@@ -320,13 +320,28 @@ Well that might be pretty, but it obscures the trend, don't you think?
 
 <br/>
 
-&#128056; If you really want to capture trend, try `trend` from `astsa`
+&#128056; If you really want to capture trend, try `trend` from `astsa`.
+We're using various options here, a `lowess` fit and a gris-gris plot.
+
 
 ```r
-trend(soi, lowess=TRUE, ylab="Southern Oscillation Index")
+trend(soi, lowess=TRUE, ylab="Southern Oscillation Index",  gg=TRUE)
 ```
 
 ![](figs/tssoi.png)
+
+<br/>
+
+&#127871; Here's the above with `ggplot` (remember to strip the attributes):
+
+```r
+df = data.frame(Time=c(time(soi)), SOI=c(soi))  	
+ggplot( data=df, aes(x=Time, y=SOI) )        +
+        geom_line(col=4)                     +
+        geom_smooth(col=6)    
+```
+
+![](figs/ggtrend.png)
 
 <br/>
 
