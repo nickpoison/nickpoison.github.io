@@ -156,7 +156,7 @@ tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE)
 
 <br/>
 
-&#128530; Let's do another `ggplot` with more than 2 series on the same plot. The script does not work with time series so you have to spend some time removing the time series attributes.  You could try `ggfortify` ... it might work now, but we're not going to touch it because we've been burned before.
+&#128530; Let's do another `ggplot` with more than 2 series on the same plot. The script does not work with time series so you have to spend some time removing the time series attributes.  You could try `ggfortify`, but we'll hold off until the end for that.
 
 &#128549;  We're going to use 3 series from the LA Pollution study from `astsa`.  The data are weekly time series, so we're removing the attributes first.
 
