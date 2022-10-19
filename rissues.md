@@ -34,7 +34,7 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 <br/>
 
-#### &#10024; [The Front DooR](https://nickpoison.github.io/) if you need to find your way home.
+### &#10024; [The Front DooR](https://nickpoison.github.io/) if you need to find your way home.
 
 <br/><br/>
 

@@ -26,7 +26,7 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 
 <br/>
 
-#### &#10024; [The Front DooR](https://nickpoison.github.io/) if you need to find your way home.
+### &#10024; [The Front DooR](https://nickpoison.github.io/) if you need to find your way home.
 
 
 
