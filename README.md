@@ -2,7 +2,7 @@
 
 ## Time Series and R
 
-  Welcome to the wonderous world of two things that  go together like beer &#127866;   and fireworks &#127878;   
+  Welcome to the wonderous world of two things that  go together like beer &#127866;   and fireworks 💥 	  
 
 
 
@@ -30,4 +30,4 @@
 ### &#127968;  My [HOME](https://github.com/nickpoison)
 
 
-
+<!--&#127878; -->
