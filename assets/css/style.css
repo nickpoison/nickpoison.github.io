@@ -2,7 +2,7 @@
 ---
 
 @import "{{ site.theme }}";
-html *
+ *
 {
    font-family: Verdana, Arial, sans-serif !important;
 }
