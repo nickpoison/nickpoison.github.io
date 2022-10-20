@@ -427,8 +427,7 @@ or
 $$ \nabla x_t = 1 + 0 \nabla x_{t-1} + w_t . $$
   
 
-If you fit an AR(1) to $\nabla x_t$ [aka `diff(x)`], the estimates should be, approximately, `ar1 = 0` 
-and `intercept = 1`.  
+If you fit an AR(1) to $\nabla x_t$ [aka `diff(x)`], the estimates should be, approximately, `ar1 = 0` and `intercept = 1`.  
      
 Thus (1) gives the WRONG answer because it's forcing the regression through the origin. The
 others are correct.
@@ -438,15 +437,15 @@ Why does (1+) work?  In symbols,   `xreg = t`  and consequently,
  Vanilla R will replace  $x_t$   with  $y_t = x_t - \beta t$  ;
 that is, it will fit the model
 
-$$ y_t =   \phi  \nabla y_{t-1} + w_t,$$
+$$\nabla y_t =   \phi  \nabla y_{t-1} + w_t,$$
 
 or
 
-$$ x(t) - \beta t =   \phi  \nabla [x_{t-1} - \beta (t-1)] + w_t. $$ 
+$$ \nabla [x_t - \beta t] =   \phi  \nabla [x_{t-1} - \beta (t-1)] + w_t. $$ 
 
 Simplifying, 
 
-$$ \nabla x_t = \alpha +  \phi \nabla x_{t-1} + w_t  $$
+$$ \nabla x_t = \alpha +  \phi \nabla x_{t-1} + w_t , $$
 
 where   $ \alpha =  \beta (1-\phi)$.
 
