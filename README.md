@@ -34,9 +34,7 @@
 <br/><br/><br/><br/><br/>
 
 
-___
 
-# <div align="center"> &#128018;&#128018;</div> 
 
 
 
