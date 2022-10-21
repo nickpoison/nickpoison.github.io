@@ -54,7 +54,7 @@ The reason we're not showing the above is that you can get all that and more wit
 
 ```r 
 # in astsa, it's a one liner
-tsplot(gtemp_land, type='o', pch=20, col=4, ylab='Temperature Deviations')
+tsplot(gtemp_land, type='o', col=4, ylab='Temperature Deviations')
 ```
 
 ![](figs/gtemp.png)
