@@ -156,6 +156,17 @@ tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE)
 
 <br/>
 
+&#127752; Let's try that again with rainbow colors:
+
+```r
+tsplot(eqexp[,9:16], col=rainbow(8, v=.8), ncol=2, gg=TRUE)
+```
+
+![](figs/tsexprain.png)
+
+<br/>
+
+
 &#128530; Let's do another `ggplot` with more than 2 series on the same plot. The script does not work with time series so you have to spend some time removing the time series attributes.  You could try `ggfortify`, but we'll hold off until the end for that.
 
 &#128549;  We're going to use 3 series from the LA Pollution study from `astsa`.  The data are weekly time series, so we're removing the attributes first.
