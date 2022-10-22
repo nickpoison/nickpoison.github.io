@@ -10,7 +10,7 @@
 * [Issue 6. wrong p-values](#issue-6---the-wrong-p-values)
 * [Issue 7. lead from behind](#issue-7---lead-from-behind)
 * [Issue 8. regress this](#issue-8---regression-nightmares)
-* [Issue 9. you're ugly](#issue-9---ewe-gee-el-why)
+* [Issue 9. you're ugly](#issue-9---yu-gi-el-why)
 
 
 
@@ -47,7 +47,7 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ---
 
-![](figs/slaphead.gif) You have a time series of matrices, say $A_t$ that are of arbitrary dimensions $p \times q$  for $t = 1, \dots, n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
+![](figs/slaphead.gif) You have a time series of matrices, $A_t$, that are of arbitrary dimensions $p \times q$  for $t = 1, \dots, n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
 
 ```r
 # 3  2x2 matrices
@@ -162,7 +162,7 @@ Now back to our regularly scheduled list of screw ups.
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
   
  
-An   issue with a conflict between the package  `dplyr`  and  `stats`  package  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin you analyses.
+An   issue with a conflict between the package  `dplyr`  and  `stats`  package  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.
 
  The bottom line is, if you are working with time
     series and you load  `dplyr`, then you should know what it breaks... just be careful.
@@ -209,7 +209,7 @@ lag = stats::lag
 
 ---
 
-![](figs/slaphead.gif) Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
+![](figs/slaphead.gif) Don't use black boxes like `auto.arima` from the `forecast` package because they DON'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
 
 
 
@@ -299,7 +299,7 @@ $$\alpha = \mu (1-\phi).$$
 ```r
 # generate an AR(1) with mean 50
 set.seed(666)      # so you can reproduce these results
-x = arima.sim(list(order=c(1,0,0), ar=.9), n=100) + 50
+x = arima.sim(list(ar=.9), n=100) + 50
 # in astsa it's
 # x = sarima.sim(ar=.9, n=100) + 50 
 
@@ -338,6 +338,18 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
  ``` 
 
  This is the main reason `sarima` in the package [`astsa`](https://github.com/nickpoison/astsa) was developed, and frankly, to make up for the fact that time series was an afterthought, started the entire [`astsa`](https://github.com/nickpoison/astsa) package in the first place.
+ Here it is for your pleasure:
+
+ ```r
+ sarima(x,1,0,0)
+
+# partial output
+
+    $ttable
+          Estimate     SE  t.value p.value
+    ar1     0.7476 0.0651  11.4835       0
+    xmean  49.1451 0.3986 123.3091       0
+ ```
 
 [<sub>top</sub>](#table-of-contents)
 
@@ -454,6 +466,16 @@ where   $ \alpha =  \beta (1-\phi)$.
 &#128054;  S-PLUS didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.  
 
 &#127881; The bottom line here is, if you wanna be happy for the rest of your life, don't use Vanilla R for time series analysis.  Instead, reach for a package like [astsa](https://github.com/nickpoison/astsa)  that will set you free.  &#127882;
+
+```r 
+sarima(x,1,1,0)
+
+# partial output
+    $ttable
+             Estimate     SE t.value p.value
+    ar1       -0.0031 0.1002 -0.0308  0.9755
+    constant   1.1163 0.0897 12.4465  0.0000
+```
 
 
 [<sub>top</sub>](#table-of-contents)
@@ -595,11 +617,28 @@ lm(y ~ x, data=dog)
 ```
 By the way, (Intercept) is used correctly here.
 
-&#128061; The bottom line for this one is, if `x` is a time series, `x` and `lag(x,-1)` [and any other version for that matter] are perfectly correlated unless you align them first.  This can be a pain if you want to do lagged regressions, say 
+&#128061; The bottom line for this one is, if `x` is a time series, `x` and `lag(x,-1)` [and any other version `lag(x, k)` for any integer `k` for that matter] are perfectly correlated unless you align them first.  
+
+&#129315; Here you go
+
+```r
+x1 = rnorm(100)
+cor(cbind(x1, x2=lag(x1,-1), x3=lag(x1,3)))
+
+# the correlation matrix (all 1s)
+      x1 x2 x3
+   x1  1  1  1
+   x2  1  1  1
+   x3  1  1  1
+```
+
+
+
+This can be a pain if you want to do lagged regressions, say 
 
 $$x_t = \beta_0 + \beta_1 z_{t} + \beta_2 z_{t-1} + w_t $$
 
-because all those series have to aligned first: `dog = ts.intersect(x, z, lag(z,-1))`. And then if you want to try another lag of `z`, you have to redo `dog`.  Luckily, there is a package called [dynlm](https://CRAN.R-project.org/package=dynlm) that can handle these problems without having to align and re-align. The nice thing is it works like `lm`.
+because all those series have to be aligned first: `dog = ts.intersect(x, z, lag(z,-1))`. And then if you want to try another lag of `z`, you have to redo `dog`.  Luckily, there is a package called [dynlm](https://CRAN.R-project.org/package=dynlm) that can handle these problems without having to align and re-align. The nice thing is it works like `lm`.
 
  
  [<sub>top</sub>](#table-of-contents)
@@ -609,7 +648,7 @@ because all those series have to aligned first: `dog = ts.intersect(x, z, lag(z,
 
 ---
 
-### Issue 9 - ewe gee el why  
+### Issue 9 - Yu-Gi-El Why?  
 
 ---
 
