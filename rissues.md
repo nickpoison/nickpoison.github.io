@@ -299,7 +299,9 @@ $$\alpha = \mu (1-\phi).$$
 ```r
 # generate an AR(1) with mean 50
 set.seed(666)      # so you can reproduce these results
-x = arima.sim(list(order=c(1,0,0), ar=.9), n=100) + 50 
+x = arima.sim(list(order=c(1,0,0), ar=.9), n=100) + 50
+# in astsa it's
+# x = sarima.sim(ar=.9, n=100) + 50 
 
 mean(x)  
   [1] 49.09817   # the sample mean is close
@@ -560,6 +562,8 @@ If you are using `lm()` with time series, be sure to read the entire warning.  W
 ```r
 set.seed(666)
 y = 5 + arima.sim(list(order=c(1,0,0), ar=.9), n=20)  # 20 obs from an AR(1) with mean 5
+# in astsa it's
+# y = 5 + sarima.sim(ar=.9, n=20)
 
 # let's try to fit the regression using lm()
 
@@ -614,6 +618,8 @@ because all those series have to aligned first: `dog = ts.intersect(x, z, lag(z,
 Let's try this for a simulated MA(1) process. Here's how
 ```r
 MA1 = arima.sim(list(order=c(0,0,1), ma=.5), n=100)
+# in astsa it's
+# MA1 = sarima.sim(ma=.5, n=100)
 par(mfcol=c(2,1))
 acf(MA1,20)
 pacf(MA1,20)
