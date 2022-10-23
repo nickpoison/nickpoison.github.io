@@ -121,7 +121,7 @@ legend("topleft", legend=c("Land Only","Ocean Only"), col=c(2,5), lty=1, bty="n"
 
 ![](figs/gtemp5.png)
 
-
+<br/>
 
 &#127760;  There may be an occasion when you want the legend on the outer margin. This is one way to do it.  The data are sleep states and number of movements.  
 
