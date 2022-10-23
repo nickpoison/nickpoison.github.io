@@ -316,7 +316,7 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 <br/>
 
 &#x1F535; We should probably give [ggfortify](https://CRAN.R-project.org/package=ggfotify) 
-a little space, BUT there are NO guarantees that what you see here we will work in the future.
+a little space, BUT there are NO guarantees that what you see here will work in the future.
 
 ```r
 install.packages('ggfortify')  # if you don't have it already
@@ -333,7 +333,7 @@ autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part),
 
 ![](figs/ggflap2.png)
 
-![](figs/slaphead.gif) **AGAIN, note that the order of the series is alphabetical and NOT in the input order.**
+![](figs/slaphead.gif) AGAIN, note that the order of the series is **alphabetical** and **NOT in the input order**. 
 
 ![](figs/ggflap3.png)
 
