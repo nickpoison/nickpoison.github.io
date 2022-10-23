@@ -235,7 +235,7 @@ legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'),
 ### Part 4 - missing data
 ---
 
-&#128518; In base graphics, it is sooooooo simple and the result is decent (not shown). The data set `blood` has lots of `NA`s.  You need a to have points (`type='o'` here) to get the stuff that can't be connected with lines.
+&#128518; In base graphics, it is sooooooo simple and the result is decent (not shown). The data set `blood` has lots of `NA`s.  You need to have points (`type='o'` here) to get the stuff that can't be connected with lines.
 
 ```r
 plot(blood, type='o', pch=19, main='')   
@@ -244,6 +244,7 @@ plot(blood, type='o', pch=19, main='')
 &#128525; Here it is using `astsa`:
 
 ```r
+# if you leave off the cex=1, the points are too small
 tsplot(blood, type='o', col=c(4,6,3), pch=19, cex=1, gg=TRUE)  
 ```
 
