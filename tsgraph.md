@@ -121,6 +121,34 @@ legend("topleft", legend=c("Land Only","Ocean Only"), col=c(2,5), lty=1, bty="n"
 
 ![](figs/gtemp5.png)
 
+
+
+&#127760;  There may be an occasion when you want the legend on the outer margin. This is one way to do it.  The data are sleep states and number of movements.  
+
+```r
+# depending on the dimension of the plot, you may 
+#  have to adjust the right margin (9) up or down 
+par(xpd = NA, oma=c(0,0,0,9) )  
+tsplot(sleep2[[3]][2:3], type='s', col=astsa.col(2:3,.7), spag=TRUE, gg=TRUE)
+legend('topright', inset=c(-0.3,0), bty='n', lty=1, col=2:3, legend=c('sleep state',
+        'number of \nmovements'))
+```
+
+![](figs/tsleep.png)
+
+<br/>
+
+&#x1F535;  You'll see how to do this with `ggplot` below.  In the global temperature example above, just leave off the last line:
+
+```r
+gtemp.df    = data.frame(Time=c(time(gtemp_land)), gtemp=c(gtemp_land), gtemp2=c(gtemp_ocean))
+ggplot(data = gtemp.df, aes(x=Time, y=value, color=variable )  )             +
+              ylab('Temperature Deviations')                                 +
+              geom_line(aes(y=gtemp , col='Land Only'),  size=1, alpha=.5)   +
+              geom_line(aes(y=gtemp2, col='Ocean Only'), size=1, alpha=.5)   
+              # theme(legend.position=c(.1,.85))	
+```
+
 [<sub>top</sub>](#table-of-contents)
 
 <br/>
