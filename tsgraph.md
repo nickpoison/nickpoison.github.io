@@ -149,17 +149,23 @@ ggplot(data = gtemp.df, aes(x=Time, y=value, color=variable )  )             +
               # theme(legend.position=c(.1,.85))	
 ```
 
-but we'll put the `ggplot` code for the sleep data here without any discussion... just keep reading and then you can come back to this-
+Here's the `ggplot` code for the sleep data - the first two lines are used because `ggplot` wants the data one way only... it's a recurring theme.
 
 ```r
-library(reshape) 
-df     = melt(sleep2[[3]][,2:3])
+library(reshape)                         # install 'reshape' if you don't have it
+df     = melt(sleep2[[3]][,2:3])         # reshape the data frame
 minute = rep(1:120, 2)
 ggplot(data=df, aes(x=minute, y=value, col=variable)) +
         geom_step(lwd=1, alpha=.7)                    +
         ylab('')                                      + 
         scale_x_continuous(breaks = seq(0,120,by=30))  
+# The previous line doesn't mean the x values (time) are continuous -
+# in fact, the sleep data are per minute (1,2,3,...), which is discrete time
+# not continuous time ... and yes, it did hurt our brains a little, and we used
+# scale_x_discrete first, which is why we're pointing it out.  Isn't that bad
+# grammar??
 ```
+
 
 ![](figs/ggsleep.png)
 
