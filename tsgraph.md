@@ -149,6 +149,21 @@ ggplot(data = gtemp.df, aes(x=Time, y=value, color=variable )  )             +
               # theme(legend.position=c(.1,.85))	
 ```
 
+but we'll put the `ggplot` code for the sleep data here without any discussion... just keep reading and then you can come back to this-
+
+```r
+library(reshape) 
+df     = melt(sleep2[[3]][,2:3])
+minute = rep(1:120, 2)
+ggplot(data=df, aes(x=minute, y=value, col=variable)) +
+        geom_step(lwd=1, alpha=.7)                    +
+        ylab('')                                      + 
+        scale_x_continuous(breaks = seq(0,120,by=30))  
+```
+
+![](figs/ggsleep.png)
+
+
 [<sub>top</sub>](#table-of-contents)
 
 <br/>
