@@ -159,11 +159,7 @@ ggplot(data=df, aes(x=minute, y=value, col=variable)) +
         geom_step(lwd=1, alpha=.7)                    +
         ylab('')                                      + 
         scale_x_continuous(breaks = seq(0,120,by=30))  
-# The previous line doesn't mean the x values (time) are continuous -
-# in fact, the sleep data are per minute (1,2,3,...), which is discrete time
-# not continuous time ... and yes, it did hurt our brains a little, and we used
-# scale_x_discrete first, which is why we're pointing it out.  Isn't that bad
-# grammar??
+# The last line was used to get more meaningful ticks on the time axis.
 ```
 
 
