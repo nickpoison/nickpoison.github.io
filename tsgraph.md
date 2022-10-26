@@ -42,15 +42,23 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 # for a basic plot, all you need is
 plot(gtemp_land)                    # it can't get simpler than that (not shown)
 plot(gtemp_land, type='o', col=4)   # a slightly nicer version (not shown)
-                                              
+```
+
+![](figs/basetemp0.png)
+
+```r                                              
 # but here's a pretty version using Vanilla R that includes a grid (not shown)
-par(mar=c(2,2,0,.5)+.5, mgp=c(1.6,.6,0))                   # trim the margins       
+par(mar=c(2,2,.5,.5)+.5, mgp=c(1.6,.6,0))                   # trim the margins       
 plot(gtemp_land, ylab='Temperature Deviations', type='n')    # set up the plot
 grid(lty=1, col=gray(.9))                                  # add a grid
 lines(gtemp_land, type='o', col=4)                         # and now plot the line
 ```
 
-The reason we're not showing the above is that you can get all that and more with [astsa](https://github.com/nickpoison/astsa).
+![](figs/basetemp.png)
+
+<br/>
+
+But you can get all that and more with [astsa](https://github.com/nickpoison/astsa).
 
 ```r 
 # in astsa, it's a one liner
@@ -58,6 +66,11 @@ tsplot(gtemp_land, type='o', col=4, ylab='Temperature Deviations')
 ```
 
 ![](figs/gtemp.png)
+
+&#128227; `tsplot` was written because we did many demonstrations (mainly in class) and as you can see from the first plot, Vanilla R graphics is ugly without additional fixings.  And,  we didn't want to type a hundred lines of code while trying to talk about the data (the students would have revolted by the time we got it all out).
+
+
+<br/>
 
 &#x1F535; And a `ggplot2` of the gtemp series. `ggplot2` doesn't play with time series so you have to create a data frame that strips the series to its bare naked data.
 
@@ -211,6 +224,16 @@ tsplot(eqexp[,9:16], col=rainbow(8, v=.8), ncol=2, gg=TRUE)
 
 <br/>
 
+&#x1F535; Here it is using basic Vanilla R graphics.
+
+```r
+plot.ts(eqexp[,9:16], main='')
+```
+
+![](figs/baseexp.png)
+
+<br/>
+
 
 &#128530; Let's do another `ggplot` with more than 2 series on the same plot. The script does not work with time series so you have to spend some time removing the time series attributes.  You could try `ggfortify`, but we'll hold off until the end for that.
 
@@ -243,6 +266,17 @@ legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'),
 
 ![](figs/tslap.png)
 
+<br/>
+And in Vanilla R graphics:
+
+```r
+ts.plot(cbind(cmort,tempr,part), main='LA Pollution Study', col=2:4)
+legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'), 
+          lty=1, lwd=2, col=2:4, bg='white')
+ ```
+
+ ![](figs/baselap.png)         
+
 [<sub>top</sub>](#table-of-contents)
 
 <br/>
@@ -252,16 +286,22 @@ legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'),
 ### Part 4 - missing data
 ---
 
-&#128518; In base graphics, it is sooooooo simple and the result is decent (not shown). The data set `blood` has lots of `NA`s.  You need to have points (`type='o'` here) to get the stuff that can't be connected with lines.
+&#128518; In base graphics, it is sooooooo simple and the result is decent (not shown). The data set `blood` is a multiple time series data set with lots of `NA`s.  You need to have points (`type='o'` here) to get the stuff that can't be connected with lines.
 
 ```r
-plot(blood, type='o', pch=19, main='')   
+# if you leave off the cex=1, the points are too small
+plot(blood, type='o', pch=19, main='', cex=1, yax.flip=TRUE)
+
+# if 'blood' weren't a time series, you would use 'plot.ts' instead of 'plot'... BUT you wouldn't use 'ts.plot' because that would be a mess - try it and see what happens (not responsible for injuries).
 ```
+
+![](figs/baseblood.png)
+
+<br/>
 
 &#128525; Here it is using `astsa`:
 
 ```r
-# if you leave off the cex=1, the points are too small
 tsplot(blood, type='o', col=c(4,6,3), pch=19, cex=1, gg=TRUE)  
 ```
 
