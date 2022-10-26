@@ -41,7 +41,7 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 ```r
 # for a basic plot, all you need is
 plot(gtemp_land)                    # it can't get simpler than that (not shown)
-plot(gtemp_land, type='o', col=4)   # a slightly nicer version (not shown)
+plot(gtemp_land, type='o', col=4)   # a slightly nicer version  
 ```
 
 ![](figs/basetemp0.png)
