@@ -294,9 +294,10 @@ legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'),
 ```r
 # if you leave off the cex=1, the points are too small
 plot(blood, type='o', pch=19, main='', cex=1, yax.flip=TRUE)
-
-# again, if 'blood' weren't a time series, you would use 'plot.ts' instead of 'plot'... BUT you wouldn't use 'ts.plot' because that would be a mess - try it and see what happens (not responsible for injuries).
 ```
+
+Again, if 'blood' weren't a time series, you would use `plot.ts` instead of `plot`... BUT you wouldn't use `ts.plot` here because that would be a mess - try it and see what happens (not responsible for injuries).
+
 
 ![](figs/baseblood.png)
 
