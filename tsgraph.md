@@ -227,6 +227,9 @@ tsplot(eqexp[,9:16], col=rainbow(8, v=.8), ncol=2, gg=TRUE)
 &#x1F535; Here it is using basic Vanilla R graphics.
 
 ```r
+# use 'plot.ts' because 'eqexp' isn't a time series file...
+# otherwise, 'plot' would do it... but either way, 'plot.ts'
+# works for both, so maybe it's just better to use that.
 plot.ts(eqexp[,9:16], main='')
 ```
 
@@ -286,13 +289,13 @@ legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'),
 ### Part 4 - missing data
 ---
 
-&#128518; In base graphics, it is sooooooo simple and the result is decent (not shown). The data set `blood` is a multiple time series data set with lots of `NA`s.  You need to have points (`type='o'` here) to get the stuff that can't be connected with lines.
+&#128518; In base graphics, it is sooooooo simple and the result is decent. The data set `blood` is a multiple time series data set with lots of `NA`s.  You need to have points (`type='o'` here) to get the stuff that can't be connected with lines.
 
 ```r
 # if you leave off the cex=1, the points are too small
 plot(blood, type='o', pch=19, main='', cex=1, yax.flip=TRUE)
 
-# if 'blood' weren't a time series, you would use 'plot.ts' instead of 'plot'... BUT you wouldn't use 'ts.plot' because that would be a mess - try it and see what happens (not responsible for injuries).
+# again, if 'blood' weren't a time series, you would use 'plot.ts' instead of 'plot'... BUT you wouldn't use 'ts.plot' because that would be a mess - try it and see what happens (not responsible for injuries).
 ```
 
 ![](figs/baseblood.png)
