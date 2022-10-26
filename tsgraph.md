@@ -433,7 +433,17 @@ trend(soi, lowess=TRUE, ylab="Southern Oscillation Index",  gg=TRUE)
 
 <br/>
 
-&#127871; Here's the above with `ggplot` (remember to strip the attributes):
+📈 To see the detrended series, use `dtrend` from `astsa`
+
+```r
+tsplot(detrend(soi, lowess=TRUE), col=4, ylab="Detrended SOI", gg=TRUE)
+```
+
+![](figs/tsdetrendsoi.png)
+
+<br/>
+
+&#127871; And now with `ggplot` (remember to strip the attributes):
 
 ```r
 df = data.frame(Time=c(time(soi)), SOI=c(soi))  	
