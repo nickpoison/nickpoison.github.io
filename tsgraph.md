@@ -56,6 +56,10 @@ lines(gtemp_land, type='o', col=4)                         # and now plot the li
 
 ![](figs/basetemp.png)
 
+
+ 👻 In the above, we used `plot`, which works for time series. If the data aren't time series,
+ you can use `plot.ts` instead...  but either way, `plot.ts` works for both, so maybe it's just better to use that for Vanilla R.
+
 <br/>
 
 But you can get all that and more with [astsa](https://github.com/nickpoison/astsa).
@@ -231,9 +235,6 @@ tsplot(eqexp[,9:16], col=rainbow(8, v=.8), ncol=2, gg=TRUE)
 &#x1F535; Here it is using basic Vanilla R graphics.
 
 ```r
-# use 'plot.ts' because 'eqexp' isn't a time series file...
-# otherwise, 'plot' would do it... but either way, 'plot.ts'
-# works for both, so maybe it's just better to use that.
 plot.ts(eqexp[,9:16], main='')
 ```
 
