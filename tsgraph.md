@@ -97,7 +97,7 @@ It's not necessary to store the figure... it's just an example of what you can d
 &#128520; If you like the gray background with white grid lines, you can do a gris-gris plot with `astsa` (the grammar of `astsa` is voodoo)
 
 ```r
-tsplot(gtemp_land, gg=TRUE, type='o', pch=20, col=4, ylab='Temperature Deviations', las=1)
+tsplot(gtemp_land, gg=TRUE, type='o', pch=20, col=4, ylab='Temperature Deviations')
 ```
 
 ![](figs/gtemp3.png)
@@ -132,7 +132,7 @@ There are more examples at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/
 
 ```r
 tsplot(cbind(gtemp_land,gtemp_ocean), col=astsa.col(c(2,5),.5), lwd=2, gg=TRUE,
-          ylab='Temperature Deviations', spaghetti=TRUE, las=1)
+          ylab='Temperature Deviations', spaghetti=TRUE)
 legend("topleft", legend=c("Land Only","Ocean Only"), col=c(2,5), lty=1, bty="n")
 ```
 
@@ -147,7 +147,7 @@ legend("topleft", legend=c("Land Only","Ocean Only"), col=c(2,5), lty=1, bty="n"
 #  have to adjust the right margin (9) up or down 
 #  and/or adjust the inset (-.3)
 par(xpd = NA, oma=c(0,0,0,9) )  
-tsplot(sleep2[[3]][2:3], type='s', col=astsa.col(2:3,.7), spag=TRUE, gg=TRUE, las=1)
+tsplot(sleep2[[3]][2:3], type='s', col=astsa.col(2:3,.7), spag=TRUE, gg=TRUE)
 legend('topright', inset=c(-.3,0), bty='n', lty=1, col=2:3, legend=c('sleep state',
         'number of \nmovements'))
 ```
@@ -211,13 +211,12 @@ ggplot(data=df, aes(x=Time, y=value, col=variable))   +
 
 &#129299; Now let's try the same thing with `tsplot`. It's not necessary to make it a gris-gris plot so remove the `gg=TRUE` part if you dare.  You don't have to melt anything.  
 ```r
-tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE, las=1)
+tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE)
 ```
 
 ![](figs/tsexp.png)
 
-The addition of `las=1` just 
-turns the y-axis labels... it's not necessary to include it and probably looks better without it.
+
 
 
 <br/>
@@ -505,7 +504,7 @@ tsplot(sunspotz, type='o', pch=20, col=4)
 
 
 
-&#127812; And finally, a base graphics plot of the sunspot numbers: &#127812;
+&#127812; And finally, a psychedelic base graphics plot of the sunspot numbers: &#127812;
 
 ```r
 x      = sunspotz
