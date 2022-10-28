@@ -507,9 +507,12 @@ tsplot(sunspotz, type='o', pch=20, col=4)
 
 ```r
 x = ts(rnorm(100, 10000, 100), start=3000)
+```
 
+Now we'll try various plots-
 
-# in Vanilla R
+```r
+# Vanilla R
 plot(x, col=4)
 ```
 
@@ -545,6 +548,16 @@ tsplot(x/1000, col=4, gg=TRUE, ylab=(X~~~~('\u00D7 1000')))
 ```
 
 ![](figs/large_y4.png)
+
+<br/>
+
+Those tricks work with `ggplot`, for example (not shown)
+```r
+df = data.frame(Time=c(time(x)), X=c(x))
+ggplot(data=df, aes(x=Time, y=X/1000) ) + geom_line(col=4) +
+ ylab(X~~~~('\u00D7 1000'))
+```
+
 
 
 <br/><br/>
