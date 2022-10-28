@@ -9,7 +9,7 @@ For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa)
 
 ### Table of Contents
 * [Part 1 - simple but effective](#part-1---simple-but-effective)
-* [Part 2 - two series](#part-2---two-series)
+* [Part 2 - two series - sometimes when they touch](#part-2---two-series)
 * [Part 3 - many series](#part-3---many-series)
 * [Part 4 - missing data](#part-4---missing-data)
 * [Part 5 - everything else](#part-5---everything-else)
@@ -503,6 +503,51 @@ tsplot(sunspotz, type='o', pch=20, col=4)
 <br/>
 
 
+&#9917; Dealing with large values on the vertical axis can be a bit of a pain because R graphics and consequently other packages (that I know of) don't do anything about it. Let's generate data that take on large values:
+
+```r
+x = ts(rnorm(100, 10000, 100), start=3000)
+
+
+# in Vanilla R
+plot(x, col=4)
+```
+
+![](figs/large_y1.png)
+
+```r
+# xts
+library(xts)
+plot(as.xts(x), col=4)
+```
+
+![](figs/large_y2.png)
+
+```r
+# ggplot
+df = data.frame(Time=c(time(x)), X=c(x))
+ggplot(data=df, aes(x=Time, y=X) ) + geom_line(col=4)    
+```
+
+![](figs/large_y3.png)
+
+<br/>
+
+
+&#128053; Our suggestion is to do something like the following...
+
+```r
+# tsplot with a trick - in the expression ""%*% is a cross and ~ is a space
+tsplot(x/1000, col=4, gg=TRUE, ylab=expression(X~~~~(""%*% 1000)))
+
+# this unicode character also works
+tsplot(x/1000, col=4, gg=TRUE, ylab=(X~~~~('\u00D7 1000')))
+```
+
+![](figs/large_y4.png)
+
+
+<br/><br/>
 
 &#127812; And finally, a psychedelic base graphics plot of the sunspot numbers: &#127812;
 
