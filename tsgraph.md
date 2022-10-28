@@ -551,14 +551,18 @@ tsplot(x/1000, col=4, gg=TRUE, ylab=(X~~~~('\u00D7 1000')))
 
 <br/>
 
-Those tricks work with `ggplot`, for example (not shown)
+Those tricks work with `ggplot` and `xts`, for example (not shown)
 ```r
+# ggplot
 df = data.frame(Time=c(time(x)), X=c(x))
 ggplot(data=df, aes(x=Time, y=X/1000) ) + geom_line(col=4) +
  ylab(X~~~~('\u00D7 1000'))
+
+# xts 
+plot(as.xts(x/1000), col=4, main='', ylab=expression(X~~~('\u00D7 1000') )) 
 ```
 
-
+I like [this site](https://www.rapidtables.com/code/text/unicode-characters.html)  for a list of unicode characters because it is well laid out and lists the various versions of the characters.  For R, use the _escape_ version.
 
 <br/><br/>
 
