@@ -41,13 +41,14 @@ package to create high-quality graphics.  It's not necessary, but it sure looks 
 ```r
 # for a basic plot, all you need is
 plot(gtemp_land)                    # it can't get simpler than that (not shown)
+
 plot(gtemp_land, type='o', col=4)   # a slightly nicer version  
 ```
 
 ![](figs/basetemp0.png)
 
 ```r                                              
-# but here's a pretty version using Vanilla R that includes a grid (not shown)
+# but here's a pretty version using Vanilla R that includes a grid  
 par(mar=c(2,2,.5,.5)+.5, mgp=c(1.6,.6,0))                   # trim the margins       
 plot(gtemp_land, ylab='Temperature Deviations', type='n')    # set up the plot
 grid(lty=1, col=gray(.9))                                  # add a grid
@@ -221,10 +222,10 @@ tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE)
 
 <br/>
 
-&#127752; Let's try that again with rainbow colors and the default `las` (0):
+&#127752; Let's try that again with rainbow colors and turning the y-axis (`las`):
 
 ```r
-tsplot(eqexp[,9:16], col=rainbow(8, v=.8), ncol=2, gg=TRUE)
+tsplot(eqexp[,9:16], col=rainbow(8, v=.8), ncol=2, gg=TRUE, las=0)
 ```
 
 ![](figs/tsexprain.png)
@@ -310,7 +311,7 @@ Again, if `blood` weren't a time series, you would use `plot.ts` instead of `plo
 &#128525; Here it is using `astsa`:
 
 ```r
-tsplot(blood, type='o', col=c(4,6,3), pch=19, cex=1, gg=TRUE, las=1)  
+tsplot(blood, type='o', col=c(4,6,3), pch=19, cex=1, gg=TRUE)  
 ```
 
 ![](figs/tsblood.png)
@@ -512,13 +513,6 @@ x = ts(rnorm(100, 10000, 100), start=3000)
 Now we'll try various plots-
 
 ```r
-# Vanilla R
-plot(x, col=4)
-```
-
-![](figs/large_y1.png)
-
-```r
 # xts
 library(xts)
 plot(as.xts(x), col=4)
@@ -549,9 +543,18 @@ tsplot(x/1000, col=4, gg=TRUE, ylab=(X~~~~('\u00D7 1000')))
 
 ![](figs/large_y4.png)
 
+If you want to move the (x 1000) to the edge, you can do something like this
+
+```r
+tsplot(x/1000, col=4, gg=TRUE, ylab='X')
+mtext('(\u00D7 1000)', side=2, adj=1, las=0, line=1.5, cex=.9)
+```
+
+![](figs/large_y4b.png)
+
 <br/>
 
-Those tricks work with `ggplot` and `xts`, for example (not shown)
+That kind of  trick works with `ggplot` and `xts`, for example (not shown)
 ```r
 # ggplot
 df = data.frame(Time=c(time(x)), X=c(x))
