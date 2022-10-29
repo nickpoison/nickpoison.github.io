@@ -438,7 +438,7 @@ trend(soi, lowess=TRUE, ylab="Southern Oscillation Index",  gg=TRUE)
 
 <br/>
 
-📈 To see the detrended series, use `dtrend` from `astsa`
+📈 To see the detrended series, use `detrend` from `astsa`
 
 ```r
 tsplot(detrend(soi, lowess=TRUE), col=4, ylab="Detrended SOI", gg=TRUE)
