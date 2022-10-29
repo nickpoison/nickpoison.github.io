@@ -13,6 +13,13 @@ For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa)
 * [Part 3 - many series](#part-3---many-series)
 * [Part 4 - missing data](#part-4---missing-data)
 * [Part 5 - everything else](#part-5---everything-else)
+  - [xts and zoo packages](#xts-and-zoo)
+  - [ggfartify](#ggfortify)
+  - [ribbons and bows](#ribbon-plot)
+  - [trendy](#trend)
+  - [size does matter](#size-matters)
+  - [bring back the 60s](#bring-back-the-60s)
+
 
 
 You'll need two packages to reproduce the examples. All the data used in the examples are from [astsa](https://github.com/nickpoison/astsa).
@@ -365,6 +372,7 @@ We're not done.  At least we got the plot after some work and warnings. But noti
 ### Part 5 - everything else
 ---
 
+#### xts and zoo
 
 &#128047; First, some important packages for time series in R are  [xts]( https://CRAN.R-project.org/package=xts) and [zoo](https://CRAN.R-project.org/package=zoo).  Installing `xts` is enough to get both.
 
@@ -380,6 +388,8 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 ![](figs/xts.png)
 
 <br/>
+
+#### ggfortify
 
 &#x1F535; We should probably give [ggfortify](https://CRAN.R-project.org/package=ggfotify) 
 a little space, BUT there are NO guarantees that what you see here will work in the future.
@@ -405,7 +415,9 @@ autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part),
 
 <br/>
 
-&#129414; But here's something in the grammar of graphics, too (`gglot2`) ... a pretty _ribbon_ plot of the Southern Oscillation Index:
+#### ribbon plot
+
+&#129414; But here's something in the grammar of graphics too (`ggplot2`) ... a pretty _ribbon_ plot of the Southern Oscillation Index:
 
 ```r
 cblue = astsa.col(5, .5)  # a little pastel
@@ -425,6 +437,8 @@ ggplot( data=df, aes(x=Time, y=SOI) )                              +
 Well that might be pretty, but it obscures the trend, don't you think?
 
 <br/>
+
+#### trend
 
 &#128056; If you really want to capture trend, try `trend` from `astsa`.
 We're using various options here, a `lowess` fit and a gris-gris plot.
@@ -461,6 +475,7 @@ ggplot( data=df, aes(x=Time, y=SOI) )        +
 
 <br/>
 
+#### steps
 
 &#129408; Here's a discrete-valued series plotted as a step function. `EQcount` in `astsa` is a count of certain types of earthquakes.
 
@@ -474,6 +489,8 @@ points(EQcount, pch=21, col=4, bg=6)   # just for kicks, not needed and better w
 A `type='h'` instead of `type='s'` looks good too.
 
 <br/>
+
+#### size matters
 
 &#127797; If you did not know this already , with time series, the dimensions of the plot matters.
 
@@ -503,6 +520,7 @@ tsplot(sunspotz, type='o', pch=20, col=4)
 
 <br/>
 
+#### large values on the axis
 
 &#9917; Dealing with large values on the vertical axis can be a bit of a pain because R graphics and consequently other packages (that I know of) don't do anything about it. Let's generate data that take on large values:
 
@@ -568,6 +586,8 @@ plot(as.xts(x/1000), col=4, main='', ylab=expression(X~~~('\u00D7 1000') ))
 I like [this site](https://www.rapidtables.com/code/text/unicode-characters.html)  for a list of unicode characters because it is well laid out and lists the various versions of the characters.  For R, use the _escape_ version.
 
 <br/><br/>
+
+#### bring back the 60s
 
 &#127812; And finally, a psychedelic base graphics plot of the sunspot numbers: &#127812;
 
