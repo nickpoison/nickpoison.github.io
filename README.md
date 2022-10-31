@@ -27,7 +27,9 @@
 
 &#10024;  All the R code used in [Time Series: A Data Analysis Approach Using R](https://github.com/nickpoison/tsda/blob/main/Rcode.md).
 
-### &#127968;  My [HOME](https://github.com/nickpoison)
+### &#127969; [Professor Stoffer's Home](https://dsstoffer.github.io/).
+
+### &#127968;  My [HOME](https://github.com/nickpoison).
 
 
 
