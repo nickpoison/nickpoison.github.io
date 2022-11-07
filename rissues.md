@@ -45,15 +45,15 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ![](figs/slaphead.gif)  This is not only a time series conundrum but a problem for anyone trying to write stable code; i.e., code that not only works now, but also works next Sunday and maybe a year or two from now. The problem is that packages change... there is some control at CRAN, but it doesn't do the job.  
 
-We've experienced both of the following problems, and it is agitating, antagonizing, discomforting, disquieting, distressing, enraging, infuriating, maddening, and just plain
+We've experienced both of the following problems, and it is agitating, agonizing, discomforting, disquieting, distressing, enraging, infuriating, maddening, and just plain
 
 <img style="padding: 5px 5px 5px 20px; width: 333px;" src="figs/front.png"/>
 
-&#128545; __Other Packages:__ For a little side interest, check out the [`isoband` incident story](https://appsilon.com/cran-and-the-isoband-incident/) where nearly 5000 packages were going to be removed from CRAN because of  dependencies on other packages.  
+&#128545; __Other Packages:__ For a little side interest, check out the [isoband incident story](https://appsilon.com/cran-and-the-isoband-incident/) where nearly 5000 packages were going to be removed from CRAN because of  dependencies on other packages.  
 
-*  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, take what you need, modify it as necessary, and give the authors credit.
+*  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, take what you need, modify it as necessary, and credit the source.
 
-&#128545;  __Vanilla R:__  Here's what happened... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives a  `subscript out of range` error. Why is a subscript out of range this year when it wasn't last year??? After awhile, we came to the realization that we did the work using Microsoft R version 4.0.2.  So we installed that (new machine), and voilà, no problems.  
+&#128545;  __Vanilla R:__  Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives a  `subscript out of range` error. Why is a subscript out of range this year when it wasn't last year??? Subscripts to grow over time.  After awhile, we came to the realization that we did the work using Microsoft R version 4.0.2 (the R version was 4.2._).  So we went back to Micro R and voilà, no problems.  
 
 * The advice here is to get and use Microsoft R because [Microsoft R Open is the enhanced distribution of R ... The current release, Microsoft R Open 4.0.2, is based the statistical language R-4.0.2 and includes additional capabilities for improved performance, __reproducibility__ and platform support](https://mran.microsoft.com/)
 
