@@ -2,15 +2,16 @@
 
 
 ### Table of Contents
-* [Issue 1. when is a matrix not a matrix](#issue-1---when-is-a-matrix-not-a-matrix)
-* [Issue 2. package fights](#issue-2---how-will-r-end)
-* [Issue 3. artificially stupid intelligence](#issue-3---dont-use-autoarima)
-* [Issue 4. when is the intercept the mean](#issue-4---when-is-the-intercept-the-mean)
-* [Issue 5. R you drifting?](#issue-5---your-arima-is-drifting)
-* [Issue 6. wrong p-values](#issue-6---the-wrong-p-values)
-* [Issue 7. lead from behind](#issue-7---lead-from-behind)
-* [Issue 8. regress this](#issue-8---regression-nightmares)
-* [Issue 9. you're ugly](#issue-9---yu-gi-el-why)
+* [reproducibility](#issue---reproducibility)
+* [when is a matrix not a matrix](#issue---when-is-a-matrix-not-a-matrix)
+* [package fights](#issue---how-will-r-end)
+* [artificially stupid intelligence](#issue-dont-use-autoarima)
+* [when is the intercept the mean](#issue-when-is-the-intercept-the-mean)
+* [R you drifting?](#issue---your-arima-is-drifting)
+* [wrong p-values](#issue---the-wrong-p-values)
+* [lead from behind](#issue---lead-from-behind)
+* [regress this](#issue---regression-nightmares)
+* [you're ugly](#issue---yu-gi-el-why)
 
 
 
@@ -38,12 +39,37 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 <br/><br/>
 
+---
+### ISSUE - reproducibility
+---
+
+![](figs/slaphead.gif)  This is not only a time series conundrum but a problem for anyone trying to write stable code; i.e., code that not only works now, but also works next Sunday and maybe a year or two from now. The problem is that packages change... there is some control at CRAN, but it doesn't do the job.  
+
+We've experienced both of the following problems, and it is agitating, antagonizing, discomforting, disquieting, distressing, enraging, infuriating, maddening, and just plain
+
+<img style="padding: 5px 5px 5px 20px; width: 333px;" src="figs/front.png"/>
+
+&#128545; __Other Packages:__ For a little side interest, check out the [`isoband` incident story](https://appsilon.com/cran-and-the-isoband-incident/) where nearly 5000 packages were going to be removed from CRAN because of  dependencies on other packages.  
+
+*  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, take what you need, modify it as necessary, and give the authors credit.
+
+&#128545;  __Vanilla R:__  Here's what happened... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives a  `subscript out of range` error. Why is a subscript out of range this year when it wasn't last year??? After awhile, we came to the realization that we did the work using Microsoft R version 4.0.2.  So we installed that (new machine), and voilà, no problems.  
+
+* The advice here is to get and use Microsoft R because [Microsoft R Open is the enhanced distribution of R ... The current release, Microsoft R Open 4.0.2, is based the statistical language R-4.0.2 and includes additional capabilities for improved performance, __reproducibility__ and platform support](https://mran.microsoft.com/)
+
+* One nice thing: _For the purpose of reproducibility, [MRAN](https://mran.microsoft.com/) hosts daily snapshots of the CRAN R packages and R releases as far back as Sept. 17, 2014_.
+
+* Also nice: _From its inception, R was designed to use only a single thread (processor) at a time. Even today, R works that way unless linked with multi-threaded BLAS/LAPACK libraries. The multi-core machines of today offer parallel processing power. To take advantage of this, [Microsoft R Open](https://mran.microsoft.com/) provides optional multi-threaded math libraries._
 
 
+
+[<sub>top</sub>](#table-of-contents)
+
+<br/>
 
 ---
 
-###  ISSUE 1 - when is a matRix not a matRix? 
+###   ISSUE - when is a matRix not a matRix? 
 
 ---
 
@@ -155,7 +181,7 @@ Now back to our regularly scheduled list of screw ups.
 
 ---
 
-### Issue 2 - how will R end?  
+### Issue - how will R end?  
 
 ---
 
@@ -205,7 +231,7 @@ lag = stats::lag
 
 ---
 
-### Issue 3 - don't use auto.arima   
+### Issue - don't use auto.arima   
 
 ---
 
@@ -282,7 +308,7 @@ u[[1]]
 
 ---
 
-### Issue 4 - when is the intercept the mean?   
+### Issue - when is the intercept the mean?   
 
 ---
 
@@ -359,7 +385,7 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 
 ---
 
-### Issue 5 - your arima is drifting 
+### Issue - your arima is drifting 
 
 ---
 
@@ -485,7 +511,7 @@ sarima(x,1,1,0)
 
 ---
 
-### Issue 6 - the wrong p-values 
+### Issue - the wrong p-values 
 
 ---
 
@@ -508,7 +534,7 @@ from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github
 
 ---
 
-### Issue 7 - lead from behind 
+### Issue - lead from behind 
 
 ---
 
@@ -570,7 +596,7 @@ lag1.plot(soi, 4, col=4)
 
 ---
 
-### Issue 8 - regression nightmares 
+### Issue - regression nightmares 
 
 ---
 
@@ -648,7 +674,7 @@ because all those series have to be aligned first: `dog = ts.intersect(x, z, lag
 
 ---
 
-### Issue 9 - Yu-Gi-El Why?  
+### Issue - Yu-Gi-El Why?  
 
 ---
 
