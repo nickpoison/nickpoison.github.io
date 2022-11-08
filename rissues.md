@@ -53,7 +53,7 @@ We've experienced both of the following problems, and it is agitating, agonizing
 
 *  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, take what you need, modify it as necessary, and credit the source.
 
-&#128545;  __Vanilla R:__  Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives a  `subscript out of range` error. Why is a subscript out of range this year when it wasn't last year??? Subscripts don't grow over time.  After awhile, we came to the realization that we did the work using Microsoft R version 4.0.2 (the R version was 4.2._).  So we went back to Micro R and voilà, no problems.  
+&#128545;  __Vanilla R:__  Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives a  `subscript out of range` error. Why is a subscript out of range this year when it wasn't last year??? ... all the input was the same.  After awhile, we realized that we did the work using Microsoft R version 4.0.2 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  
 
 * The advice here is to get and use Microsoft R because [Microsoft R Open is the enhanced distribution of R ... The current release, Microsoft R Open 4.0.2, is based the statistical language R-4.0.2 and includes additional capabilities for improved performance, __reproducibility__ and platform support](https://mran.microsoft.com/)
 
