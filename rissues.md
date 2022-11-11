@@ -53,7 +53,7 @@ We've experienced both of the following problems, and it is agitating, agonizing
 
 *  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, take what you need, modify it as necessary, and credit the source.
 
-&#128545;  __Vanilla R:__  Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives several errors such as   `subscript out of bounds` and  `object of type 'closure' is not subsettable`.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  **So why does the code work with version 4.0 but not 4.2???**
+&#128545;  __Vanilla R:__  Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  **So why does the code work with version 4.0 but not 4.2???**
 
 * The advice here is to get and use Microsoft R because [Microsoft R Open is the enhanced distribution of R ... The current release, Microsoft R Open 4.0.2, is based the statistical language R-4.0.2 and includes additional capabilities for improved performance, __reproducibility__ and platform support](https://mran.microsoft.com/)
 
