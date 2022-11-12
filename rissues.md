@@ -43,23 +43,27 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 ### ISSUE - reproducibility
 ---
 
-![](figs/slaphead.gif)  This is not only a time series conundrum but a problem for anyone trying to write stable code; i.e., code that not only works now, but also works next Sunday and maybe a year or two from now. The problem is that packages change... there is some control at CRAN, but it doesn't do the job.  
+![](figs/slaphead.gif)  This is not just a time series complication but a problem for anyone trying to write stable code; i.e., code that not only works today, but also works next Sunday and maybe a year or two from now. The problem is that packages change - R changes 3 times a year.
 
-We've experienced both of the following problems, and it is agitating, agonizing, discomforting, disquieting, distressing, enraging, infuriating, maddening, and just plain
+We've experienced both of the following problems, and it is agitating, agonizing, discomforting, disquieting, distressing, enraging, infuriating, maddening, and just plain  annoying...
 
-<img style="padding: 5px 5px 5px 20px; width: 333px;" src="figs/front.png"/>
+<br/>
 
-&#128545; __Other Packages:__ For a little side interest, check out the [isoband incident story](https://appsilon.com/cran-and-the-isoband-incident/) where nearly 5000 packages were going to be removed from CRAN because of  dependencies on other packages.  
+&#128545; __Contributed Packages:__ For a little side interest, check out the [isoband incident story](https://appsilon.com/cran-and-the-isoband-incident/) where nearly 5000 packages were going to be removed from CRAN because of package dependencies.  
 
-*  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, take what you need, modify it as necessary, and credit the source.
+*  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, read the license (&#129315;), take what you need, modify it as necessary, and credit the source.
 
-&#128545;  __Vanilla R:__  Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  **So why does the code work with version 4.0 but not 4.2???**
+&#128545;  __Vanilla R:__  
+
+* Here's what happened a long time ago. We used a contributed package in `astsa`.  An update to R broke the package with no easy way to fix the mess.  We had to rewrite everything to circumvent problem.  (Maybe we'll add the story later, but it had to do with the fact that R uses 1-based numbering instead of 0-based numbering. Starting to count from 0 is especially important in stochastic processes - an afterthought of S-PLUS and consequently R.)
+
+* Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  **So why does the code work with version 4.0 but not 4.2???**  
 
 * The advice here is to get and use Microsoft R because [Microsoft R Open is the enhanced distribution of R ... The current release, Microsoft R Open 4.0.2, is based the statistical language R-4.0.2 and includes additional capabilities for improved performance, __reproducibility__ and platform support](https://mran.microsoft.com/)
 
-* One nice thing: _For the purpose of reproducibility, [MRAN](https://mran.microsoft.com/) hosts daily snapshots of the CRAN R packages and R releases as far back as Sept. 17, 2014_.
+   * One nice thing: _For the purpose of reproducibility, [MRAN](https://mran.microsoft.com/) hosts daily snapshots of the CRAN R packages and R releases as far back as Sept. 17, 2014_.
 
-* Also nice: _From its inception, R was designed to use only a single thread (processor) at a time. Even today, R works that way unless linked with multi-threaded BLAS/LAPACK libraries. The multi-core machines of today offer parallel processing power. To take advantage of this, [Microsoft R Open](https://mran.microsoft.com/) provides optional multi-threaded math libraries._
+   * Also nice: _From its inception, R was designed to use only a single thread (processor) at a time. Even today, R works that way unless linked with multi-threaded BLAS/LAPACK libraries. The multi-core machines of today offer parallel processing power. To take advantage of this, [Microsoft R Open](https://mran.microsoft.com/) provides optional multi-threaded math libraries._
 
 
 
