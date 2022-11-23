@@ -67,7 +67,7 @@ We've experienced both of the following problems, and it is agitating, agonizing
 
    * Also nice: _From its inception, R was designed to use only a single thread (processor) at a time. Even today, R works that way unless linked with multi-threaded BLAS/LAPACK libraries. The multi-core machines of today offer parallel processing power. To take advantage of this, [Microsoft R Open](https://mran.microsoft.com/) provides optional multi-threaded math libraries._
 
-      - You can also link the libraries with the current version of R... [details are here](https://nickpoison.github.io/mran)
+ 
 
 
 
