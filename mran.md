@@ -31,7 +31,7 @@ system.time (S <- svd (A,nu=0,nv=0))
 
 
 This is an easy approach mentioned in the discussion on Stackoverflow [Linking Intel's Math Kernel Library  to R on Windows](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows/56560870#56560870).
-The big _drawback_  is Intel's MKL library is __not__ freeware anymore, although you may be able to
+The big _drawback_  is Intel's MKL  is __not__ freeware anymore, although you may be able to
 get it without cost.
 
 
