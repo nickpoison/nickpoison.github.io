@@ -26,7 +26,6 @@
 
 &#10024;  All the R code used in [Time Series: A Data Analysis Approach Using R](https://github.com/nickpoison/tsda/blob/main/Rcode.md)
 
- &#10024;   [Math Kernel Libraries in R](https://nickpoison.github.io/mran) shows how to link MKL and R
 
 ### &#127969; [Professor Stoffer's Home](https://dsstoffer.github.io/)
 
