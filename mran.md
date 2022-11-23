@@ -14,11 +14,11 @@ For reproducibility, packages are frozen in time so that if it worked last year,
 
 In addition, Microsoft R Open includes multi-threaded math libraries to improve the performance of R.     These libraries make it possible for so many common R operations, such as matrix multiply/inverse, matrix decomposition, and some higher-level matrix operations, to compute in parallel and use all of the processing power available to reduce computation times.
 
-These notes are for Windows. If you run Linux, then go to [MKL4DEB](https://github.com/eddelbuettel/mkl4deb) for details.
-
 ---
 
 ## Using the Intel MKL with the current version of R
+
+These notes are for Windows. If you run Linux, then go to [MKL4DEB](https://github.com/eddelbuettel/mkl4deb) for details.
 
 Before you start, try this and save the results:
 ```r
