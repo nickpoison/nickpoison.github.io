@@ -52,3 +52,17 @@ Paste all the CONTENT from the folders `complier` and `mkl`  into the directory 
 
 
 Go back and run the SVD - if you did everything correctly, you will see a marked difference.
+
+
+
+
+
+
+
+
+
+<br/><br/><br/><br/><br/><br/>
+
+
+
+
