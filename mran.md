@@ -41,10 +41,8 @@ This is an easy approach mentioned in the discussion on Stackoverflow [Linking I
 
 Once you receive and install the libraries,
 
-* Go to the folder  
-
-`C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_XXX\windows\redist\intel64\` 
-
+* Go to the folder  <br/> 
+&emsp; `C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_XXX\windows\redist\intel64\`  <br/>
 where `XXX` is the latest version date (for me, `XXX = 2020.2.254`). Paste all the CONTENT from the folders `complier` and `mkl`  into the directory where R is installed, something like `C:\Program Files\R\R-4.x.x\bin\x64\`.
 
 *    Change `Rlapack.dll` and `Rblas.dll` in the R directory to `Rlapack.dll.bak`  and `Rblas.dll.bak`, respectively as backups.
