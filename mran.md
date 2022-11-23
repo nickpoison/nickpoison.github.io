@@ -34,10 +34,11 @@ This is an easy approach mentioned in the discussion on Stackoverflow [Linking I
 The big _drawback_  is Intel's MKL library is __not__ freeware anymore, although you may be able to
 get it without cost.
 
-Once you receive the MKL,
+
 
 1.  Get and install [Intel MKL](https://software.intel.com/content/www/us/en/develop/articles/intel-math-kernel-library-release-notes-and-new-features.html). Go over there and look around to see your options, but the bottom line is you have to register and wait for approval even if you just want to try it. 
 
+Once you receive the MKL,
 
 2. Go to the folder  
 
