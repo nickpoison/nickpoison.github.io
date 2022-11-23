@@ -14,6 +14,8 @@ For reproducibility, packages are frozen in time so that if it worked last year,
 
 In addition, Microsoft R Open includes multi-threaded math libraries to improve the performance of R.     These libraries make it possible for so many common R operations, such as matrix multiply/inverse, matrix decomposition, and some higher-level matrix operations, to compute in parallel and use all of the processing power available to reduce computation times.
 
+<br/>
+
 ---
 
 ## Using the Intel MKL with the current version of R
@@ -36,20 +38,19 @@ get it without cost.
 
 
 
-1.  Get and install [Intel MKL](https://software.intel.com/content/www/us/en/develop/articles/intel-math-kernel-library-release-notes-and-new-features.html). Go over there and look around to see your options, but the bottom line is you have to register and wait for approval even if you just want to try it. 
+*  Get and install [Intel MKL](https://software.intel.com/content/www/us/en/develop/articles/intel-math-kernel-library-release-notes-and-new-features.html). Go over there and look around to see your options, but the bottom line is you have to register and wait for approval even if you just want to try it. 
 
-Once you receive the MKL,
+Once you receive and install the libraries,
 
-2. Go to the folder  
+* Go to the folder  
 
 `C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_XXX\windows\redist\intel64\` 
 
-where `XXX` is the latest version date (for me, `XXX = 2020.2.254`).
-Paste all the CONTENT from the folders `complier` and `mkl`  into the directory where R is installed, something like `C:\Program Files\R\R-4.x.x\bin\x64\`.
+where `XXX` is the latest version date (for me, `XXX = 2020.2.254`). Paste all the CONTENT from the folders `complier` and `mkl`  into the directory where R is installed, something like `C:\Program Files\R\R-4.x.x\bin\x64\`.
 
-3.    Change `Rlapack.dll` and `Rblas.dll` in the R directory to `Rlapack.dll.bak`  and `Rblas.dll.bak`, respectively as backups.
+*    Change `Rlapack.dll` and `Rblas.dll` in the R directory to `Rlapack.dll.bak`  and `Rblas.dll.bak`, respectively as backups.
 
-4.  Inside the destination folder, create __TWO (2)__ copies of `mkl_rt.dll`  and rename those  as `Rlapack.dll` and `Rblas.dll`  and keep `mkl_rt.dll`.  
+*  Inside the destination folder, create __TWO (2)__ copies of `mkl_rt.dll`  and rename those  as `Rlapack.dll` and `Rblas.dll`  and keep `mkl_rt.dll`.  
 
 
 Go back and run the SVD - if you did everything correctly, you will see a marked difference.
