@@ -24,13 +24,15 @@
 &#10024;  All the R code used in [Time Series Analysis and Its Applications](https://github.com/nickpoison/tsa4/blob/master/textRcode.md)
 
 
-
 &#10024;  All the R code used in [Time Series: A Data Analysis Approach Using R](https://github.com/nickpoison/tsda/blob/main/Rcode.md)
+
+
 
 ### &#127969; [Professor Stoffer's Home](https://dsstoffer.github.io/)
 
 ### &#127968;  [My HOME](https://github.com/nickpoison)
 
+ &#10024;   [Math Kernel Libraries in R](https://nickpoison.github.io/mran) shows how to link MKL and R
 
 
 <br/><br/><br/><br/><br/><br/>
