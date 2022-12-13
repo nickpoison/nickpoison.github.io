@@ -51,13 +51,16 @@ We've experienced both of the following problems, and it is agitating, agonizing
 
 &#128545; __Contributed Packages:__ For a little side interest, check out the [isoband incident story](https://appsilon.com/cran-and-the-isoband-incident/) where nearly 5000 packages were going to be removed from CRAN because of package dependencies.  
 
-*  The advice for this kind of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, read the license (&#129315;), take what you need, modify it as necessary, and credit the source.
-
-&#128545;  __Vanilla R:__  
 
 * Here's what happened a long time ago. We used a contributed package in `astsa`.  An update to R broke the package with no easy way to fix the mess.  We had to rewrite everything to circumvent problem.  
 
-> Maybe we'll add the story later, but it had to do with the fact that R uses 1-based numbering instead of 0-based numbering. Starting to count from 0 is especially important in time series analysis and stochastic processes in general, which as we've mentioned before, were  an afterthought of S-PLUS and consequently R.  Also, see [Why numbering should start at zero](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html0).
+    - Maybe we'll add the story later, but it had to do with the fact that R uses 1-based numbering instead of 0-based numbering. Starting to count from 0 is especially important in time series analysis and stochastic processes in general, which as we've mentioned before, were  an afterthought of S-PLUS and consequently R.  Also, see [Why numbering should start at zero](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html0).
+    
+
+*  The advice for these kinds of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, read the license (&#129315;), take what you need, modify it as necessary, and credit the source.
+
+
+&#128545;  __Vanilla R:__  
 
 * Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  **So why does the code work with version 4.0 but not 4.2???**  
 
