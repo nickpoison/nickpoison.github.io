@@ -57,7 +57,7 @@ We've experienced both of the following problems, and it is agitating, agonizing
     - Maybe we'll add the story later, but it had to do with the fact that R uses 1-based numbering instead of 0-based numbering. Starting to count from 0 is especially important in time series analysis and stochastic processes in general, which as we've mentioned before, were  an afterthought of S-PLUS and consequently R.  Also, see [Why numbering should start at zero](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html0).
     
 
-*  The advice for these kinds of problem is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, read the license (&#129315;), take what you need, modify it as necessary, and credit the source.
+*  The advice for these kinds of problems is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, read the license (&#129315;), take what you need, modify it as necessary, and credit the source.
 
 
 &#128545;  __Vanilla R:__  
