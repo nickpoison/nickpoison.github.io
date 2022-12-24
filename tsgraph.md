@@ -131,7 +131,8 @@ ggplot(data = gtemp.df, aes(x=Time, y=value, color=variable )  )             +
               theme(legend.position=c(.1,.85))			  
 ```
 
-![](figs/gtemp4.png)
+![](figs/gtemp4.png)<br/>
+'Land Only' and 'Ocean Only' have since become my favorite colors.
 
 <br/>
 
