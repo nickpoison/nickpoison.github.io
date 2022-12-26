@@ -18,6 +18,7 @@ For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa)
   - [ribbons and bows](#ribbon-plot)
   - [trendy](#trend)
   - [size does matter](#size-matters)
+  - [large values on the axis](#large-values-on-the-axis)
   - [bring back the 60s](#bring-back-the-60s)
 
 
