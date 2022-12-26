@@ -526,7 +526,7 @@ tsplot(sunspotz, type='o', pch=20, col=4)
 &#9917; Dealing with large values on the vertical axis can be a bit of a pain because R graphics and consequently other packages (that I know of) don't do anything about it. Let's generate data that take on large values:
 
 ```r
-x = ts(rnorm(100, 10000, 100), start=3000)
+x = ts(rnorm(100, 1000000, 10000), start=3000)
 ```
 
 Now we'll try various plots-
@@ -554,22 +554,26 @@ ggplot(data=df, aes(x=Time, y=X) ) + geom_line(col=4)
 
 ```r
 # tsplot with a trick - in the expression ""%*% is a cross and ~ is a space
-tsplot(x/1000, col=4, gg=TRUE, ylab=expression(X~~~~(""%*% 1000)))
+tsplot(x/10^5, col=4, gg=TRUE, ylab=expression(X~~~~(""%*% 100000)))
 
 # this unicode character also works
-tsplot(x/1000, col=4, gg=TRUE, ylab=(X~~~~('\u00D7 1000')))
+tsplot(x/10^5, col=4, gg=TRUE, ylab=(X~~~~('\u00D7 100000')))
 ```
 
 ![](figs/large_y4.png)
 
-If you want to move the (x 1000) to the edge, you can do something like this
+<br/>
+
+If you want to move the (x 100000) to the edge, you can do something like this
 
 ```r
-tsplot(x/1000, col=4, gg=TRUE, ylab='X')
-mtext('(\u00D7 1000)', side=2, adj=1, las=0, line=1.5, cex=.9)
+tsplot(x/10^5, col=4, gg=TRUE, ylab='X', las=0)
+mtext(expression('\u00D7'~10^5), side=2, adj=1, line=1.5, cex=.9)
 ```
 
 ![](figs/large_y4b.png)
+
+
 
 <br/>
 
@@ -577,11 +581,11 @@ That kind of  trick works with `ggplot` and `xts`, for example (not shown)
 ```r
 # ggplot
 df = data.frame(Time=c(time(x)), X=c(x))
-ggplot(data=df, aes(x=Time, y=X/1000) ) + geom_line(col=4) +
- ylab(X~~~~('\u00D7 1000'))
+ggplot(data=df, aes(x=Time, y=X/100000) ) + geom_line(col=4) +
+ ylab(X~~~~('\u00D7 100000'))
 
 # xts 
-plot(as.xts(x/1000), col=4, main='', ylab=expression(X~~~('\u00D7 1000') )) 
+plot(as.xts(x/100000), col=4, main='', ylab=expression(X~~~('\u00D7 100000') )) 
 ```
 
 I like [this site](https://www.rapidtables.com/code/text/unicode-characters.html)  for a list of unicode characters because it is well laid out and lists the various versions of the characters.  For R, use the _escape_ version.
