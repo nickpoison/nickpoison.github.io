@@ -14,6 +14,7 @@ For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa)
 * [Part 4 - missing data](#part-4---missing-data)
 * [Part 5 - everything else](#part-5---everything-else)
   - [xts and zoo packages](#xts-and-zoo)
+  - [you go girl ](#you-go-girl)
   - [ggfartify](#ggfortify)
   - [ribbons and bows](#ribbon-plot)
   - [trendy](#trend)
@@ -391,6 +392,37 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 
 <br/>
 
+#### you go girl 
+
+It's fun to compare google searches... here's one for some favorite female celebs taken from [Google trends](https://trends.google.com/trends/?geo=US).  The downloaded data comes as a `.csv` file with dates in the first column.  The one I downloaded (5-year weekly data on hits in the USA for 3 celebs)  looks something like this:
+
+```r
+Week,Taylor_Swift,Kim_Kardashian,Britney_Spears
+12/31/2017,11,11,14
+1/7/2018,10,12,3
+1/14/2018,9,32,3
+1/21/2018,7,19,5
+...
+```
+
+This is where `xts` and `zoo` can make your life easier.  
+
+```r
+library(xts)  # loads boths xts and zoo
+x = read.zoo("google.csv", header=TRUE, sep=',',format = "%m/%d/%Y")
+Cairo::CairoPNG(filename = "google.png", width = 600, height = 400)
+plot(as.xts(x), col=astsa.col(2:4,.7), main='Weekly Google Searches USA')
+addLegend("topleft", col=2:4, lty=1, lwd=2, bg=gray(1), bty='o', box.col=gray(1)) 
+dev.off()
+```
+
+![](figs/google.png)
+
+<br/>Try to do this with `ggplot` and _ggood luck_ with that... keep reading for one way.
+
+<br/><br/>
+
+
 #### ggfortify
 
 &#x1F535; We should probably give [ggfortify](https://CRAN.R-project.org/package=ggfotify) 
@@ -416,6 +448,17 @@ autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part),
 ![](figs/ggflap3.png)
 
 <br/>
+
+To do the google search example above with `ggplot` try this (not shown)
+```r
+library(ggfortify) 
+autoplot(as.xts(x), facets=FALSE)
+```
+but it's in alphabetical order, so Taylor is last when she should be first! 
+
+<br/>
+
+
 
 #### ribbon plot
 
