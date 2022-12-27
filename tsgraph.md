@@ -408,12 +408,10 @@ Week,Taylor_Swift,Kim_Kardashian,Britney_Spears
 This is where `xts` and `zoo` can make your life easier.  
 
 ```r
-library(xts)  # loads boths xts and zoo
-x = read.zoo("google.csv", header=TRUE, sep=',',format = "%m/%d/%Y")
-Cairo::CairoPNG(filename = "google.png", width = 600, height = 400)
+library(xts)  # loads both xts and zoo
+x = read.zoo("google.csv", header=TRUE, sep=',', format = "%m/%d/%Y")
 plot(as.xts(x), col=astsa.col(2:4,.7), main='Weekly Google Searches USA')
 addLegend("topleft", col=2:4, lty=1, lwd=2, bg=gray(1), bty='o', box.col=gray(1)) 
-dev.off()
 ```
 
 ![](figs/google.png)
