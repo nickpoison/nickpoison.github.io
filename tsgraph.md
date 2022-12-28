@@ -394,7 +394,7 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 
 #### you go girl 
 
-It's fun to compare google searches... here's one for some favorite female celebs taken from [Google trends](https://trends.google.com/trends/?geo=US).  The downloaded data comes as a `.csv` file with dates in the first column.  The one I downloaded (5-year weekly data on hits in the USA for 3 celebs)  looks something like this:
+It's fun to compare google searches... here's one for some female celebs taken from [Google trends](https://trends.google.com/trends/?geo=US), weekly number of searches for 5 years.  The downloaded data come in a `.csv` file with dates in the first column and looks something like this:
 
 ```r
 Week,Taylor_Swift,Kim_Kardashian,Britney_Spears
