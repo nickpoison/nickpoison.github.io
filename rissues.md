@@ -52,25 +52,17 @@ We've experienced both of the following problems, and it is agitating, agonizing
 &#128545; __Contributed Packages:__ For a little side interest, check out the [isoband incident story](https://appsilon.com/cran-and-the-isoband-incident/) where nearly 5000 packages were going to be removed from CRAN because of package dependencies.  
 
 
-* Here's what happened a long time ago. We used a contributed package in `astsa`.  An update to R broke the package with no easy way to fix the mess.  We had to rewrite everything to circumvent problem.  
-
-    - Maybe we'll add the story later, but it had to do with the fact that R uses 1-based numbering instead of 0-based numbering. Starting to count from 0 is especially important in time series analysis and stochastic processes in general, which as we've mentioned before, were  an afterthought of S-PLUS and consequently R.  Also, see [Why numbering should start at zero](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html0).
+* Here's what happened a long time ago. We used a contributed package in `astsa`.  An update to R broke the package with no easy way to fix the mess.  We had to rewrite 
+a number of scripts to circumvent problem.  
     
 
-*  The advice for these kinds of problems is don't rely on other packages if you only need a few items.  Packages are open source, so if you need a script, do an internet search to find the source code, read the license (&#129315;), take what you need, modify it as necessary, and credit the source.
+*  The advice for these kinds of problems is  try not to rely on other packages if you only need a few items.  Packages are open source, so if you need a script, find the source code at https://github.com/cran/, read the license (&#129315;), take what you need and modify it as necessary or use the script to write your own code, and credit the source.
 
 
 &#128545;  __Vanilla R:__  
 
-* Here's what happened recently... we started to work on something we did about a year ago. WTF? the code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  **So why does the code work with version 4.0 but not 4.2???**  
+* Recently, we started to work on something we did about a year ago. The code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  We were able to figure out the problems eventually, but it made it much harder to restart the research.  Unfortunately, Microsoft R is dead.
 
-* The advice here is to get and use Microsoft R because [Microsoft R Open is the enhanced distribution of R ... The current release, Microsoft R Open 4.0.2, is based the statistical language R-4.0.2 and includes additional capabilities for improved performance, __reproducibility__ and platform support](https://mran.microsoft.com/)
-
-   * One nice thing: _For the purpose of reproducibility, [MRAN](https://mran.microsoft.com/) hosts daily snapshots of the CRAN R packages and R releases as far back as Sept. 17, 2014_.
-
-   * Also nice: _From its inception, R was designed to use only a single thread (processor) at a time. Even today, R works that way unless linked with multi-threaded BLAS/LAPACK libraries. The multi-core machines of today offer parallel processing power. To take advantage of this, [Microsoft R Open](https://mran.microsoft.com/) provides optional multi-threaded math libraries._
-
- 
 
 
 
