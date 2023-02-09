@@ -155,12 +155,12 @@ What can go wrong?
 
 ```r 
 # should be a 2x1 times a 1x2 or 2x2 - BUT IT'S NOT!
-B[,,1]%*%C[,,1]
+B[,,1] %*% C[,,1]
          [,1]
    [1,]    4
 
 # this doesn't work either
-as.matrix(B[,,1])%*%as.matrix(C[,,1])
+as.matrix(B[,,1]) %*% as.matrix(C[,,1])
    Error in as.matrix(B[, , 1]) %*% as.matrix(C[, , 1]) : 
     non-conformable arguments
 ```
@@ -168,13 +168,40 @@ What's the remedy? Use Matlab, or make sure your matrices are the matrices you i
 
 ```r
 # like this
- matrix(B[,,1], 2, 1)%*%matrix(C[,,1], 1, 2)
+ matrix(B[,,1], 2, 1) %*% matrix(C[,,1], 1, 2)
          [,1] [,2]
    [1,]    2    2
    [2,]    2    2
 ```
 
  &#128545; If you're thinking _Well don't use `array` if one of the dimensions is 1_, let me say that the dimensions are arbitrary... meaning if you write a general script, you have to have cases.
+
+<br/>
+
+ ![](figs/slaphead.gif) But wait ... there's more. A matrix should behave like a matrix, right?  So if $A$ is a $3 \times 3$ matrix, what would happen if you tried to use $A_2$ instead of $A_{2,2}$?  You would say you should get an error on misuse of subscripts to avoid errors in your code.  And you would  be correct, but you are using R ... check it out:
+
+ ```r
+( A = matrix(1:9, 3) )
+ #      [,1] [,2] [,3]
+ # [1,]    1    4    7
+ # [2,]    2    5    8
+ # [3,]    3    6    9
+
+A[2,2]
+# [1] 5     ok 
+
+A[2]
+# [1] 2    WTF? this should be an error
+
+str(A)    # what seems to be going on
+# int [1:3, 1:3] 1 2 3 4 5 6 7 8 9
+ ```
+ 
+ 😱 😱 😱 
+
+ <br/>
+
+
 
 Now back to our regularly scheduled list of screw ups.
 
