@@ -27,27 +27,29 @@ Now close R and let the magic begin ...
 
 ---
 
+<br/>
+
 ## &#128038; Steps to Enhance  R version 4 
 
 This is an easy update as described in the discussion on [Stackoverflow](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows/56560870#56560870) previously mentioned.
 
 
-1.   Download the library files from here (it's an archive with 2 directories)
+-   Download the library files from here (it's an archive with 2 directories)
 [libraries.zip](https://www.stat.pitt.edu/stoffer/tsa4/libraries.zip) and extract everything.
 
-2. Go to the  directory where R is installed, something like `C:\Program Files\R\R-4.xxx\bin\x64\`, and change `Rlapack.dll` and `Rblas.dll` to
+- Go to the  directory where R is installed, something like `C:\Program Files\R\R-4.xxx\bin\x64\`, and change `Rlapack.dll` and `Rblas.dll` to
 `Rlapack.dll.bak` and `Rblas.dll.bak`, respectively, as backups.
 
-3. From the extracted folder in step 1, paste all the content from the folders
+- From the extracted folder in step 1, paste all the content from the folders
 `complier` and  `mkl`  into the  directory where R is installed.
 
 
-4. Inside the destination folder, create **2** (additional) copies of `mkl_rt.dll`  and rename the new files as `Rlapack.dll` and `Rblas.dll`  and keep `mkl_rt.dll`.  
+- Inside the destination folder, create **2** (additional) copies of `mkl_rt.dll`  and rename the new files as `Rlapack.dll` and `Rblas.dll`  and keep `mkl_rt.dll`.  
 
-5. Start R and rerun the SVD code and be amazed &#128515; at the difference in computation time.
+- Start R and rerun the SVD code and be amazed &#128515; at the difference in computation time.
 
 
-
+<br/><br/><br/>
 
 
 							
