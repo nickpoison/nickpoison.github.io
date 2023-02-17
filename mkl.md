@@ -49,7 +49,10 @@ This is an easy update as described in the discussion on [Stackoverflow](https:/
 - Start R and rerun the SVD code and be amazed &#128515; at the difference in computation time.
 
 
-<br/><br/><br/>
+<br/><br/><br/><br/><br/><br/>
+
+---
+---
 
 
 							
