@@ -15,7 +15,7 @@
 
  &#10024; The [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is also alive again
 
- &#10024; How to [Link Math Libraries (MKL) to R](https://nickpoison.github.io/mkl) on Windows and [Improve Performance](https://blog.revolutionanalytics.com/2010/06/performance-benefits-of-multithreaded-r.html)
+ &#10024; How to EASILY [Link Math Libraries (MKL) to R](https://nickpoison.github.io/mkl) on Windows and [Improve Performance](https://blog.revolutionanalytics.com/2010/06/performance-benefits-of-multithreaded-r.html)
 
  &#10024; The site for the R package [astsa](https://github.com/nickpoison/astsa/blob/master/README.md) is here too
 
