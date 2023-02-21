@@ -2,9 +2,9 @@
 
 
 ### Table of Contents
+* [the end of R will not be messy ... it will be tidy](#issue---how-will-r-end)
 * [reproducibility](#issue---reproducibility)
 * [when is a matrix not a matrix](#issue---when-is-a-matrix-not-a-matrix)
-* [package fights](#issue---how-will-r-end)
 * [artificially stupid intelligence](#issue---dont-use-autoarima)
 * [when is the intercept the mean](#issue---when-is-the-intercept-the-mean)
 * [R you drifting?](#issue---your-arima-is-drifting)
@@ -38,6 +38,59 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 ### &#10024; [The Front DooR](https://nickpoison.github.io/) if you need to find your way home.
 
 <br/><br/>
+
+---
+
+### Issue - how will R end?  
+
+---
+
+![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
+  
+ 
+An  issue with a conflict between the packages  `dplyr`  and  `stats`   (or tidyverse vs noverse)  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
+
+ The bottom line is, if you are working with time
+    series and you load  `dplyr`, then you should know what it breaks... just be careful.
+	
+
+In fact, you should be careful whenever you load a package.  For example:
+```r
+# if I do this
+library(dplyr)
+
+# I will see this 
+ Attaching package: 'dplyr' 
+
+ The following objects are masked from 'package:stats': 
+
+     filter, lag     
+
+ The following objects are masked from 'package:base': 
+
+     intersect, setdiff, setequal, union      
+
+## it's a package fight!   
+```
+
+How this is allowed is beyond me ![](figs/slaphead.gif) no package should be able to annihilate Vanilla R. Perhaps the designers of the tidyverse could have used `Filter` and `Lag` instead??
+
+I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs). And generally, to be safe, load packages consciously and watch for masked objects warnings.
+
+ 
+One fix if you're analyzing time series (or teaching a class) is to (tell students to) do the following after loading all the packages needed: 
+
+```r
+filter = stats::filter
+lag = stats::lag
+```
+
+> &#9940; Oh yeah, so you're probably wondering how? ... every package will nullify every other package until one day, you load R and it masks itself in an infinite do loop ...
+
+[<sub>top</sub>](#table-of-contents)
+
+<br/>
+
 
 ---
 ### ISSUE - reproducibility
@@ -203,59 +256,11 @@ str(A)    # what seems to be going on
 
 
 
-Now back to our regularly scheduled list of screw ups.
 
 [<sub>top</sub>](#table-of-contents)
 
 <br/>
 
----
-
-### Issue - how will R end?  
-
----
-
-![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
-  
- 
-An   issue with a conflict between the package  `dplyr`  and  `stats`  package  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.
-
- The bottom line is, if you are working with time
-    series and you load  `dplyr`, then you should know what it breaks... just be careful.
-	
-
-In fact, you should be careful whenever you load a package.  For example:
-```r
-# if I do this
-library(dplyr)
-
-# I will see this 
- Attaching package: 'dplyr' 
-
- The following objects are masked from 'package:stats': 
-
-     filter, lag     
-
- The following objects are masked from 'package:base': 
-
-     intersect, setdiff, setequal, union      
-
-## it's a package fight!   
-```
-To be safe, load packages consciously and watch for masked objects warnings.  I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs). 
-
- 
-One fix if you're analyzing time series (or teaching a class) is to (tell students to) do the following after loading all the packages needed: 
-```r
-filter = stats::filter
-lag = stats::lag
-```
-
->&#128260; Oh yeah, so you're probably wondering how? ... every package will nullify every other package until one day, you load R and it masks itself in an infinite do loop ...
-
-[<sub>top</sub>](#table-of-contents)
-
-<br/>
 
 
 
