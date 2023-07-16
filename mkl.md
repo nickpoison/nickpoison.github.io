@@ -1,7 +1,7 @@
 
 # Linking MKL to R on Windows
 
-&#128176; I'm still using this on R version 4.2.0 and it works fine. 
+&#128176; I'm still using this on R version 4.3.0 and it works fine. 
 
 <br/>
 
