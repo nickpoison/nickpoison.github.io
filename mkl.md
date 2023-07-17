@@ -11,7 +11,7 @@ Revolutions R came along around 2007 and provided more powerful R computing... i
 Here is a work around from the discussion on [Stackoverflow - Linking Intel's Math Kernel Library (MKL) to R on Windows](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows/56560870#56560870). 
 
 
-These notes are for Windows. If you run Linux, go to [MKL4DEB](https://github.com/eddelbuettel/mkl4deb) for details.
+These notes are for Windows. If you run Linux, go to [MKL4DEB](https://github.com/eddelbuettel/mkl4deb) for details (as mentioned there, you'll want to scroll down to the Appendix first).
 
 
 Before you start, do this and record how flippin' long it takes to run:
