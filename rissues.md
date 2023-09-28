@@ -129,7 +129,7 @@ a number of scripts to circumvent problem.
 
 ---
 
-![](figs/slaphead.gif) You have a time series of matrices, $A_t$, that are of arbitrary dimensions $p \times q$  for $t = 1, \dots, n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
+![](figs/slaphead.gif) You have a sequence of matrices, $A_t$, that are of ARBITRARY dimensions $p \times q$  for $t = 1, \dots, n$.  You would use an `array` right?  BUT, and this is a big BUT, the behavior changes with $p$ and $q$.  Let's have a closer look: 
 
 ```r
 # 3  2x2 matrices
