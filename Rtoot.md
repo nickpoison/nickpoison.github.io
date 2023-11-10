@@ -615,8 +615,8 @@ To use part of a time series object,  use `window()`:
 
 Next, we'll look at lagging and differencing, which are fundamental transformations used frequently in the analysis of time series. For example, if I'm interested in predicting todays from yesterdays, I would look at the relationship between $x_t$ and its lag, $x_{t-1}$. First make a simple series, $x_t$:
 
-> _WARNING_ If the R package `dplyr` is attached or `tidyverse` is loaded, then
-`lag` has been corrupted. In this case, use the command `filter = stats::filter` before analyzing time series in R.
+&#128683; __WARNING: If the R package `dplyr` is attached or `tidyverse` is loaded, then
+`lag` has been corrupted. In this case, issue the command `filter = stats::filter` before analyzing time series in R.__
 
 ```r
 x = ts(1:5)
