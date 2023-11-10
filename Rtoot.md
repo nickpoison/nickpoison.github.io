@@ -404,8 +404,8 @@ You may also include a _header_ in the data file to avoid `colnames`. For exampl
  
 |Dog,Cat,Rat,Pig,Man|
 |:-----------------|
-|1,2,3,2,1|   
-|9,0,2,1,0| 
+|1, 2, 3, 2, 1|   
+|9, 0, 2, 1, 0| 
 
 then use the following command to read the data.
  ```r 
@@ -553,18 +553,9 @@ abline(v=mean(x), h=mean(y), col=2, lty=2)  # col 2 is red and lty 2 is dashed
 <img src="figs/lmplot.png" alt="lmplot"  width="50%"><br/>
 
 
-
-
-The {\ttt lm} object that we called {\ttt fit} in 
-our simulation contains all sorts of information that
-can be extracted.  Sometimes, however, it might be difficult
-to find where that information is stored.
-%All sorts of information can be extracted from the {\ssf lm} object,
-%which we called {\ssf fit}.
-The easiest way to find what is stored in an object
-is to look at the structure
-of the object.  We list only a partial output because this 
-particular list is very long.
+The `lm`} object that we called `fit` in  our simulation contains all sorts of information that
+can be extracted.  Sometimes, however, it might be difficult to find where that information is stored.
+The easiest way to find what is stored in an object is to look at the _structure_ of the object.  We list only a partial output because this particular list is very long.
 ```r
 str(fit)     # partial listing below
   List of 12
@@ -576,32 +567,22 @@ str(fit)     # partial listing below
     ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
 ```
 
-For example, the parameter estimates are in
-\lstinline|fit$coef| or \lstinline|coef(fit)|.
-We can get the residuals from
-\lstinline|fit$resid| or \lstinline|resid(fit)|
-and the commands
-\lstinline|fit$fitted| or \lstinline|fitted(fit)|
-will display the fitted values.  
-For example, we may be interested in plotting the residuals
-in order or in  plotting the residuals against the fitted values:
+For example, the parameter estimates are in `fit$coef` or `coef(fit)`. We can get the residuals from `fit$resid` or `resid(fit)` and the commands `fit$fitted` or `fitted(fit)` will display the fitted values.  For example, we may be interested in plotting the residuals in order or in  plotting the residuals against the fitted values:
+
 ```r 
 plot(resid(fit))              # not shown
 plot(fitted(fit), resid(fit)) # not shown
 ```
 
 
-We will get back to regression later after we focus a little on time series.
-To create a time series object, use the command
-{\ssf ts}.  Related commands are {\ssf as.ts} to coerce an object to a time series
- and {\ssf is.ts} to test whether an object is a time series.
-%
- First, make a small data set:
+Let's  focus a little on time series. To create a time series object, use the command `ts`.  Related commands are `as.ts` to coerce an object to a time series  and `is.ts` to test whether an object is a time series.  First, make a small data set:
 ```r
 (mydata = c(1,2,3,2,1) ) # make it and view it
   [1] 1 2 3 2 1
 ```
+
 Make it an annual time series that starts in 2020:
+
 ```r 
 (mydata = ts(mydata, start=2020) )
   Time Series:
@@ -610,36 +591,38 @@ Make it an annual time series that starts in 2020:
   Frequency = 1
   [1] 1 2 3 2 1 
 ```
+
 Now make it a quarterly time series that starts in 2020-III:
 ```r 
 (mydata = ts(mydata, start=c(2020,3), frequency=4) )
        Qtr1 Qtr2 Qtr3 Qtr4
   2020              1    2
   2021    3    2    1     
-time(mydata)  # view the sampled times  
+
+time(mydata)  # view the dates  
           Qtr1    Qtr2    Qtr3    Qtr4 
   2020                 2020.50 2020.75
   2021 2021.00 2021.25 2021.50 
 ```
-To use part of a time series object,  use {\ssf window()}:
-```r[firstnumber=6]
-(x = window(mydata, start=c(2021,1), end=c(2021,3) ))
+
+To use part of a time series object,  use `window()`:
+```r
+
+(x = window(mydata, start=c(2021,1), end=c(2021,3)) )
        Qtr1 Qtr2 Qtr3
   2021    3    2    1
 ```
 
-\needsp{1}
-Next, we'll look at lagging and differencing, which are fundamental
-transformations used frequently in the analysis of time series.
-For example, if I'm interested in predicting todays from yesterdays,
-I would look at the relationship between $x_t$ and its lag, $x_{t-1}$.
-First make a simple series, $x_t$:
+Next, we'll look at lagging and differencing, which are fundamental transformations used frequently in the analysis of time series. For example, if I'm interested in predicting todays from yesterdays, I would look at the relationship between $x_t$ and its lag, $x_{t-1}$. First make a simple series, $x_t$:
+
+> _WARNING_ If the R package `dplyr` is attached or `tidyverse` is loaded, then
+`lag` has been corrupted. In this case, use the command `filter = stats::filter` before analyzing time series in R.
+
 ```r
 x = ts(1:5)
 ```
-Now, column bind ({\ssf cbind}) lagged values of $x_t$
-and you will notice that {\ssf lag(x)} is {\em forward} lag,
-whereas {\ssf lag(x, -1)} is {\em backward} lag.
+
+Now, column bind (`cbind`) lagged values of $x_t$ and you will notice that `lag(x)`` is _forward_ lag, whereas `lag(x, -1)` is _backward_ lag.
 ```r
 cbind(x, lag(x), lag(x,-1))
        x   lag(x)   lag(x, -1)
@@ -650,9 +633,11 @@ cbind(x, lag(x), lag(x,-1))
   4    4      5         3     #  lag(x) is ahead at 4, and  
   5    5     NA         4     #   lag(x,-1) is behind at 2  
   6   NA     NA         5 
-``` \needsp{3}
-Compare {\ssf cbind} and {\ssf ts.intersect}:
-```r]
+``` 
+
+Compare `cbind` and `ts.intersect`:
+
+```r
 ts.intersect(x, lag(x,1), lag(x,-1)) 
   Time Series:  Start = 2  End = 4  Frequency = 1
       x   lag(x, 1)   lag(x, -1)
@@ -661,16 +646,15 @@ ts.intersect(x, lag(x,1), lag(x,-1))
   4   4         5          3
 ```
 
-\needsp{3}
-To examine the time series attributes of an object,
-use {\ttt tsp}.  For example, one of the time series in
-{\ttt astsa} is the US unemployment rate:
+To examine the time series attributes of an object, use `tsp`.  For example, one of the time series in `astsa` is the US unemployment rate:
+
 ```r
 tsp(UnempRate)
  [1] 1948.000 2016.833   12.000
 #    start    end        frequency
 ```
-which starts January 1948, ends in November 2016 (10/12 $\approx$ .833), and
+
+which starts January 1948, ends in November 2016 (10/12 &approx; .833), and
 is monthly data (frequency = 12).
 
 
@@ -681,19 +665,17 @@ To  difference a series, $\nabla x_t = x_t - x_{t-1}$, use
 diff(x)    
 ```
 but note that
-```r[firstnumber=2]
-diff(x, 2)    ```
- is
-$x_t - x_{t-2}$ and {\it not} second order differencing. For second-order differencing, that is,
-$\nabla^2 x_t = \nabla (\nabla x_t)$, do one of these:
+```r 
+diff(x, 2)    
+```
+is $x_t - x_{t-2}$ and {\it not} second order differencing. For second-order differencing, that is, $\nabla^2 x_t = \nabla (\nabla x_t)$, do one of these:
 ```r
 diff(diff(x))    
 diff(x, diff=2)   # same thing
 ```
 and so on for higher-order differencing.
 
-% % % % % % % % % % % % % % % % % % % % % %
-% % % % % % % % % % % % % % % % % % % % % % % %
+
 
 
 
@@ -867,7 +849,7 @@ In \R, you can go to the graphics window and use {\sf Save as}
 from the {\sf File} menu.
   In \RS, use the {\sf Export} tab under {\sf Plots}.
 It is also easy to print directly to a pdf;
-\lstinline|?pdf| for details.  
+`?pdf| for details.  
  
 
 
