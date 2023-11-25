@@ -87,6 +87,32 @@ lag = stats::lag
 
 > &#9940; Oh yeah, so you're probably wondering how? ... every package will nullify every other package until one day, you load R and it masks itself in an infinite do loop ...
 
+<br/>
+
+&#128561; __In the not too distant future:__  In `astsa` version > 2.0 (i.e., v2.0.1 or higher), when `astsa` is loaded `filter = stats::filter` and `lag = stats::lag` are put in the Global Environment, which means they take precedent.  The `tinyverse` remedy was to create a package called `conflicted` to deal with conflicts. If you work with time series and with the `tinyverse` then it might be a good idea use that package.  Otherwise, installing `astsa` takes care of this problem so that `filter` and `lag` are really what they were meant to be.  The loading order doesn't matter. Here's a little exhibit:
+```r
+library(astsa)
+ls()
+  [1] "filter" "lag"  # these are from stats, put here by astsa  
+library(dplyr)
+# now we see this
+  Attaching package: ‘dplyr’
+
+  The following objects are masked _by_ ‘.GlobalEnv’: 
+
+      filter, lag    # Global environment now masks dplyr corruptions
+
+  The following objects are masked from ‘package:stats’:
+
+      filter, lag
+
+  The following objects are masked from ‘package:base’:
+
+      intersect, setdiff, setequal, union 
+```
+You can use `rm()` to remove those from the global environment if necessary or use `dplyr::filter` and `dplyr::lag` if you have to use the twisted versions of those scripts.
+
+
 [<sub>top</sub>](#table-of-contents)
 
 <br/>
