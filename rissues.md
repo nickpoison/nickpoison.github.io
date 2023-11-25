@@ -89,31 +89,32 @@ lag = stats::lag
 
 <br/>
 
-&#128561; __In the not too distant future:__  In `astsa` version > 2.0 (i.e., v2.0.1 or higher), when `astsa` is loaded `filter = stats::filter` and `lag = stats::lag` are put in the Global Environment, which means they take precedent.  The `tinyverse` remedy was to create a package called `conflicted` to deal with conflicts. If you work with time series and with the `tinyverse` then it might be a good idea use that package.  Otherwise, installing `astsa` takes care of this problem so that `filter` and `lag` are really what they were meant to be.  The loading order doesn't matter. Here's a little exhibit:
+&#128561; __In the not too distant future:__  In `astsa` version > 2.0 (i.e., v2.0.1 or higher), when `astsa` is loaded `filter = stats::filter` and `lag = stats::lag` are put in the Global Environment, which means they take precedent.  The `tinyverse` remedy was to create a package called `conflicted` to deal with conflicts. If you work with time series and with the `tinyverse` then it might be a good idea use that package. It's probably the best way to deal with the problem until (and if) the good folks at R development find an optimal solution. Otherwise, installing `astsa` takes care of this problem so that `filter` and `lag` are really what they were meant to be.  The package loading order doesn't matter. Here's a little exhibit:
 ```r
 library(astsa)
 ls()
   [1] "filter" "lag"  # these are from stats, put here by astsa  
+
 library(dplyr)
 # now we see this
   Attaching package: ‘dplyr’
 
-  The following objects are masked _by_ ‘.GlobalEnv’: 
+  The following objects are masked _by_ '.GlobalEnv': 
 
       filter, lag    # Global environment now masks dplyr corruptions
 
-  The following objects are masked from ‘package:stats’:
+  The following objects are masked from 'package:stats':
 
       filter, lag
 
-  The following objects are masked from ‘package:base’:
+  The following objects are masked from 'package:base':
 
       intersect, setdiff, setequal, union 
 ```
-You can use `rm()` to remove those from the global environment if necessary or use `dplyr::filter` and `dplyr::lag` if you have to use the twisted versions of those scripts.
+You can use `rm()` to remove those from the global environment if necessary or use `dplyr::filter` and `dplyr::lag` if you have to use the twisted versions of those scripts.  
 
 
-&#128663; &#128663;  Imagine if you could do this with things that really mattered, like someone could come along and change what the brake does on your car .... so when you step on the brake, the left turn signal turns on.  &#128663; &#128663; ... sort of like driving a tesla
+&#128663; &#128663;  Imagine if you could do this with things that really mattered, like someone could come along and change what a car brake does .... so when you step on the brake, the left turn signal turns on  &#128663; &#128663; ... sort of like driving a tesla
 
 [<sub>top</sub>](#table-of-contents)
 
