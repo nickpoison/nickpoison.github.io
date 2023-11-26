@@ -551,7 +551,7 @@ Simplifying,
 
 $$ \nabla x_t = \alpha +  \phi \nabla x_{t-1} + w_t , $$
 
-where   $ \alpha =  \beta (1-\phi)$.
+where   $\alpha =  \beta (1-\phi)$.
 
 &#128054;  S-PLUS didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.  
 
