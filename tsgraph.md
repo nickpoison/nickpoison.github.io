@@ -416,7 +416,7 @@ addLegend("topleft", col=2:4, lty=1, lwd=2, bg=gray(1), bty='o', box.col=gray(1)
 
 ![](figs/google.png)
 
-<br/>Try to do this with `ggplot` and _ggood luck_ with that... keep reading for one way.
+
 
 <br/><br/>
 
