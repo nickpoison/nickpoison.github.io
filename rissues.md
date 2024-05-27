@@ -46,8 +46,8 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 ---
 
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
-  
- 
+
+
 An  issue with a conflict between the packages  `dplyr`  and  `stats`   (or tidyverse vs noverse)  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
 
  The bottom line is, if you are working with time
@@ -82,6 +82,10 @@ I would say avoid loading `dplyr` if you're analyzing time series interactively 
 An easy fix if you're analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is being used.
 
 ```r
+# either detach it
+detach(package:dplyr)  
+
+# or take back the commands
 filter = stats::filter
 lag = stats::lag
 ```
@@ -112,9 +116,8 @@ We've experienced both of the following problems, and it is agitating, agonizing
 
 
 * Here's what happened a long time ago. We used a contributed package in `astsa`.  An update to R broke the package with no easy way to fix the mess.  We had to rewrite 
-a number of scripts to circumvent problem.  
-    
-
+  a number of scripts to circumvent problem.  
+  
 *  The advice for these kinds of problems is  try not to rely on other packages if you only need a few items.  Packages are open source, so if you need a script, find the source code at https://github.com/cran/, read the license (&#129315;), take what you need and modify it as necessary or use the script to write your own code, and credit the source.
 
 
@@ -185,7 +188,7 @@ but
 
 is.matrix(B[,,2])
    [1] FALSE  WTF? not a matrix
-```  
+```
 and
 ```r
 # 3  1x2 matrices 
@@ -255,7 +258,7 @@ A[2]
 str(A)    # what seems to be going on
 # int [1:3, 1:3] 1 2 3 4 5 6 7 8 9
  ```
- 
+
  😱 😱 😱 
 
  <br/>
@@ -306,7 +309,7 @@ forecast::auto.arima(x)  # BLACK BOX
  HA! ... an ARMA(2,1) ??  What a Klusterfuk! y'all 
 
 &#x1F439; But if you know what you're doing, you would realize the model that `auto.arima` fit is   overparameterized white noise, y'all.
- 
+
 &#128038; There are lots of examples.  The bottom line here is, automated ARIMA model fitting is for the birds. 
 
 &#128520; So just to be  little devils, we decided to see what happens if we just fit ARs using AIC (pretty sure `auto.arima` uses AIC) and as expected ... 
@@ -392,7 +395,7 @@ or
 
 $$ x_t  = 12.25 + .75  x_{t-1}  + w_t $$
 
-  
+
 &#129300; And if $12.25$ is not the intercept, then what is it??
 
 The easy thing (for the R devs) to do is simply change "intercept" to "mean":
@@ -402,7 +405,7 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
            ar1       mean  # <-- easy  
         0.7476    49.1451
   s.e.  0.0651     0.3986
- ``` 
+```
 
  This is the main reason `sarima` in the package [`astsa`](https://github.com/nickpoison/astsa) was developed, and frankly, to make up for the fact that time series was an afterthought, started the entire [`astsa`](https://github.com/nickpoison/astsa) package in the first place.
  Here it is for your pleasure:
@@ -443,7 +446,7 @@ arima(x, order = c(1, 1, 0))          # (1)
 will not produce the same result as
 ```r
 arima(diff(x), order = c(1, 0, 0))    # (2)
-``` 
+```
 because in (1), Vanilla R will fit the model [with $\nabla x_s = x_s - x_{s-1}$]
 
 $$ \nabla x_t= \phi \nabla x_{t-1} + w_t \quad {\rm (no\ constant)} $$
@@ -502,11 +505,11 @@ where $w_t$ is standard normal  noise.  Another way to write this is
 
 
 $$    x_t - x_{t-1}  = 1 + 0 (x_{t-1} - x_{t-2}) + w_t $$
- 
+
 or
 
 $$ \nabla x_t = 1 + 0 \nabla x_{t-1} + w_t . $$
-  
+
 
 If you fit an AR(1) to $\nabla x_t$ [aka `diff(x)`], the estimates should be, approximately, `ar1 = 0` and `intercept = 1`.  
      
@@ -629,10 +632,10 @@ lag1.plot(soi, 4, col=4)
 ```
 
 ![](figs/lagp2.png)
- 
+
  [<sub>top</sub>](#table-of-contents)
 
- 
+
  <br/>
 
 ---
@@ -707,10 +710,10 @@ $$x_t = \beta_0 + \beta_1 z_{t} + \beta_2 z_{t-1} + w_t $$
 
 because all those series have to be aligned first: `dog = ts.intersect(x, z, lag(z,-1))`. And then if you want to try another lag of `z`, you have to redo `dog`.  Luckily, there is a package called [dynlm](https://CRAN.R-project.org/package=dynlm) that can handle these problems without having to align and re-align. The nice thing is it works like `lm`.
 
- 
+
  [<sub>top</sub>](#table-of-contents)
 
- 
+
  <br/>
 
 ---
@@ -748,7 +751,7 @@ But an easier thing to do is to use `acf2` from the [astsa](https://github.com/n
 
  [<sub>top</sub>](#table-of-contents)
 
- 
+
  <br/>
 
 ---
