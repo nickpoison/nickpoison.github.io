@@ -85,9 +85,16 @@ An easy fix if you're analyzing time series (or teaching a class) is to (tell st
 # either detach it
 detach(package:dplyr)  
 
-# or take back the commands
+# or fix it yourself if you want dplyr 
+# this is a great idea from  https://stackoverflow.com/a/65186251
+library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
+Lag <- dplyr::lag            # and do what the dplyr ... 
+Filter <- dplyr::filter      # ... maintainers refuse to do
+
+# or just take back the commands
 filter = stats::filter
 lag = stats::lag
+
 ```
 ⭐⭐⭐⭐⭐
 
