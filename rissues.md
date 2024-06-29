@@ -90,6 +90,8 @@ detach(package:dplyr)
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
 Lag <- dplyr::lag            # and do what the dplyr ... 
 Filter <- dplyr::filter      # ... maintainers refuse to do
+# then use `Lag` and `Filter` in dplyr scripts and
+# `lag` and `filter` can be use as originally intended
 
 # or just take back the commands
 filter = stats::filter
