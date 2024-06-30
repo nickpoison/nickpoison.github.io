@@ -375,7 +375,7 @@ We're not done.  At least we got the plot after some work and warnings. But noti
 ### Part 5 - everything else
 ---
 
-#### xts and zoo
+### xts and zoo
 
 &#128047; First, some important packages for time series in R are  [xts]( https://CRAN.R-project.org/package=xts) and [zoo](https://CRAN.R-project.org/package=zoo).  Installing `xts` is enough to get both.
 
@@ -391,6 +391,7 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 ![](figs/xts.png)
 
 <br/>
+#### pollution, weather, and mortality
 
 Now we'll take the daily data from the LA Pollution Study: `lap.xts` (in `astsa`), take weekly averages and then plot those.
 
@@ -406,6 +407,7 @@ addLegend(col=2:4, lty=1, lwd=2, ncol=3, bty="white")
 
 ![](figs/lap.png)
 
+<br/>
 
 
 #### you go girl 
