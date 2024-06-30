@@ -291,7 +291,7 @@ And in Vanilla R graphics:
 ts.plot(cbind(cmort,tempr,part), main='LA Pollution Study', col=2:4)
 legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'), 
           lty=1, lwd=2, col=2:4, bg='white')
- ```
+```
 
  ![](figs/baselap.png)         
 
@@ -392,6 +392,22 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 
 <br/>
 
+Now we'll take the daily data from the LA Pollution Study: `lap.xts` (in `astsa`), take weekly averages and then plot those.
+
+```R
+library(xts)
+
+# get weekly averages from daily data 
+lapw = apply.weekly(lap.xts, FUN=colMeans)  
+
+plot(lapw[,c('Cmort', 'Temp', 'Part')], col=astsa.col(2:4, .7), main=NA) 
+addLegend(col=2:4, lty=1, lwd=2, ncol=3, bty="white")
+```
+
+![](figs/lap.png)
+
+
+
 #### you go girl 
 
 It's fun to compare google searches... here's one for some female celebs taken from [Google trends](https://trends.google.com/trends/?geo=US), weekly number of searches for 5 years.  The downloaded data come in a `.csv` file with dates in the first column and looks something like this:
@@ -423,14 +439,13 @@ addLegend("topleft", col=2:4, lty=1, lwd=2, bg=gray(1), bty='o', box.col=gray(1)
 
 #### ggfortify
 
-&#x1F535; We should probably give [ggfortify](https://CRAN.R-project.org/package=ggfotify) 
-a little space, BUT there are NO guarantees that what you see here will work in the future.
+&#x1F535; We should probably give [ggfortify](https://CRAN.R-project.org/package=ggfotify) a little space, BUT there are NO guarantees that what you see here will work in the future.  These data are from `lap` , which is different from `lap.xts`.  The help file `?lap.xts` has the info.
 
 ```r
 install.packages('ggfortify')  # if you don't have it already
 library(ggfortify)             # load it
 
-# all on same plot
+# all on same plot  
 autoplot(cbind(Mortality=cmort, Temperature=tempr, Particulates=part), 
            xlab='Time', facets=FALSE, main='LA Pollution')  
 
