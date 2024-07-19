@@ -89,7 +89,7 @@ detach(package:dplyr)
 # this is a great idea from  https://stackoverflow.com/a/65186251
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
 Lag <- dplyr::lag            # and do what the dplyr ... 
-Filter <- dplyr::filter      # ... maintainers refuse to do
+Filter <- dplyr::filter      # ... maintainer refuses to do
 # then use `Lag` and `Filter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
