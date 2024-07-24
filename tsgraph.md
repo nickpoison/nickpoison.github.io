@@ -104,7 +104,7 @@ ptemp + theme_bw()       # not shown
 
 It's not necessary to store the figure... it's just an example of what you can do.
 
-&#128520; If you like the gray background with white grid lines, you can do a gris-gris plot with `astsa` (the grammar of `astsa` is voodoo)
+&#128520; If you like the gray background with white grid lines, you can do a gris-gris plot with `astsa` (the grammar of `astsa` is &#119985;&#119978;&#119978;&#119967;&#119978;&#119978; &#128128;)
 
 ```r
 tsplot(gtemp_land, gg=TRUE, type='o', pch=20, col=4, ylab='Temperature Deviations')
