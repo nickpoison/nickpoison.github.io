@@ -82,10 +82,10 @@ I would say avoid loading `dplyr` if you're analyzing time series interactively 
 An easy fix if you're analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is being used.
 
 ```r
-# either detach it
+# (1) either detach it
 detach(package:dplyr)  
 
-# or fix it yourself if you want dplyr 
+# (2) or fix it yourself if you want dplyr 
 # this is a great idea from  https://stackoverflow.com/a/65186251
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
 Lag <- dplyr::lag            # and do what the dplyr ... 
@@ -93,11 +93,17 @@ Filter <- dplyr::filter      # ... maintainer refuses to do
 # then use `Lag` and `Filter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
-# or just take back the commands
+# (3) or just take back the commands
 filter = stats::filter
 lag = stats::lag
 
+# in this case, you can still use these for dplyr
+Lag <- dplyr::lag     
+Filter <- dplyr::filter 
+
 ```
+&#128534;  If you are wondering how it is possible to corrupt a base package, &#128125; you are not alone. 
+
 ⭐⭐⭐⭐⭐
 
 > &#9940; Oh yeah, so you're probably wondering how? ... every package will nullify every other package until one day, you load R and it masks itself in an infinite do loop ...
