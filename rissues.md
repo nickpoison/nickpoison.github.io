@@ -450,9 +450,7 @@ The easy thing (for the R devs) to do is simply change "intercept" to "mean":
 
 
 
-![](figs/slaphead.gif) When fitting ARIMA models with Vanilla R, a constant term is NOT included
-in the model if there is any differencing. The best Vanilla R will do by default
-is fit a mean if there is no differencing [type `?arima` for details].
+![](figs/slaphead.gif) When fitting ARIMA models with Vanilla R, a constant term is NOT included in the model if there is any differencing. The best Vanilla R will do by default is fit a mean if there is no differencing [type `?arima` for details].
 
 What's wrong with this?  Well (with a time series in `x`), for example:
 ```r
@@ -472,8 +470,7 @@ $$ \nabla x_t=  \alpha + \phi \nabla x_{t-1} + w_t \quad {\rm (constant)} $$
 
 
 
-If there's drift (i.e., $\alpha$ is NOT zero), the two fits can be extremely different
-and using (1) will lead to an incorrect fit and consequently bad forecasts. 
+If there's drift (i.e., $\alpha$ is NOT zero), the two fits can be extremely different and using (1) will lead to an incorrect fit and consequently bad forecasts. 
 
 If  $\alpha$  is NOT zero, then what you have to do to correct (1) is use `xreg` as follows:
 
@@ -482,8 +479,7 @@ arima(x, order = c(1, 1, 0), xreg=1:length(x))    # (1+)
 ```
 
 
-If you want to see the differences, generate a random walk with drift and
-try to fit an ARIMA(1,1,0) model to it.  Here's how:
+If you want to see the differences, generate a random walk with drift and try to fit an ARIMA(1,1,0) model to it.  Here's how:
 
 ```r
 set.seed(1)           # so you can reproduce the results
@@ -525,15 +521,11 @@ or
 
 $$ \nabla x_t = 1 + 0 \nabla x_{t-1} + w_t . $$
 
-
 If you fit an AR(1) to $\nabla x_t$ [aka `diff(x)`], the estimates should be, approximately, `ar1 = 0` and `intercept = 1`.  
      
-Thus (1) gives the WRONG answer because it's forcing the regression through the origin. The
-others are correct.
+Thus (1) gives the WRONG answer because it's forcing the regression through the origin. The others are correct.
 
-
-Why does (1+) work?  In symbols,   `xreg = t`  and consequently, 
- Vanilla R will replace  $x_t$   with  $y_t = x_t - \beta t$  ;
+Why does (1+) work?  In symbols,   `xreg = t`  and consequently,  Vanilla R will replace  $x_t$   with  $y_t = x_t - \beta t$  ;
 that is, it will fit the model
 
 $$\nabla y_t =   \phi  \nabla y_{t-1} + w_t,$$
@@ -548,7 +540,7 @@ $$ \nabla x_t = \alpha +  \phi \nabla x_{t-1} + w_t , $$
 
 where   $\alpha =  \beta (1-\phi)$.
 
-&#128054;  S-PLUS didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.  
+&#128054;  S-PLUS didn't address the possibility that a time series would have drift.  The R folks continued that mistake (mistakes propagate) because signal processing was an after-thought in S-PLUS that propagated to R.   This oversight is easy to correct, why it isn't  corrected is a mystery.   
 
 &#127881; The bottom line here is, if you wanna be happy for the rest of your life, don't use Vanilla R for time series analysis.  Instead, reach for a package like [astsa](https://github.com/nickpoison/astsa)  that will set you free.  &#127882;
 
@@ -581,9 +573,7 @@ sarima(x,1,1,0)
 
 
 
-&#129337;&#127995; The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`.
-That is, the procedure being used does NOT take into account the fact that the residuals are
-from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github.com/nickpoison/astsa).
+&#129337;&#127995; The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`. That is, the procedure being used does NOT take into account the fact that the residuals are from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github.com/nickpoison/astsa).
 
 [<sub>top</sub>](#table-of-contents)
 
@@ -598,9 +588,7 @@ from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github
 ---
 
 
-![](figs/slaphead.gif) You have to be  careful when working with lagged components of a time
-series. Note that `lag(x)` is a FORWARD shift and `lag(x,-1)`  is a BACKWARD shift
-(unless you happen to load `dplyr`).
+![](figs/slaphead.gif) You have to be  careful when working with lagged components of a time series. Note that `lag(x)` is a FORWARD shift and `lag(x,-1)`  is a BACKWARD shift (unless you happen to load `dplyr`).
 
 
 Try a small example:
