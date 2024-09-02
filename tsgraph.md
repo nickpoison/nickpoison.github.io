@@ -174,12 +174,11 @@ tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), 
 mtext('(\u00D71000)', side=2, adj=1, line=1.5, cex=.8)  # we'll talk about this later
 # then put the legend right where you want it
 legend(x=1940, y=150, col=c(2,4), lty=1, legend=c("Hare", "Lynx"), pch=c(0,2), bty="n", xpd=NA) 
-
 ```
 
 ![](figs/HL.png)
 
-
+<br/>
 
 
 
