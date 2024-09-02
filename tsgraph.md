@@ -166,6 +166,23 @@ legend('topright', inset=c(-.3,0), bty='n', lty=1, col=2:3, legend=c('sleep stat
 
 <br/>
 
+Here's another way to do it that may be more precise:
+
+```R
+par(oma=c(0,0,0,5))
+tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), spaghetti=TRUE, ylab='Number', gg=TRUE)
+mtext('(\u00D71000)', side=2, adj=1, line=1.5, cex=.8)  # we'll talk about this later
+# then put the legend right where you want it
+legend(x=1940, y=150, col=c(2,4), lty=1, legend=c("Hare", "Lynx"), pch=c(0,2), bty="n", xpd=NA) 
+
+```
+
+![](figs/HL.png)
+
+
+
+
+
 &#x1F535;  You'll see how to do this with `ggplot` below.  In the global temperature example above, just leave off the last line:
 
 ```r
