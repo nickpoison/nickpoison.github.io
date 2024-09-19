@@ -137,8 +137,7 @@ ggplot(data = gtemp.df, aes(x=Time, y=value, color=variable )  )             +
 
 <br/>
 
-&#x1F535;  Now the same idea using `tsplot` from `astsa` with the `spaghetti` option.
-There are more examples at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md), where the fun never stops.
+&#x1F535;  Now the same idea using `tsplot` from `astsa` with the `spaghetti` option. There are more examples at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md), where the fun never stops.
 
 ```r
 tsplot(cbind(gtemp_land,gtemp_ocean), col=astsa.col(c(2,5),.5), lwd=2, gg=TRUE,
@@ -147,6 +146,18 @@ legend("topleft", legend=c("Land Only","Ocean Only"), col=c(2,5), lty=1, bty="n"
 ```
 
 ![](figs/gtemp5.png)
+
+<br/>
+
+💖 Coming in `astsa` version 2.2 (and beyond), there is an `addLegend` option in `tsplot`, por exemplo:
+
+```r
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
+```
+
+![](figs/addLegend.png)
+
+... that's it at its most basic - there are more `addLegend` options (you can always get the updated package from [astsa NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) ).
 
 <br/>
 
