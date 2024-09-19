@@ -311,6 +311,18 @@ legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'),
 ![](figs/tslap.png)
 
 <br/>
+
+💖Using the new version 2.2+ `addLegend` option described above:
+
+```r
+tsplot(cbind(cmort,tempr,part), ylab='LA Pollution Study', col=astsa.col(2:4,.7), spag=TRUE,               addLegend=TRUE, legend=c('Mortality', 'Temperature', 'Pollution'), llwd=2)
+
+```
+
+![](figs/addLegend2.png)
+
+<br/>
+
 And in Vanilla R graphics:
 
 ```r
