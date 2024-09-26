@@ -6,7 +6,6 @@
 
 
 
-
 <br/>
 
 ### ROAD MAP 
@@ -26,8 +25,9 @@
 
 &#10024;  All the R code used in [Time Series Analysis and Its Applications](https://github.com/nickpoison/tsa5/blob/master/textRcode.md)
 
-
 &#10024;  All the R code used in [Time Series: A Data Analysis Approach Using R](https://github.com/nickpoison/tsda/blob/main/Rcode.md)
+
+&#10024;  An [R tutorial](https://dsstoffer.github.io/Rtoot) that used to be Appendix R in the texts. 
 
 
 ### &#127969; [Professor Stoffer's Home](https://dsstoffer.github.io/)
