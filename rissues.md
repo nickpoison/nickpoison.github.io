@@ -138,7 +138,9 @@ We've experienced both of the following problems, and it is agitating, agonizing
 
 &#128545;  __Vanilla R:__  
 
-* Recently, we started to work on something we did about a year ago. The code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  We were able to figure out the problems eventually, but it made it much harder to restart the research.  Unfortunately, Microsoft R is dead.
+* Recently, we started to work on something we did about a year ago. The code (in Vanilla R) doesn't work anymore and gives several errors.   After awhile, we realized that we did the work using Microsoft R version 4.0 (whereas Vanilla R was at version 4.2).  So we went back to Micro R and voilà, no problems.  We were able to figure out the problems eventually, but it made it much harder to restart the research.  
+
+- Unfortunately, Microsoft R is dead. An alternative, however, Groundhog's R Archive Neighbor [Gran](https://groundhogr.com/gran/) is available. More info [here](https://datacolada.org/108). 
 
 
 
