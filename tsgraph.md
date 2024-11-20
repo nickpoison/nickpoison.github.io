@@ -19,6 +19,7 @@ For this page, we'll use Vanilla R, [astsa](https://github.com/nickpoison/astsa)
   - [ribbons and bows](#ribbon-plot)
   - [trendy](#trend)
   - [size does matter](#size-matters)
+  - [size really does matter](#size-really-does-matter)
   - [large values on the axis](#large-values-on-the-axis)
   - [bring back the 60s](#bring-back-the-60s)
 
@@ -619,6 +620,65 @@ tsplot(sunspotz, type='o', pch=20, col=4)
 
 <br/>
 
+### size really does matter
+
+This is for base R... `ggplot` has similar problems but we'll [let others take care of that](https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/).  When you do multifigure plots, the character expansion (`cex`) factor can get very small.  For example
+
+```R
+> par('cex')
+  [1] 1
+> par(mfrow=2:1)
+> par('cex')
+  [1] 1
+> par(mfrow=c(3,1))
+> par('cex')
+  [1] 0.66   <-- this is ok on a screen, but too small for publication
+```
+
+Here's an example
+
+```R
+par(mfrow=c(3,1)) 
+acf1(soi, 48, col=4, main="Southern Oscillation Index") 
+acf1(rec, 48, col=4, main="Recruitment") 
+ccf2(soi, rec, 48, col=4, main="SOI vs Recruitment")
+```
+
+![](figs/cex1.png)
+
+
+```R
+par(mfrow=c(3,1), cex=.9) 
+acf1(soi, 48, col=4, main="Southern Oscillation Index") 
+acf1(rec, 48, col=4, main="Recruitment") 
+ccf2(soi, rec, 48, col=4, main="SOI vs Recruitment")
+```
+
+![](figs/cex2.png)
+
+
+The interiors of the plots are similar, but the text in the first one is too small.  
+
+In `astsa` version 2.2, we added a `scale` component to `tsplot` to help with the problem... compare these if you have version 2.2 or higher:
+
+```R
+tsplot(cbind(big=rnorm(100),bad=rnorm(100), john=rnorm(100)), scale=.75)  # match base R
+tsplot(cbind(big=rnorm(100),bad=rnorm(100), john=rnorm(100)))             # default scale 1
+tsplot(cbind(big=rnorm(100),bad=rnorm(100), john=rnorm(100)), scale=1.5)  # and way too big
+```
+
+The `scale` factor doesn't work for one-at-a-time plotting, so use the first method; e.g., this works with any version of `astsa`:
+
+```R
+par(mfrow=c(3,1))          # too small 
+tsplot(cmort); tsplot(tempr); tsplot(part)
+
+par(mfrow=c(3,1), cex=.9)  # so fix it 
+tsplot(cmort); tsplot(tempr); tsplot(part)
+```
+
+<br/>
+
 #### large values on the axis
 
 &#9917; Dealing with large values on the vertical axis can be a bit of a pain because R graphics and consequently other packages (that I know of) don't do anything about it. Let's generate data that take on large values:
@@ -636,6 +696,7 @@ plot(as.xts(x), col=4)
 ```
 
 ![](figs/large_y2.png)
+
 
 ```r
 # ggplot
