@@ -622,7 +622,7 @@ tsplot(sunspotz, type='o', pch=20, col=4)
 
 ### size really does matter
 
-This is for base R... `ggplot` has similar problems but we'll [let others take care of that](https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/).  When you do multifigure plots, the character expansion (`cex`) factor can get very small.  For example
+This is for base R... `ggplot` has similar problems but we'll let others take care of that.  When you do multifigure plots, the character expansion (`cex`) factor can get very small.  For example
 
 ```R
 > par('cex')
