@@ -12,6 +12,7 @@
 * [lead from behind](#issue---lead-from-behind)
 * [regress this](#issue---regression-nightmares)
 * [you're ugly](#issue---yu-gi-el-why)
+* [don't run this example - or ELSE!](#issue---do-not-run-this-example)
 
 
 
@@ -758,6 +759,24 @@ But an easier thing to do is to use `acf2` from the [astsa](https://github.com/n
 
 
  <br/>
+
+ ---
+
+### Issue - Do Not Run This Example  
+
+---
+
+
+ &#10060; After viewing enough help files, you will eventually run into `## Not run:` in an __Examples__ section.  Why would an example be given with a warning NOT to run it?
+
+
+
+ `Not run` just tells CRAN not to check the example for various reasons such as it takes a long time to run  ... it sort of runs against the idea that help files should be helpful or at least not make things worse.  _Bottom line: Ignore it._ <font color="#FF4500">It is NOT for a user's consumption.</font>![](https://nickpoison.github.io/figs/slaphead.gif) If you are using html help and you see this, then [Run Examples]() will not do anything. In this case, you just copy-and-paste the code to run it (at your own risk of course).
+
+
+ [<sub>top</sub>](#table-of-contents)
+
+ <br/> <br/>
 
 ---
 <p style="text-align: center;">&#128018; &Eopf; &#8469; &#120123; &#128018;</p>
