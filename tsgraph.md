@@ -595,18 +595,21 @@ A `type='h'` instead of `type='s'` looks good too.
 &#127797; If you did not know this already , with time series, the dimensions of the plot matters.
 
 
-&#128696; By default, R graphic devices are square (7 by 7 inches), which is generally bad for plotting time series as you will see. I use an `.Rprofile` file in the working directory that
-takes care of this:
+&#128696; By default, R graphic devices are square (7 by 7 inches), which is generally bad for plotting time series as you will see. And, it's actually bad practice in general.  Edward Tufte, the expert on data visualization recommended using a golden rectangle in landscape orientation for most graphics. The _golden rectangle_ is a rectangle with a side ratio of approximately 1:1.618. If a graph suggests a shape on its own, follow that shape. If the graph doesn't suggest a shape, use a rectangular shape with one side 50% longer than the other. 
+
+Apparently, you learn this in the 6th or 7th grade.  If you didn't, [check this out](https://legacyweb.philamuseum.org/doc_downloads/education/lessonPlans/Art%20and%20the%20Golden%20Rectangle.pdf).
+
+In general, square graphs are for squares. I use an `.Rprofile` file in the working directory that takes care of this so I don't have to fix this with every plot:
 
 ```r
-# graphic windows are 9 by 6 inches by default
+# graphic windows are 9 by 6 inches by default (it's not quite golden, but I like it)
 grDevices::windows.options(width = 9, height = 6) 
 
 # allows a quick use of Cairo - just cw() before a plot
 cw = function(w=9, h=6){Cairo::CairoWin(width = w, height = h)}  
 ```
 
-This consideration DOES NOT apply if you use RStudio.  If you do use RStudio, you are &#128169;&#128169;&#128169; out of luck.
+This consideration DOES NOT apply if you use RStudio.  If you do use RStudio, you are &#128169;&#128169;&#128169; out of luck because it's hip to be square in the studio.
 
 &#129300; Here's the sunspot series from `astsa` using 2 different window sizes.   In the first plot, you see that the series rises quickly &uarr; and falls slowly &#8600; .  The second (square) plot obscures this fact.
 
