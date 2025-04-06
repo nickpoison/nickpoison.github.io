@@ -1,6 +1,10 @@
 
 # Linking MKL to R on Windows
 
+### Sorry - the library files are no longer  available here.  Try [Intel](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-download.html)
+
+<br/><br/><br/><br/><br/>
+---
 &#128176; I'm still using this on R version 4.3.0 and it works fine. 
 
 <br/>
