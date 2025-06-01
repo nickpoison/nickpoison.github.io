@@ -451,14 +451,14 @@ Also, you can specify the option to do an all subsets auto arima - but for some 
 
 &#129320; Wait a second... we're not done because everyone knows you should do a residual analysis. Right? Right!  First, the simple model:
 
-![](figs/cmortres1.png)
+![](figs/cmortres1.png)<br/>
 That's nice ... maybe a little annual behavior still there, but small.
 
 <br/>
 
 Now let's look at the `auto.ascreama` residual analysis... look out below!
 
-![](figs/cmortres2.png)
+![](figs/cmortres2.png)<br/>
 Ugly- isn't it?
 
 <br/>
