@@ -14,14 +14,12 @@
 * [you're ugly](#issue---yu-gi-el-why)
 * [don't run this example - or ELSE!](#issue---do-not-run-this-example)
 
+---
 
 
 
 
-### Hello 
-
-
-We're back at trying to help You get past the gnarly stuff that comes with trying to use R for time series. This is an update of the **R Issues Page** wherein it is written, on whatever they write it on up there: 
+We're back at trying to help you get past the gnarly stuff that comes with trying to use R for time series. This is an update of the **R Issues Page** wherein it is written, on whatever they write it on up there: 
 
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
@@ -74,7 +72,7 @@ library(dplyr)
 ## it's a package fight!   
 ```
 
-How this is allowed is beyond me ![](figs/slaphead.gif) no package should be able to annihilate Vanilla R. Perhaps the designers of the tidyverse could have used `Filter` and `Lag` instead??
+How this is allowed is beyond me ![](figs/slaphead.gif) no package should be able to annihilate Vanilla R. Perhaps the designers of the tidyverse could have used `dfilter` and `dlag` instead??  (`Filter` is a base script - we used to suggest that as an alternative but we wouldn't want to corrupt a base script, right? )
 
 I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs). And generally, to be safe, load packages consciously and watch for masked objects warnings.
 
@@ -89,8 +87,8 @@ detach(package:dplyr)
 # (2) or fix it yourself if you want dplyr 
 # this is a great idea from  https://stackoverflow.com/a/65186251
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
-Lag <- dplyr::lag            # and fix ... 
-Filter <- dplyr::filter      # ... the problems
+dlag <- dplyr::lag            # and fix ... 
+dfilter <- dplyr::filter      # ... the problems
 # then use `Lag` and `Filter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
@@ -99,8 +97,8 @@ filter = stats::filter
 lag = stats::lag
 
 # in this case, you can still use these for dplyr
-Lag <- dplyr::lag     
-Filter <- dplyr::filter 
+dlag <- dplyr::lag     
+dfilter <- dplyr::filter 
 
 ```
 &#128534;  If you are wondering how it is possible to corrupt a base package, &#128125; you are not alone. 
@@ -325,7 +323,7 @@ Here are some related recent stories:
 
 &#129300; Another obvious question is _why are you using automated ARIMA fitting?_  If it's because you don't know what you're doing, then how are you going to check the results before submission?  
 
-&#128580; So what's wrong with automated model fitting? Nothing ... if you know what you are doing.  And if you know what you are doing, and you want it to be automated for some reason, then  it's better to fit AR models because 
+&#128580; So what's wrong with automated model fitting? Nothing ... if you know what you are doing.  And if you know what you are doing, and you want it to be automated for some reason, then  it's better to fit AR models because:
 
 - the theory is well established and 
 - _you don't have to deal with the problem of cancellation of the AR and MA operators (aka parameter redundancy)._  Don't know what that means?? Then don't use automated ARIMA fitting because automated fitting doesn't do this well, if at all (seems to me that programmers don't address this).
@@ -340,11 +338,11 @@ If your answers to the above are: "I dunno" then you should know that automated 
 
 &#128532; Well there are tests for some of these things, right??  
    - did you know that if the null hypothesis is true, the p-value is Uniform(0,1).  That means if the null hypothesis is true, the p-value has the same probability of being bigger than .95 than less than .05.   
-   - and if you automate a test, you have to choose a cut-off for a decision... do you cut off at $p \le .05$ ?? well, what if $p=.051$ or $.052$ or ... ??  &#128565;
+   - and if you automate a test, you have to choose a cut-off for a decision... do you reject the null if $p \le .05$ ?? well, what if $p=.051$ or $.052$ or ... ??  &#128565;
 
 &#128122; Originally, `astsa` (the first versions written in basic) had automatic fitting of models but IT DIDN'T WORK and was scrapped.  The bottom line is, if you don't know what you're doing, then why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).  It's really not that hard.
 
-&#129335; But daddy, what if I want to let a machine do it?  Well kid, you're better off fitting long ARs and try to deal with transformations in a smart way... at least you don't have to check (approximate) overparameterization.
+&#129335; But what if I want to let a machine do it?  Well, you're better off fitting long ARs and try to deal with transformations in a smart way... at least you don't have to check (approximate) overparameterization.
 
 &#128055; Here's a simple example of automated ARIMA fitting to white noise:
 
@@ -382,7 +380,7 @@ set.seed(666)       # same as above
 x = rnorm(1000)       
 u = spec.ic(x)      # plot below
 
-# to see the AICs and BICs (the min is sutracted so the it's easy to find)
+# to see the AICs and BICs (the min is sutracted so the min order is easy to find)
 u[[1]]
 
      ORDER   AIC    BIC
@@ -433,21 +431,21 @@ forecast::auto.arima(cmort)
   Coefficients:
            ar1     ar2      ma1     ma2    drift
         0.5826  0.0246  -0.3857  0.2479  -0.0203
-  s.e.  0.3623  0.3116   0.3606  0.2179   0.0148  <- se's are huge!!
+  s.e.  0.3623  0.3116   0.3606  0.2179   0.0148  <- SEs are huge!!
 
  sigma^2 = 56.94:  log likelihood = -1566.28
  AIC=3144.57   AICc=3144.76   BIC=3169.3  
 ```
 
-The final model is ARIMA $(2,0,2) \times (0,1,0)_{52}$. __NONE__ of the parameters are significant at any reasonable value and the estimated standard errors are very large. And by seasonal differencing (which is NOT needed, you lost more than 10% of the data).
+The final model is ARIMA $(2,0,2) \times (0,1,0)_{52}$. __NONE__ of the parameters are significant at any reasonable level and the estimated standard errors are very large. And by seasonal differencing (which is NOT needed, you've lost more than 10% of the data).
 
 &#128527; AIC, AICc, and BIC (comparable to the `astsa` output) are all worse than the use your brain model:
 ```r
-AIC = 6.895983  AICc = 6.896275  BIC = 6.950226  <- auto  
-AIC = 6.371023  AICc = 6.37107   BIC = 6.396044  <- brain
+AIC = 6.895983  AICc = 6.896275  BIC = 6.950226  <- auto (arima)  
+AIC = 6.371023  AICc = 6.37107   BIC = 6.396044  <- brain (arima)
 ```
 
-Also, you can specify the option to do an all subsets auto arima - but for some reason, that's worse than the stepwise (don't ask me??) 
+Also, you can specify the option to do an all subsets `auto.arima` - but for some reason, that's worse than the stepwise (don't ask me??) 
 
 &#129320; Wait a second... we're not done because everyone knows you should do a residual analysis. Right? Right!  First, the simple model:
 
