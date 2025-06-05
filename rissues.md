@@ -17,9 +17,9 @@
 ---
 
 
+&#128018;&#128018;&#128018;&#128018;&#128018; 
 
-
-We're back at trying to help you get past the gnarly stuff that comes with trying to use R for time series. This is an update of the **R Issues Page** wherein it is written, on whatever they write it on up there: 
+We're back at trying to help users get past the gnarly stuff that comes with trying to use R for time series. This is an update of the **R Issues Page** wherein it was written, on whatever they write it on up there: 
 
 
 > There are a few items related to the analysis of time series with R that will have you scratching your head. The issues mentioned below are meant to help get you past the sticky points. 
@@ -49,8 +49,7 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 An  issue with a conflict between the packages  `dplyr`  and  `stats`   (or tidyverse vs noverse)  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
 
- The bottom line is, if you are working with time
-    series and you load  `dplyr`, then you should know what it breaks... just be careful.
+ The bottom line is, if you are working with time series and you load  `dplyr`, then you should know what it breaks... just be careful.
 	
 
 In fact, you should be careful whenever you load a package.  For example:
