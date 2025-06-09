@@ -88,7 +88,7 @@ detach(package:dplyr)
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
 dlag <- dplyr::lag            # and fix ... 
 dfilter <- dplyr::filter      # ... the problems
-# then use `Lag` and `Filter` in dplyr scripts and
+# then use `dlag` and `dfilter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
 # (3) or just take back the commands
