@@ -332,8 +332,9 @@ Here are some related recent stories:
    - should you fractionally difference?  
    - should you apply a variance stabilizing transformation?
    - should you preprocess the data in any way before fitting a stationary model?
+- and there's the question of time-reversibility ... does it seem the data are coming from a time-reversible (linear) process or perhaps a nonlinear model (not an ARMA) would be better 
 
-If your answers to the above are: "I dunno" then you should know that automated fitting doesn't do this very well either.
+&#128565; If your answers to the above are: _&#8220;I dunno,&#8221;_ then you should know that automated fitting doesn't do any of these very well either.
 
 &#128532; Well there are tests for some of these things, right??  
    - did you know that if the null hypothesis is true, the p-value is Uniform(0,1).  That means if the null hypothesis is true, the p-value has the same probability of being bigger than .95 than less than .05.   
