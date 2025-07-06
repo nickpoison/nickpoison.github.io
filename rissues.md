@@ -73,7 +73,7 @@ library(dplyr)
 
 How this is allowed is beyond me ![](figs/slaphead.gif) no package should be able to annihilate Vanilla R. Perhaps the designers of the tidyverse could have used `dfilter` and `dlag` instead??  (`Filter` is a base script - we used to suggest that as an alternative but we wouldn't want to corrupt a base script, right? )
 
-I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs). And generally, to be safe, load packages consciously and watch for masked objects warnings.
+I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs) or fix the problem using the info below. And generally, to be safe, load packages consciously and watch for masked objects warnings.
 
 ⭐⭐⭐⭐⭐ 
 
@@ -102,9 +102,9 @@ dfilter <- dplyr::filter
 ```
 &#128534;  If you are wondering how it is possible to corrupt a base package, &#128125; you are not alone. 
 
-⭐⭐⭐⭐⭐
+&#128530; We've noticed that this annoying problem keeps getting poopooed &#128169; (dismissed) with claims that _it's no big deal_ because it is indeed no big deal if you know what you're doing. But the poopooers &#128169;&#128169; unfortunately can't see how it might be a problem for people who are just learning R or for people who are using R in a course.  The poopooers &#128169;&#128169;, including the maintainers of `dplyr`, who often say it's no big deal are a little like tRump who will frequently say or do something stupid and when called on it says: _I meant to do that._ &#128169;&#128169;&#128169; 
 
-> &#9940; Oh yeah, so you're probably wondering how? ... every package will nullify every other package until one day, you load R and it masks itself in an infinite do loop ...
+⭐⭐⭐⭐⭐
 
 <br/>
 
