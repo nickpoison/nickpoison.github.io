@@ -102,7 +102,7 @@ dfilter <- dplyr::filter
 ```
 &#128534;  If you are wondering how it is possible to corrupt a base package, &#128125; you are not alone. 
 
-&#128530; We've noticed that this annoying problem keeps getting poopooed &#128169; (dismissed) with claims that _it's no big deal_ because it is indeed no big deal if you know what you're doing. But the poopooers &#128169;&#128169; unfortunately can't see how it might be a problem for people who are just learning R or for people who are using R in a course.  The poopooers &#128169;&#128169;, including the maintainers of `dplyr`, who often say it's no big deal are a little like tRump who will frequently say or do something stupid and when called on it says: _I meant to do that._ &#128169;&#128169;&#128169; 
+&#128530; We've noticed that this annoying problem keeps getting poopooed &#128169; (dismissed) with claims that _it's no big deal_ because it is indeed no big deal if you know what you're doing. But the poopooers &#128169;&#128169; unfortunately can't see how it might be a problem for people who are just learning R or for instructors who are introducing R in a course.  The poopooers &#128169;&#128169;, who often say it's no big deal are a little like tRump who will frequently say or do something stupid and when called on it says: _I meant to do that._ &#128169;&#128169;&#128169; 
 
 ⭐⭐⭐⭐⭐
 
