@@ -1,13 +1,10 @@
 
 # Linking MKL to R on Windows
 
-### Sorry - the library files are no longer  available here.  Try [Intel](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-download.html)
 
-<br/><br/><br/><br/><br/>
----
-&#128176; I'm still using this on R version 4.3.0 and it works fine. 
+## &#128176; I'm still using this on R version 4.5.0 and it works fine. 
 
-<br/>
+<br/><br/>
 
 ## &#128038; The Bottom Line (at the top)
 
@@ -39,8 +36,7 @@ Now close R and let the magic begin ...
 This is an easy update as described in the discussion on [Stackoverflow](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows/56560870#56560870) previously mentioned.
 
 
--   Download the library files from here (it's an archive with 2 directories)
-[libraries.zip](https://www.stat.pitt.edu/stoffer/tsa4/libraries.zip) and extract everything.
+-   Download the library files from here (it's an archive ~ 250 MB with 2 directories, `compiler` and `mkl`): [Intel_Libraries.zip](https://www.stat.pitt.edu/stoffer/Intel_Libraries.zip) and extract everything.
 
 - Go to the  directory where R is installed, something like `C:\Program Files\R\R-4.xxx\bin\x64\`, and change `Rlapack.dll` and `Rblas.dll` to
 `Rlapack.dll.bak` and `Rblas.dll.bak`, respectively, as backups.
@@ -60,8 +56,7 @@ This is an easy update as described in the discussion on [Stackoverflow](https:/
 ---
 
 
-							
-
+​							
 
 
 
