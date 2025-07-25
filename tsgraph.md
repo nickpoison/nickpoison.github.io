@@ -289,26 +289,11 @@ ggplot(data=df, aes(x=Time, y=value, col=variable)) +
 
 <br/>
 
-&#128527;  This is how we would do it using `tsplot`.  The first line takes the `astsa` colors magenta, green, and blue, and makes them a little transparent (alpha=.7). Also, `spaghetti` is shortened to `spag`.
+&#128527;  This is how we would do it using `tsplot` 💖 using the new version 2.3 `addLegend` option:
 
 ```r
-culer = astsa.col(c(6,3,4), .7)
-tsplot(cbind(cmort,tempr,part), ylab='LA Pollution Study', col=culer, spag=TRUE)
-legend('topright', legend=c('Mortality', 'Temperature', 'Pollution'), 
-             lty=1, lwd=2, col=culer, bg='white')
-
-```
-
-![](figs/tslap.png)
-
-<br/>
-
-💖Using the new version 2.2+ `addLegend` option described above:
-
-```r
-tsplot(cbind(cmort,tempr,part), ylab='LA Pollution Study', col=astsa.col(2:4,.7), spag=TRUE,
+tsplot(cbind(cmort,tempr,part), ylab='LA Pollution Study', col=astsa.col(2:4,.8), spag=TRUE, gg=TRUE,
         addLegend=TRUE, legend=c('Mortality', 'Temperature', 'Pollution'), llwd=2)
-
 ```
 
 ![](figs/addLegend2.png)
