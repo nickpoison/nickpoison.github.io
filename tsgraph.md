@@ -247,25 +247,15 @@ ggplot(data=df, aes(x=Time, y=value, col=variable))   +
 
 <br/>
 
-&#129299; Now let's try the same thing with `tsplot`. It's not necessary to make it a gris-gris plot so remove the `gg=TRUE` part if you dare.  You don't have to melt anything.  
+&#129299; Now let's try the same thing with `tsplot`.  We're going to use the new `astsa.col` color wheel option and we'll make it a gris-gris plot.  You don't have to melt anything.  
+
 ```r
-tsplot(eqexp[,9:16], col=1:8, ncol=2, gg=TRUE)
+tsplot(eqexp[,9:16], col=astsa.col(4, wheel=TRUE, num=8), ncol=2, gg=TRUE, scale=.8)
 ```
 
 ![](figs/tsexp.png)
 
-
-
-
-<br/>
-
-&#127752; Let's try that again with rainbow colors and turning the y-axis (`las`):
-
-```r
-tsplot(eqexp[,9:16], col=rainbow(8, v=.8), ncol=2, gg=TRUE, las=0)
-```
-
-![](figs/tsexprain.png)
+`scale` controls the size of the axis labels. 
 
 <br/>
 
