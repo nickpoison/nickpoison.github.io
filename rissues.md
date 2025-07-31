@@ -47,7 +47,7 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
 
 
-An  issue with a conflict between the packages  `dplyr`  and  `stats`   (or tidyverse vs noverse)  came to my attention via online complaints; in particular with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
+An issue with a conflict between the packages  `dplyr`  and  `stats`   came to my attention via online complaints and confusion from students who were taking a time series course and a data analysis course at the same time. The main problem is with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
 
  The bottom line is, if you are working with time series and you load  `dplyr`, then you should know what it breaks... just be careful.
 	
