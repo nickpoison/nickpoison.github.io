@@ -2,13 +2,14 @@
 # Linking MKL to R on Windows
 
 
-## &#128176; I'm still using this on R version 4.5.0 and it works fine. 
+## &#128176; I'm still using this on R version 4.5 and it works fine. 
 
 <br/><br/>
 
 ## &#128038; The Bottom Line (at the top)
 
-Revolutions R came along around 2007 and provided more powerful R computing... it was freeware, but as I recall you had to register to get it.  A few years later, Microsoft bought it and called it _Microsoft R Open_.  Unfortunately, it will be gone soon if not gone already.
+Revolutions R came along around 2007 and provided more powerful R computing... it was freeware, but you had to register to get it.  A few years later, Microsoft bought it and called it _Microsoft R Open_.  Unfortunately, it is gone with the wind.  
+
 Here is a work around from the discussion on [Stackoverflow - Linking Intel's Math Kernel Library (MKL) to R on Windows](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows/56560870#56560870). 
 
 
@@ -33,16 +34,14 @@ Now close R and let the magic begin ...
 
 ## &#128038; Steps to Enhance  R version 4 
 
-This is an easy update as described in the discussion on [Stackoverflow](https://stackoverflow.com/questions/38090206/linking-intels-math-kernel-library-mkl-to-r-on-windows/56560870#56560870) previously mentioned.
+This is an easy update as described in the discussion on Stack Overflow previously mentioned.
 
 
 -   Download the library files from here (it's an archive ~ 250 MB with 2 directories, `compiler` and `mkl`): [Intel_Libraries.zip](https://www.stat.pitt.edu/stoffer/Intel_Libraries.zip) and extract everything.
 
-- Go to the  directory where R is installed, something like `C:\Program Files\R\R-4.xxx\bin\x64\`, and change `Rlapack.dll` and `Rblas.dll` to
-`Rlapack.dll.bak` and `Rblas.dll.bak`, respectively, as backups.
+- Go to the  directory where R is installed, something like `C:\Program Files\R\R-4.xxx\bin\x64\`, and change `Rlapack.dll` and `Rblas.dll` to `Rlapack.dll.bak` and `Rblas.dll.bak`, respectively, as backups.
 
-- From the extracted folder in step 1, paste all the content from the folders
-`complier` and  `mkl`  into the  directory where R is installed.
+- From the extracted folder in step 1, paste all the content from the folders `complier` and  `mkl`  into the  directory where R is installed.
 
 
 - Inside the destination folder, create **2** (additional) copies of `mkl_rt.dll`  and rename the new files as `Rlapack.dll` and `Rblas.dll`  and keep `mkl_rt.dll`.  
