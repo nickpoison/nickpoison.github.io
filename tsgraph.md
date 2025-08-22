@@ -29,11 +29,30 @@ You'll need two packages to reproduce the examples. All the data used in the exa
 ```r
 install.packages(c("astsa", "ggplot2"))
 ```
+<br/>
 
+⭐⭐⭐⭐⭐ 
+
+ &#127381;  When `astsa` is loaded (as of version 2.3), the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text and if you're doing time series analysis, `xts` is an important package.
+
+
+To suppress asking about loading `xts` you can use
+```r
+suppressPackageStartupMessages(library(astsa))
+```
+BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  
+
+<br/>
 
 &#x1F4A1; You may also want to check out the [Cairo](https://CRAN.R-project.org/package=Cairo) package to create high-quality graphics.  It's not necessary, but it sure looks nice. The package is built into R, but needs to be loaded (don't we all?) `library(Cairo)`.
 
+⭐⭐⭐⭐⭐ 
+
 <br/>
+
+
+
+
 
 ### &#10024; [The Front DooR](https://nickpoison.github.io/) if you need to find your way home.
 
