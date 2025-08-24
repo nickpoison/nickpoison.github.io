@@ -425,6 +425,7 @@ plot(djia$Close, col=4)  # 'djia' is an 'xts' data file in 'astsa'
 ![](figs/xts.png)
 
 <br/>
+
 #### pollution, weather, and mortality
 
 Now we'll take the daily data from the LA Pollution Study: `lap.xts` (in `astsa`), take weekly averages and then plot those.
