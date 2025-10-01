@@ -31,26 +31,11 @@ install.packages(c("astsa", "ggplot2"))
 ```
 <br/>
 
-⭐⭐⭐⭐⭐ 
-
- &#127381;  When `astsa` is loaded (as of version 2.3), the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text and if you're doing time series analysis, `xts` is an important package.
-
-
-To suppress asking about loading `xts` you can use
-```r
-suppressPackageStartupMessages(library(astsa))
-```
-BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  
-
-<br/>
 
 &#x1F4A1; You may also want to check out the [Cairo](https://CRAN.R-project.org/package=Cairo) package to create high-quality graphics.  It's not necessary, but it sure looks nice. The package is built into R, but needs to be loaded (don't we all?) `library(Cairo)`.
 
-⭐⭐⭐⭐⭐ 
 
 <br/>
-
-
 
 
 
@@ -469,7 +454,20 @@ addLegend("topleft", col=2:4, lty=1, lwd=2, bg=gray(1), bty='o', box.col=gray(1)
 
 ![](figs/google.png)
 
+<br/>
 
+&#128047; In case `xts` is not available, you can use `timex` from `astsa` to plot `xts` data files.  For example, `djia` is an `xts` data file. But if you  plot the data without `xts` being loaded, you lose the dates on the time axis:
+
+```r
+tsplot(djia, ncol=2, col=2:7)   # no dates
+```
+![](figs/timex1.png)
+
+Instead, you can do this:
+```r
+tsplot(timex(djia), djia, ncol=2, col=2:7)  # dates
+```
+![](figs/timex2.png)
 
 <br/><br/>
 
