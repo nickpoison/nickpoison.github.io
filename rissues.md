@@ -44,10 +44,11 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ---
 
-![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S-PLUS.  Anybody using S-PLUS right now?
+![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S and S-PLUS.  Anybody using S-PLUS right now?  
 
+In fact, we fully agree with Norm Matloff's essay &#128169;&#128169;&#128169;  [posit & the enshitification of R](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md) &#128169;&#128169;&#128169; .  Because of it, we have to put warnings in our texts so that people trying to use R for the __FIRST__ time don't get sucked into the mess. ![](figs/slaphead.gif)
 
-An issue with a conflict between the packages  `dplyr`  and  `stats`   came to my attention via online complaints and confusion from students who were taking a time series course and a data analysis course at the same time. The main problem is with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
+&#128169;  An issue with a conflict between the packages  `dplyr`  and  `stats`   came to our attention via online complaints and confusion from students who were taking a time series course and a data analysis course at the same time. The main problem is with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
 
  The bottom line is, if you are working with time series and you load  `dplyr`, then you should know what it breaks... just be careful.
 	
@@ -102,7 +103,6 @@ dfilter <- dplyr::filter
 ```
 &#128534;  If you are wondering how it is possible to corrupt a base package, &#128125; you are not alone. 
 
-&#128530; We've noticed that this annoying problem keeps getting poopooed &#128169; (dismissed) with claims that _it's no big deal_ because it is indeed no big deal if you know what you're doing. But the poopooers &#128169;&#128169; unfortunately can't see how it might be a problem for people who are just learning R or for instructors who are introducing R in a course.  The poopooers &#128169;&#128169;, who often say it's no big deal are a little like tRump who will frequently say or do something stupid and when called on it says: _I meant to do that._ &#128169;&#128169;&#128169; 
 
 ⭐⭐⭐⭐⭐
 
