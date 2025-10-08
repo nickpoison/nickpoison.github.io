@@ -382,6 +382,8 @@ ggplot(data=df, aes(x=day, y=blood, col=Type))       +
 
 ![](figs/ggblood.png)
 
+&#128262;&#128262;&#128262;&#128262;&#128262;
+
 We're not done.  At least we got the plot after some work and warnings. But notice that the vertical axes have to have a common name.  If you want individual labels (e.g., WBC is measured in _cells/&mu;L_) then you're in a load of &#128169;&#128169;&#128169;  ... we guess that's not in the grammar of graphics too.). Anyway, we found this a long time ago if you want to force the matter: [how to plot differently scaled multiple time series with ggplot2](https://gist.github.com/tomhopper/faa24797bb44addeba79)... like this is rare???? &#128580;&#128580;&#128580;
 
 Ok - let's redo it with `tsplot` with different y-labels and, if you dare, try this with &#128118; ggplot too &#128118; (if you use the link above, we won't consider it as cheating).
