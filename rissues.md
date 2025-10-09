@@ -80,18 +80,20 @@ I would say avoid loading `dplyr` if you're analyzing time series interactively 
 
 For f*ck sake, after reading Norm's essay, it seems clear that `dplyr` is a MUCH slower and weaker version of `data.table`. So don't be a ᑎᑌᗰᗷ ᑎᑌT and stop subscribing to posit's enshitification of R, and try [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) if you have to do data science. 
 
-Then, you don't have to worry about this kind of crap anymore... 𝐑𝐄𝐒𝚰𝐒𝐓 𝐓𝐇𝐄 𝐓𝚰𝐃𝐄.
+AND, when you load `data.table`, there are ZERO masked warnings!!!  And maybe we can stop having to put warnings about `dplyr` everywhere for time series analysts and other awesome people. &#128526; &#129299; &#128519; &#128518;
 
-If you are taking a course, ask the instructor nicely if they will include instruction of  [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) along with the much slower `dpliiiieeeeerrrr`. You and your instructor will be amazed. 
+If you are taking a course that concentrates on data manipulation, ask the instructor nicely if they will include instruction of  [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) along with the much slower `dpliiiieeeeerrrr`. You and your instructor will be amazed. 
 
-Who first said: _Give me 100 random numbers and I'll tell you 100 interesting things about them._ ???
+- Who first said: _Give me 100 random numbers and I'll tell you 100 interesting things about them._ ???
 
-Answer: Hungarian mathematician George Pólya.
+- Answer:  George Pólya. 
+
+
 
 
 ⭐⭐⭐⭐⭐ 
 
-An easy fix if you're analyzing time series (or teaching a class) is to (tell students to) do the following if they brainwashed into using `dplyr`.
+An easy fix if you're analyzing time series (or teaching a class) is to (tell students to) do the following if they have been brainwashed into using `dplyr`. (You can also mention the benefits of learning `data.table`.)
 
 ```r
 # (1) either detach it
