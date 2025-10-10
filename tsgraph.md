@@ -392,7 +392,7 @@ Ok - let's redo it with `tsplot` with different y-labels and, if you dare, try t
 # need astsa version 2.4 or higher to get 'title' and 'xlab' correct 
 tsplot(blood, type='o', col=c(4,6,3), pch=19, scale=.95, gg=TRUE,
        title = colnames(blood),  xlab  = c(NA, NA,'day'), las=1,
-       ylab  = c( 'log(cells/mcL)', 'log(mcL)', '% red blood cells' ))
+       ylab  = c( 'log(cells/\u03BCL)', 'log(\u03BCL)', '% red blood cells' ))
 ```
 
 
