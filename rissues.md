@@ -76,9 +76,14 @@ How this is allowed is beyond me ![](figs/slaphead.gif) no package should be abl
 
 ⭐⭐⭐⭐⭐ 
 
+
 I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs) or fix the problem using the info below. And generally, to be safe, load packages consciously and watch for masked objects warnings.
 
-For f*ck sake, after reading Norm's essay, it seems clear that `dplyr` is a MUCH slower and weaker version of `data.table`. So don't be a ᑎᑌᗰᗷ ᑎᑌT and stop subscribing to posit's enshitification of R, and try [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) if you have to do data science. 
+
+For f*ck sake, after reading [Norm's essay](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md), it seems clear that `dplyr` is a MUCH slower and weaker version of `data.table`. So don't be a ᑎᑌᗰᗷ ᑎᑌT and stop subscribing to posit's enshitification of R, and try [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) if you have to do data science. 
+
+
+
 
 AND, when you load `data.table`, there are ZERO masked warnings!!!  And maybe we can stop having to put warnings about `dplyr` everywhere for time series analysts and other awesome people. &#128526; &#129299; &#128519; &#128518;
 
@@ -87,6 +92,7 @@ If you are taking a course that concentrates on data manipulation, ask the instr
 - Who first said: _Give me 100 random numbers and I'll tell you 100 interesting things about them._ ???
 
 - Answer:  George Pólya. 
+
 
 
 
