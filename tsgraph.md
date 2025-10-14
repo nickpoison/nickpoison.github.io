@@ -398,9 +398,7 @@ tsplot(blood, type='o', col=c(4,6,3), pch=19, scale=.95, gg=TRUE,
 
 ![](figs/blood2.png)
 
-
-
-
+<br/>
 
 
 [<sub>top</sub>](#table-of-contents)
