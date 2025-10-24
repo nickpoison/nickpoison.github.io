@@ -46,9 +46,12 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S and S-PLUS.  Anybody using S-PLUS right now?  
 
-In fact, we fully agree with Norm Matloff's essay &#128169;&#128169;&#128169;  [posit & the enshitification of R](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md) &#128169;&#128169;&#128169; .  Because of it, we have to put warnings in our texts so that people trying to use R for the __FIRST__ time don't get sucked into the mess. ![](figs/slaphead.gif)
+In fact, we fully agree with Norm Matloff's essay &#128169;&#128169;&#128169;  [posit & the enshitification of R](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md) &#128169;&#128169;&#128169; .  Because of it, we have to put warnings in our texts so that people trying to use R for the __FIRST__ time don't get sucked into the mess. ![](figs/slaphead.gif)  
 
-&#128169;  An issue with a conflict between the packages  `dplyr`  and  `stats`   came to our attention via online complaints and confusion from students who were taking a time series course and a data analysis course at the same time. The main problem is with `filter()` and `lag()`. There may be more conflicts out there, but this conflict can ruin your analyses.  
+
+&#128169;  An issue with a conflict between the packages  `dplyr`  and  `stats`   came to our attention via online complaints and confusion from students who were taking a time series course and a data analysis course at the same time. The main problem is with `filter()` and `lag()`. There are more conflicts out there, but this conflict can ruin your analyses.  
+
+This rant is NOT about pipes, if you think `mydata |> plot()` is better than `plot(mydata)`, then we're happy for you.  This is about corrupting nice base scripts like `filter` and `lag` and making our work as instructors so much harder. 🖕 (If the `conflicted` package was made part of base-R, that would be a step in the right direction, but novices would still have a hard time... it's still best if CORRUPTING BASE-R IS NOT ALLOWED... any thinking person would agree.)
 
  The bottom line is, if you are working with time series and you load  `dplyr`, then you should know what it breaks... just be careful.
 	
@@ -81,8 +84,6 @@ I would say avoid loading `dplyr` if you're analyzing time series interactively 
 
 
 For f*ck sake, after reading [Norm's essay](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md), it seems clear that `dplyr` is a MUCH slower and weaker version of `data.table`. So don't be a ᑎᑌᗰᗷ ᑎᑌT and stop subscribing to posit's enshitification of R, and try [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) if you have to do data science. 
-
-
 
 
 AND, when you load `data.table`, there are ZERO masked warnings!!!  And maybe we can stop having to put warnings about `dplyr` everywhere for time series analysts and other awesome people. &#128526; &#129299; &#128519; &#128518;
