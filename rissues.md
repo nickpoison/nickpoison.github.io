@@ -51,7 +51,6 @@ In fact, we fully agree with Norm Matloff's essay &#128169;&#128169;&#128169;  [
 
 &#128169;  An issue with a conflict between the packages  `dplyr`  and  `stats`   came to our attention via online complaints and confusion from students who were taking a time series course and a data analysis course at the same time. The main problem is with `filter()` and `lag()`. There are more conflicts out there, but this conflict can ruin your analyses.  
 
-This rant is NOT about pipes, if you think `mydata |> plot()` is better than `plot(mydata)`, then we're happy for you.  This is about corrupting nice base scripts like `filter` and `lag` and making our work as instructors so much harder. 🖕 (If the `conflicted` package was made part of base-R, that would be a step in the right direction, but novices would still have a hard time... it's still best if CORRUPTING BASE-R IS NOT ALLOWED... any thinking person would agree.)
 
  The bottom line is, if you are working with time series and you load  `dplyr`, then you should know what it breaks... just be careful.
 	
@@ -79,8 +78,10 @@ How this is allowed is beyond me ![](figs/slaphead.gif) no package should be abl
 
 ⭐⭐⭐⭐⭐ 
 
+This rant is NOT about pipes, if you think `mydata |> plot()` is better than `plot(mydata)`, then we're happy for you (but we do agree with [Matloff](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md) that pipes are not for novices). This is about corrupting nice base scripts like `filter` and `lag` and making our work as instructors so much harder 🖕. (If the `conflicted` package were made part of base-R, that would be a step in the right direction, but novices would still have a hard time... it's still best if CORRUPTING BASE-R IS NOT ALLOWED... any thinking person would agree.) 
 
-I would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs) or fix the problem using the info below. And generally, to be safe, load packages consciously and watch for masked objects warnings.
+
+We would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs) or fix the problem using the info below. And generally, to be safe, load packages consciously and watch for masked objects warnings.
 
 
 For f*ck sake, after reading [Norm's essay](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md), it seems clear that `dplyr` is a MUCH slower and weaker version of `data.table`. So don't be a ᑎᑌᗰᗷ ᑎᑌT and stop subscribing to posit's enshitification of R, and try [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) if you have to do data science. 
@@ -128,6 +129,8 @@ dfilter <- dplyr::filter
 
 
 ⭐⭐⭐⭐⭐
+
+There is now `dtplyr` that uses `data.table` brains with `dplyr` interface. But, the problem with `dplyr` corruption still exists... so while this may be ok for people who want to take 100 random numbers and say 100 interesting things about them, it still poses a problem for the time series/signal processing people.
 
 <br/>
 
