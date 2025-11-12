@@ -78,8 +78,27 @@ How this is allowed is beyond me ![](figs/slaphead.gif) no package should be abl
 
 ⭐⭐⭐⭐⭐ 
 
-This rant is NOT about pipes, if you think `mydata |> plot()` is better than `plot(mydata)`, then we're happy for you (but we do agree with [Matloff](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md) that pipes are not for novices). This is about corrupting nice base scripts like `filter` and `lag` and making our work as instructors so much harder 🖕. (If the `conflicted` package were made part of base-R, that would be a step in the right direction, but novices would still have a hard time... it's still best if CORRUPTING BASE-R IS NOT ALLOWED... any thinking person would agree.) 
+This rant is NOT about pipes, if you think `mydata |> plot()` is better than `plot(mydata)`, then we're happy for you (but we do agree with [Matloff](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md) that pipes are not for novices). This is about corrupting nice base scripts like `filter` and `lag` and making our work as instructors so much harder 🖕.  If the `conflicted` package were made part of base-R, that would be a step in the right direction, but novices would still have a hard time... it's still best if MASKING BASE-R IS NOT ALLOWED.
 
+It's often useful to take things to extremes to see if they make sense at a lower level.  For example, could I change things like `+` and so on??  So if you load my package, say `screwu`, this would happen:
+
+```r
+library(screwu)
+
+The following are masked from 'package:base': 
+
+   +, -, *, /
+
+# now try
+1 + 1
+ [1] 0
+
+# ... no no dumbass, you have to do this
+1 base::+ 1
+ [1] 2 
+
+see, it's not a problem... 
+```
 
 We would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs) or fix the problem using the info below. And generally, to be safe, load packages consciously and watch for masked objects warnings.
 
