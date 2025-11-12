@@ -96,8 +96,7 @@ The following are masked from 'package:base':
 # ... no no dumbass, you have to do this
 1 base::+ 1
  [1] 2 
-
-see, it's not a problem... 
+# see, it's not a problem... 
 ```
 
 We would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs) or fix the problem using the info below. And generally, to be safe, load packages consciously and watch for masked objects warnings.
