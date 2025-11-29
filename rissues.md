@@ -412,6 +412,22 @@ forecast::auto.arima(x)  # BLACK BOX
 
 &#x1F439; But if you know what you're doing, you would realize the model that the `auto.arima` fit is overparameterized white noise. 
 
+It's pretty obvious that the model is overparameterized white noise, but `astsa` has a way to check if you're the type of person who has trouble with autostereograms.
+
+```r
+arma.check(ar=c(-.9744,-.0477), ma=.9509)
+
+  # with output
+  The model is causal.
+  The model is invertible.
+
+  WARNING: (Possible) Parameter Redundancy 
+
+  It looks like that ARMA model has (approximate) common factors.
+  This means that the model is (possibly) over-parameterized.
+  You might want to try again.
+```
+
 &#128038;  The bottom line here is, in it's present state, automated ARIMA model fitting is for the birds. &#128038;
 
 &#128520; So  let's see what happens if we just fit ARs using AIC 
@@ -475,7 +491,7 @@ forecast::auto.arima(cmort)
   Coefficients:
            ar1     ar2      ma1     ma2    drift
         0.5826  0.0246  -0.3857  0.2479  -0.0203
-  s.e.  0.3623  0.3116   0.3606  0.2179   0.0148  <- SEs are huge!!
+  s.e.  0.3623  0.3116   0.3606  0.2179   0.0148  <- SEs are HUGE!!
 
  sigma^2 = 56.94:  log likelihood = -1566.28
  AIC=3144.57   AICc=3144.76   BIC=3169.3  
