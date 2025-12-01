@@ -110,9 +110,8 @@ AND, when you load `data.table`, there are ZERO masked warnings!!!  And maybe we
 If you are taking a course that concentrates on data manipulation, ask the instructor nicely if they will include instruction of  [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) along with the much slower `dpliiiieeeeerrrr`. You and your instructor will be amazed. 
 
 
-- Who first said: _Give me 100 random numbers and I'll tell you 100 interesting things about them._ ???
+-  _Give me 100 random numbers and I'll tell you 100 interesting things about them._ (I.J. Good, maybe paraphrasing others, predicting the field of data science) 
 
-- Answer:  George Pólya. 
 
 
 
