@@ -614,6 +614,7 @@ In general, square graphs are for squares. I use an `.Rprofile` file in the work
 grDevices::windows.options(width = 9, height = 6) 
 
 # allows a quick use of Cairo - just cw() before a plot
+# get Cairo:  install.packages('Cairo')
 cw = function(w=9, h=6){Cairo::CairoWin(width = w, height = h)}  
 ```
 
