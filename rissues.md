@@ -360,7 +360,7 @@ Here are some related recent stories:
 > A federal judge has ruled that a Massachusetts school was likely within its rights to discipline a student who used generative artificial intelligence to complete an assignment.
 >
 
-> [Stanford Professor Accused of Using AI to Write Expert Testimony Criticizing Deepfakes]((https://gizmodo.com/stanford-professor-accused-of-using-ai-to-write-expert-testimony-criticizing-deepfakes-2000527975))
+> [Stanford Professor Accused of Using AI to Write Expert Testimony Criticizing Deepfakes](https://gizmodo.com/stanford-professor-accused-of-using-ai-to-write-expert-testimony-criticizing-deepfakes-2000527975)
 >
 > In what appears to be an embarrassing and ironic gaffe, a top Stanford University professor has been accused of spreading AI-generated misinformation while serving as an expert witness in support of a law designed to keep AI-generated misinformation out of elections.
 
