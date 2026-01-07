@@ -474,13 +474,13 @@ addLegend("topleft", col=2:4, lty=1, lwd=2, bg=gray(1), bty='o', box.col=gray(1)
 &#128047; In case `xts` is not available, you can use `timex` from `astsa` to plot `xts` data files.  For example, `djia` is an `xts` data file. But if you  plot the data without `xts` being loaded, you lose the dates on the time axis:
 
 ```r
-tsplot(djia, ncol=2, col=2:7)   # no dates
+tsplot(djia, ncol=2, col=2:6)   # no dates
 ```
 ![](figs/timex1.png)
 
 Instead, you can do this:
 ```r
-tsplot(timex(djia), djia, ncol=2, col=2:7)  # dates
+tsplot(timex(djia), djia, ncol=2, col=2:6)  # dates
 ```
 ![](figs/timex2.png)
 
