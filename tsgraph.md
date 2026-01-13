@@ -32,7 +32,7 @@ install.packages(c("astsa", "ggplot2"))
 <br/>
 
 
-&#x1F4A1; You may also want to check out the [Cairo](https://CRAN.R-project.org/package=Cairo) package to create high-quality graphics.  It's not necessary, but it sure looks nice. The package is built into R, but needs to be loaded (don't we all?) `library(Cairo)`.
+&#x1F4A1; You may also want to check out the [Cairo](https://CRAN.R-project.org/package=Cairo) package to create high-quality graphics.  It's not necessary, but it sure looks nice. 
 
 
 <br/>
