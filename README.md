@@ -29,6 +29,7 @@
 
 &#10024;  An [R tutorial](https://dsstoffer.github.io/Rtoot) that used to be Appendix R in the texts. 
 
+&#10024; The  [LaTeX page](https://dsstoffer.github.io/freetex) is back
 
 ### &#127969; [Professor Stoffer's Home](https://dsstoffer.github.io/)
 
