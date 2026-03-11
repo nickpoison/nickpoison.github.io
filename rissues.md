@@ -738,7 +738,9 @@ sarima(x,1,1,0)
 
 
 
-&#129337;&#127995; The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`. That is, the procedure being used does NOT take into account the fact that the residuals are from a fitted model.  This is corrected in `sarima` in  [`astsa`](https://github.com/nickpoison/astsa).
+&#129337;&#127995; The p-values shown for the Ljung-Box statistic plot are incorrect because the degrees of freedom used to calculate the p-values are `lag` instead of `lag - (p+q)`. That is, the procedure being used does NOT take into account the fact that the residuals are from a fitted model.  This is corrected in `ts.diag` in  [`astsa`](https://github.com/nickpoison/astsa).
+
+NOTE: In `stats::tsdiag`, you may specify `fitdf` to fix this problem. The real problem is that this important information is relegated to the &hellip; part of the arguments instead of being _explicit_ as it is in [`astsa`](https://github.com/nickpoison/astsa)'s script, the new and improved `ts.diag`.
 
 [<sub>top</sub>](#table-of-contents)
 
