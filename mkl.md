@@ -37,7 +37,7 @@ Now close R and let the magic begin ...
 This is an easy update as described in the discussion on Stack Overflow previously mentioned.
 
 
--   Download the library files from here (it's an archive ~ 250 MB with 2 directories, `compiler` and `mkl`): [Intel_Libraries.zip](https://www.stat.pitt.edu/stoffer/Intel_Libraries.zip) and extract everything.
+-  <s> Download the library files from here (it's an archive ~ 250 MB with 2 directories, `compiler` and `mkl`): [Intel_Libraries.zip](https://www.stat.pitt.edu/stoffer/Intel_Libraries.zip) and extract everything.</s> not available :(
 
 - Go to the  directory where R is installed, something like `C:\Program Files\R\R-4.xxx\bin\x64\`, and change `Rlapack.dll` and `Rblas.dll` to `Rlapack.dll.bak` and `Rblas.dll.bak`, respectively, as backups.
 
