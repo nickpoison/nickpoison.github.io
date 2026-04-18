@@ -14,7 +14,6 @@
 
  &#10024; The [Time Series Graphics](https://nickpoison.github.io/tsgraph) page is also alive again
 
- &#10024; How to EASILY [Link Math Libraries (MKL) to R](https://nickpoison.github.io/mkl) on Windows and improve performance
 
  &#10024; The site for the R package [astsa](https://github.com/nickpoison/astsa/blob/master/README.md) is here too
 
