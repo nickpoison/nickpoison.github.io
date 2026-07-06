@@ -44,14 +44,6 @@ Many of these issues have been taken care of in  the package [astsa](https://git
 
 ---
 
-![](figs/slaphead.gif) The issue below has become a real pain as  the commercial enterprise that makes RStudio  influences the R Foundation, which is a nonprofit organization.  Older folks saw this happen with R's predecessor, S and S-PLUS.  Anybody using S-PLUS right now?  
-
-In fact, we fully agree with Norm Matloff's essay &#128169;&#128169;&#128169;  [posit & the enshitification of R](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md) &#128169;&#128169;&#128169; .  Because of it, we have to put warnings in our texts so that beginners don't get sucked into the mess ![](figs/slaphead.gif).  Along the lines of the enshitification of Splus, why didn't POS(it) design their own software instead of leeching off  of R?? Because it would have gone nowhere... it's what parasites do, feed off of others.  Norm puts it this way:
-
-> _An open-source project involves people spending a large amount of time developing the project for free, no pay. Thus, for a commercial entity to then swoop down and exploit all that free labor for its own profit is fraught with peril. To then take over the product as its own is unconscionable. I have no doubt that RStudio was well-intentioned in this, sincerely believing in the Tidyverse, but many do not share this view, and RStudio should have worked with the R Core Group, rather than taking action on its own._
-
-
-
 &#128169; Our problem started with an issue that was a conflict between the packages  `dplyr`  and  `stats`. The problem  came to our attention via online complaints and confusion from students who were taking a time series course and a data analysis course at the same time. The main problem was/is with `filter()` and `lag()`. There are more conflicts out there, but this conflict can ruin your analyses.  
 
 
@@ -77,46 +69,9 @@ library(dplyr)
 ## it's a package fight!   
 ```
 
-How this is allowed is beyond me ![](figs/slaphead.gif) no package should be able to annihilate Vanilla R. Perhaps the designers of the tidyverse could have used `dfilter` and `dlag` instead??  (`Filter` is a base script - we used to suggest that as an alternative but we wouldn't want to corrupt a base script, right? )
+How this is allowed is beyond me ![](figs/slaphead.gif) no package should be able to mask Vanilla R. Perhaps the designers of the tidyverse could have used `dfilter` and `dlag` instead??  
 
-⭐⭐⭐⭐⭐ 
-
-Ok- so this particular rant is NOT about pipes, if you think `mydata |> plot()` is better than `plot(mydata)`, then we're happy for you (not really - we think you just joined a cult). This is about corrupting nice base scripts like `filter` and `lag` and making our work as instructors so much harder 🖕.  If the `conflicted` package were made part of base-R, that would be a step in the right direction, but novices would still have a hard time... it's still best if MASKING BASE-R IS NOT ALLOWED.  
-
-It's often useful to take things to extremes to see if they make sense at a lower level.  For example, could I change things like `+` and so on??  So if you load my package, say `screwu`, this would happen:
-
-```r
-library(screwu)
-
-The following are masked from 'package:base': 
-
-   +, -, *, /
-
-# now try
-1 + 1
- [1] 0
-
-# ... no no dumbass, you have to do this
-1 base::+ 1
- [1] 2 
-# see, it's not a problem... 
-```
-
-We would say avoid loading `dplyr` if you're analyzing time series interactively (the advantage of using R vs batch mode programs) or fix the problem using the info below. And generally, to be safe, load packages consciously and watch for masked objects warnings.
-
-
-For f*ck sake, after reading [Norm's essay](https://github.com/matloff/TidyverseSkeptic/blob/master/READMEFull.md), it seems clear that `dplyr` is a MUCH slower and weaker version of `data.table`. So don't be a ᑎᑌᗰᗷ ᑎᑌT and stop subscribing to posit's enshitification of R, and try [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) if you have to do data science. 
-
-
-AND, when you load `data.table`, there are ZERO masked warnings!!!  And maybe we can stop having to put warnings about `dplyr` everywhere for time series analysts and other awesome people. &#128526; &#129299; &#128519; &#128518;
-
-If you are taking a course that concentrates on data manipulation, ask the instructor nicely if they will include instruction of  [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) along with the much slower `dpliiiieeeeerrrr`. You and your instructor will be amazed. 
-
-
--  _Give me 100 random numbers and I'll tell you 100 interesting things about them._ (I.J. Good, maybe paraphrasing others, predicting the field of data science) 
-
-
-
+By the way, if you are taking a course that concentrates on data manipulation, ask the instructor nicely if they will include instruction of  [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html). You and your instructor will be amazed. 
 
 
 
@@ -143,14 +98,7 @@ lag = stats::lag
 # in this case, you can still use these for dplyr
 dlag <- dplyr::lag     
 dfilter <- dplyr::filter 
-
 ```
-&#128534;  If you are wondering how it is possible to corrupt a base package, &#128125; you are not alone. 
-
-
-⭐⭐⭐⭐⭐
-
-There is now `dtplyr` that uses `data.table` brains with `dplyr` interface. But, the problem with `dplyr` corruption still exists... so while this may be ok for people who want to take 100 random numbers and say 100 interesting things about them, it still poses a problem for the time series/signal processing people.
 
 <br/>
 
