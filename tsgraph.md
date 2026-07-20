@@ -34,7 +34,24 @@ install.packages(c("astsa", "ggplot2"))
 
 &#x1F4A1; You may also want to check out the [Cairo](https://CRAN.R-project.org/package=Cairo) package to create high-quality graphics.  It's not necessary, but it sure looks nice. 
 
+---
 
+&#128018; Let's talk about this a little more.  If you are developing  graphics for publication, you probably monkey around  a bit  using your screen before committing it to a pdf. That's a bit flawed because your screen can't handle all the intricacies you will get on your pdf. For example, if you use `lwd=1.5` in your script, your screen can't light up &half; a pixel, so you get `lwd=1`.  The easiest solution is to use  [Cairo](https://CRAN.R-project.org/package=Cairo) while you're tweaking the graphic... that way you can get a better idea of what the pdf will look like. (You could output to pdf every time, but that can get annoying if you just want to try moving things around or changing a color.) 
+
+&#128018; What I do is install the Cairo package and then put this line into  .Rprofile:
+```r
+cw = function(w=9, h=6){Cairo::CairoWin(width = w, height = h)}
+```
+That way, you can just do this something like this:
+```r
+cw()
+plot(try1)
+plot(try2)
+ ...
+``` 
+until you are satisfied. Then you can do your pdf.  Notice the default size is roughly the golden rectangle ... keep reading for more details, but feel free to change `w` and `h` or do it on the fly, like `cw(w=7, h=11)` if that's your jam.
+
+---
 <br/>
 
 
